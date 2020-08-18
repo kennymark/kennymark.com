@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import { Box, Flex, Icon, Link as NLink, Text } from '@chakra-ui/core'
 import Link from 'next/link'
 import React from 'react'
@@ -48,12 +48,6 @@ function Portfolio() {
   )
 }
 
-// export async function getStaticProps() {
-
-//   return {
-//     props: ''
-//   }
-// }
 
 
 export default Portfolio
