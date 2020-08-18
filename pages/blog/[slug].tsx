@@ -39,11 +39,7 @@ function Post({ post }) {
         </Flex>
 
         <Box as={Img} src={image} height={[400, '', 620]} borderRadius='lg' mb={10} />
-
-        <MDXWrapper __dans>{post.body}</MDXWrapper>
-        <div __dangerouslySetInnerHTML={{ __html: post.body }}>
-
-        </div>
+        <MDXWrapper>{post.body}</MDXWrapper>
       </Box>
 
     </Fragment>
