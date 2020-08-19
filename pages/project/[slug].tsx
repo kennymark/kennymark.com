@@ -58,7 +58,6 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params: { slug } }) {
   const project = topProjects.find(proj => slugify(proj.name) === slug)
-  console.log({ slug })
 
   return {
     props: project

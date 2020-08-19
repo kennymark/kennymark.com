@@ -25,7 +25,7 @@ export default function Projects() {
           columnClassName="my-masonry-grid_column">
 
           {topProjects.reverse().map((project, idx) => (
-            <Link href='project/[slug]' as={`/project/${slug(project.name)}`} borderRadius='lg' key={idx}>
+            <Link href={`/project/${slug(project.name)}`} key={idx}>
               <Box bg={project.color} p={5} rounded='lg' m={4} cursor='pointer' _hover={{ shadow: '2xl' }} position='relative' className='proj' minH={300} >
 
 

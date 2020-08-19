@@ -11,7 +11,7 @@ export const CodeBlock = ({ children, className }) => {
         <Box as='pre' borderRadius='lg' mb={5} fontFamily='Source Code Pro' p={25} overflowX='auto' fontSize={18} pb={1} className={className} style={{ ...style, }}>
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
+              {line?.map((token, key) => (
                 <span key={key} {...getTokenProps({ token, key })} />
               ))}
             </div>
