@@ -1,15 +1,15 @@
-import { Flex, Heading, Stack, Text, Box, Link, useColorMode, } from '@chakra-ui/core'
+import { Box, Flex, Heading, Link, Stack, Text, useColorModeValue } from '@chakra-ui/core'
 import React from 'react'
 
 function Home() {
-  const { colorMode } = useColorMode()
+  const bgColor = useColorModeValue('green.50', null)
 
   return (
     <Stack h={['65vh', null, '70vh', '90vh']} mx='auto' w='80%' justifyContent='center' flexDirection='column'>
       <Flex alignSelf='center'>
-        <Heading as='h1' fontSize={['4xl', '5xl', '6xl', '140px']} letterSpacing={2} lineHeight={1.1} fontWeight='bold'>
+        <Heading as='h1' fontSize={['4xl', '5xl', '6xl', '140px']} letterSpacing={2} lineHeight={1.1} fontWeight='bold' fontFamily='Alata'>
           I design & build beautiful web
-          <Box as='span' background={colorMode === 'light' && '#ffedc5'} > experiences</Box>
+          <Box as='span' background={bgColor} rounded='lg' minW={200}> experiences</Box >
         </Heading>
       </Flex>
 

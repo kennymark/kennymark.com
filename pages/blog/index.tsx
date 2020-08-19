@@ -8,12 +8,19 @@ import timeRead from 'read-time';
 import slug from 'slug';
 import SEO from "../../src/components/seo";
 import PageHeader from "../../src/components/ui/page-header";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+
+
 
 
 function Blog({ posts }) {
   const description = useColorModeValue('gray.700', 'gray.400')
   const titleC = useColorModeValue('black', 'gray.300')
+
+  useEffect(() => {
+    // console.log({ blogPosts })
+
+  }, [])
 
   return (
     <Fragment>

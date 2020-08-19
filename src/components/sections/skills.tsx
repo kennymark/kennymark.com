@@ -1,11 +1,8 @@
-//@ts-nocheck
+
 import { Box, Heading, SimpleGrid, Text, useColorMode } from '@chakra-ui/core';
 import React from 'react';
 import { skillTypes } from '../../data/data';
-import backend from '../../images/backend.svg';
-import devops from '../../images/devops.svg';
-import extras from '../../images/extras.svg';
-import frontend from '../../images/front-end.svg';
+
 
 
 
@@ -13,7 +10,8 @@ import frontend from '../../images/front-end.svg';
 function Skills() {
   const { colorMode } = useColorMode()
   const types = Object.keys(skillTypes)
-  const images = [frontend, backend, devops, extras,]
+  const images = ['/images/front-end.svg', '/images/backend.svg', '/images/devops.svg', '/images/extras.svg']
+
 
   return (
     <Box px={5}>

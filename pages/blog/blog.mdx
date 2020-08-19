@@ -11,14 +11,14 @@ What if I told you there was a simple way to get custom fonts working on both IO
 
 Let starts by first downloading the font from Google Fonts.
 
-![unsplash](./google-fonts.jpg)
+![unsplash](/images/google-fonts.jpg)
 
 After downloading the font. Follow the steps below
 
-1. Create an assets folders in the root of your project with command `mkdir assets`. 
-2. Go to the asset folders and  create a fonts folder with command `cd assets && mkdir fonts`.
-3. Go back to the root of your folder and a create a file named react-native.config.js if it does not already exist.
-4. Copy and the paste the code below into your react-native.config.js file 
+- Create an assets folders in the root of your project with command `mkdir assets`. 
+- Go to the asset folders and  create a fonts folder with command `cd assets && mkdir fonts`.
+- Go back to the root of your folder and a create a file named react-native.config.js if it does not already exist.
+- Copy and the paste the code below into your react-native.config.js file 
 
   ```js
   module.exports = {
@@ -26,9 +26,9 @@ After downloading the font. Follow the steps below
   }
   ```
 
-5. Ensure the fonts folder contains all the fonts you are going to need for your project in a ttf format. In my case, I will be only using the Work Sans font. 
-6. Once that is done, just run `react-native link` from the root of the project.
-7. Voila!. You now have custom fonts set up. 
+- Ensure the fonts folder contains all the fonts you are going to need for your project in a ttf format. In my case, I will be only using the Work Sans font. 
+- Once that is done, just run `react-native link` from the root of the project.
+- Voila!. You now have custom fonts set up. 
 
 ## Verify your fonts work properly
 
@@ -47,8 +47,9 @@ On Android this works slightly differently. We need to navigate to `android/app/
 
 ## Gotchas
 
-1. Please ensure you are using react native v0.60 or greater. This only works on React Native version 0.60 and up.
-2. Check your font names. Ensure the font name you are using in your project is the actual name of the font. For example, when you download the Work Sans font and extract it from the zip file, all the files will most likely have different file names. It might look like Work+Sans-Bold.tff but using the exact file name in your react native font-family might cause issues because that might actually not be the font name.  To ensure you actually are using the real font name, you can double-click the font. When the corresponding app opens on your machine, the name you see there will mostly likely be the name of the font.
+
+- Please ensure you are using react native v0.60 or greater. This only works on React Native version 0.60 and up.
+- Check your font names. Ensure the font name you are using in your project is the actual name of the font. For example, when you download the Work Sans font and extract it from the zip file, all the files will most likely have different file names. It might look like Work+Sans-Bold.tff but using the exact file name in your react native font-family might cause issues because that might actually not be the font name.  To ensure you actually are using the real font name, you can double-click the font. When the corresponding app opens on your machine, the name you see there will mostly likely be the name of the font.
 
 ## Conclusion
 

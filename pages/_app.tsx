@@ -1,27 +1,34 @@
-
-import { ChakraProvider, CSSReset } from "@chakra-ui/core"
 import '../styles/main.css'
-import Footer from "../src/components/layout/footer"
-import Header from "../src/components/layout/header"
-import customeTheme from "../theme"
+import { useRouter } from "next/router"
+import BlogLayout from "../src/components/layout/blog-layout"
+import AppLayout from "../src/components/layout/app-layout"
 
 
 
-function MyApp({ Component, pageProps }) {
-  const year = new Date().getFullYear() || '2020'
-  const data = ''
+function MyApp({ Component, pageProps, cookies }) {
+
+  const { pathname } = useRouter()
+
+  if (pathname.includes('blog')) {
+    return (
+      <BlogLayout>
+        <Component {...pageProps} />
+      </BlogLayout>
+    )
+
+  }
 
   return (
-    <ChakraProvider theme={customeTheme}>
-      <CSSReset />
-      <Header />
-      <main className='main'>
-        <Component {...pageProps} />
-      </main>
-      <Footer data={data} year={year} />
-
-    </ChakraProvider>
+    <AppLayout cookies={cookies}>
+      <Component {...pageProps} />
+    </AppLayout>
   )
+}
+
+MyApp.getInitialProps = async ({ ctx }) => {
+  return {
+    cookies: ctx.req?.headers.cookie,
+  }
 }
 
 export default MyApp

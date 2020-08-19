@@ -11,8 +11,7 @@ const MenuItems = ({ children, to }) => {
   const color = useColorModeValue('gray.500', 'green.600')
 
   return (
-    <Link href={to}
-      style={{ marginTop: 10 }} >
+    <Link href={to}>
       <NLink mr={3} color={color} textDecoration='none'>
         {children}
       </NLink>
