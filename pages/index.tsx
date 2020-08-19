@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../src/components/layout/layout"
 import SEO from "../src/components/seo"
 import { Box } from '@chakra-ui/core'
 import Contact from '../src/components/sections/contact'
