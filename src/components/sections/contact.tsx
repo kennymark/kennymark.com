@@ -34,7 +34,7 @@ function Contact() {
   const sendMail = async (data) => {
 
     try {
-      await fetch("https://kennymark.co.uk/.netlify/functions/contact", {
+      await fetch("/api/contact", {
         "method": "POST",
         "headers": { "content-type": "application/json" },
         "body": JSON.stringify(data)
