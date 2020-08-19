@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps, cookies }) {
   }
 
   return (
-    <AppLayout cookies={cookies}>
+    <AppLayout >
       <Component {...pageProps} />
     </AppLayout>
   )
