@@ -1,12 +1,12 @@
 
-import { ChakraProvider, CSSReset, cookieStorageManager } from '@chakra-ui/core'
+import { ChakraProvider, CSSReset, } from '@chakra-ui/core'
 import customeTheme from '../../../theme'
 import Header from './header'
 import Footer from './footer'
 
-function AppLayout({ children, cookies }) {
+function AppLayout({ children, }) {
   return (
-    <ChakraProvider theme={customeTheme} storageManager={cookieStorageManager(cookies)} >
+    <ChakraProvider theme={customeTheme} >
       <CSSReset />
       <Header />
 
