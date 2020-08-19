@@ -19,7 +19,7 @@ function Skills() {
 
       <SimpleGrid columns={[1, 1, 2, 4]} spacing={5} >
         {types.map((type, key) =>
-          <Box borderRadius='lg' pb={8} key={type} position='relative' key={key}
+          <Box borderRadius='lg' pb={8} key={type} position='relative'
             bg={skillTypes[type].color + '.100'} zIndex={206}>
 
             <Box as='img' src={images[key]} alt={type} pos='absolute' width='inherit' height='100%' opacity={.14} zIndex={205} />
