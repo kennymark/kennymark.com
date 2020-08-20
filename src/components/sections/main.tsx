@@ -14,7 +14,7 @@ function Home() {
         </Heading>
       </Flex>
 
-      <Text fontWeight='bold' fontSize={[20, 25]} color='gray.500' mt={20} >Fullstack JavaScript Developer</Text>
+      <Text fontWeight='bold' fontSize={[20, 25]} color='gray.500' mt={25} >Fullstack JavaScript Developer</Text>
       <Link href='https://twitter.com/mrkennymark' isExternal fontWeight='bold' fontSize={[15, 20]} color='green.500' width='fit-content' _focus={{ outline: 0 }}>@mrkennymark</Link>
     </Stack>
   )
