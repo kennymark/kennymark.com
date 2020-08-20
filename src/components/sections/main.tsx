@@ -9,7 +9,8 @@ function Home() {
       <Flex alignSelf='center'>
         <Heading as='h1' fontSize={['4xl', '5xl', '6xl', '140px']} letterSpacing={2} lineHeight={1.1} fontWeight='bold' fontFamily='Alata'>
           I design & build beautiful web
-          <Box as='span' background={bgColor} rounded='lg' minW={200}> experiences</Box >
+          <Box as='span'> experiences
+          </Box >
         </Heading>
       </Flex>
 
