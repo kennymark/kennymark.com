@@ -4,20 +4,11 @@ import AppLayout from 'components/layout/app-layout'
 
 
 
-function MyApp({ Component, pageProps, cookies }) {
+const MyApp = ({ Component, pageProps }) => (
+  <AppLayout >
+    <Component {...pageProps} />
+  </AppLayout>
+)
 
-
-  return (
-    <AppLayout >
-      <Component {...pageProps} />
-    </AppLayout>
-  )
-}
-
-MyApp.getInitialProps = async ({ ctx }) => {
-  return {
-    cookies: ctx.req?.headers.cookie,
-  }
-}
 
 export default MyApp
