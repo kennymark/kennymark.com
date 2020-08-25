@@ -72,10 +72,8 @@ export const getStaticProps = async () => {
 
   }))
 
-  console.log({ posts: posts.map(post => post.data) })
-  return {
-    props: { posts }
-  };
+
+  return { props: { posts } }
 };
 
 export default Blog;

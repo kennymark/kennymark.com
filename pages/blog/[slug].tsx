@@ -31,7 +31,7 @@ function Post({ post }) {
           <AuthorCard author={author} mr={3} />
           <Date date={date} />
         </Flex>
-        <Text>{post.timeToRead.m} min read</Text>
+        <Text>{post.timeToRead.m + 1} min read</Text>
       </Flex>
 
       <Box as={Img} src={image} height={[400, '', 620]} borderRadius='lg' mb={10} />
