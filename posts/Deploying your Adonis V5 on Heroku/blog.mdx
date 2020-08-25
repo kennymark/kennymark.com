@@ -1,0 +1,151 @@
+---
+title: Deploying your Adonis v5 applications on Heroku
+author: Kenneth Coffie
+date: 25-08-20
+category: node
+description: A simple tutorial on how to deploy your Adonis.js v5 on Heroku. Also learn to provision your databases too.
+image: 
+---
+
+### Pre-requisites
+- [Heroku Account](https://signup.heroku.com/)
+- [Git](https://git-scm.com/)
+- [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+- [Node.js](https://nodejs.org/en/)
+- [AdonisJS](https://preview.adonisjs.com/guides/quick-start)
+
+## Introduction
+Once you have created your account, please create an application and  add the heroku remote origin since heroku will be using git to deploy your application.  
+
+```
+heroku git:remote -a {APPLICATION-NAME}
+```
+If you have enabled automatic deploys with Github then you can skip this step. 
+
+
+## Configure Package.json
+To ensure your application runs smoothly on Heroku we need to tell Heroku or any other hosting provider to use the right version of Node to effectively run our application. Our application is written in typescript and syntactic features that aren’t available in old versions of node. The version of Node best suited our typescript application is v12.18.3 which is the current stable version as of today. 
+
+```json
+"engines": {
+    "node": "12.18.3"
+}
+```
+
+Copy and paste this in your package.json file 
+
+### Scripts 
+Adonis.js default with scripts for running our application in development but not production. The scripts below show does the job.  Please replace the scripts in your package.json with the one below.
+
+```json
+ "scripts": {
+    "build": "node ace build --prod",
+    "start": "node ace serve --watch",
+    "start:prod": "node ./build/server.js"
+  }
+```
+
+### Procfile
+The Profile tells Heroku how to run our application.  Firstly create a Procfile in the root of your profile and paste the script below inside.
+
+```bash
+release: ENV_SILENT=true node ace migration:run --force && node ace db:seed 
+web: npm run start:prod
+```
+
+There are 2 main commands here. The release and web command. 
+The release commands run right after the application has been built or in this case transpired to raw javascript and the web command run the application. In the release command we tell our application to silent the Env errors  because Adonis expects a `.env` file to run the application smoothly and then we run our migrations.  
+In the web command we just run the `npm run start:prod` we wrote earlier in our package.json file. This is to ensure Heroku the js version of our application.
+
+
+## Database connection
+Your application will more than likely use a database to store data. Adonis.js provides us with different database providers to perform CRUD operations with. Your database could be hosted with any provider of your choice but Heroku allows us to append DB service to our deployment. 
+
+### SQLite
+You should not be using SQLite in production but if you are only running small little app nobody but yourself uses then you can choose to use SQLite in production. If you choose to run SQLite in production. There is nothing you have to do but run migrations.
+
+### MySQL
+First and foremost, please ensure you have installed the MySQL node driver in your project, if not just use `npm i mysql` to do it. 
+Heroku provides us with different a mySQL addon we can use in conjunction with our application. To use it. First go the resources tab in your heroku dashboard and start typing mysql in the add-on input. You would see a select dropdown with ClearDB MySQL option. 
+
+Please select that proceed. This provisions a MySQL database that you can use with your application. To use the database in your application, go the settings tabs on your Heroku dashboard and click o the Reveal Config Vars and copy the CLEARDB_DATABASE_URL value. 
+
+Now in your local .env file create a new entry called CLEARDB_DATABASE_URL and paste it. 
+
+**Usage**
+Firstly install url-parse with `npm install URL-parse`.  Once installed, go to your config/database.ts  and paste the code below in your imports.
+
+```ts
+import Url from ‘url-parse’
+const CLEARDB_DATABASE_URL = new Url(Env.get(‘CLEARDB_DATABASE_URL’))
+```
+ 
+Once you have pasted the code above, replace the MySQL object with the one below
+```ts
+    mysql: {
+      client: 'mysql',
+      connection: {
+        host: CLEARDB_DATABASE_URL.host as string,
+        port: Number(''),
+        user: CLEARDB_DATABASE_URL.username as string,
+        password: CLEARDB_DATABASE_URL.password as string,
+        database: CLEARDB_DATABASE_URL.pathname.substr(1) as string
+      },
+      healthCheck: false,
+    },
+``` 
+
+**Configure for production**
+To make use of our new MySQL this production we can dynamically set the default connection based on the environment we are running our application in.  Ensure you import the Application module before you copy the code below.
+```js
+connection: Application.inDev ? ‘sqlite’ : ‘mysql’ 
+```
+Once pasted, the application will use sqlite in development and MySQL in production. 
+
+### Postgres 
+First and foremen, please ensure you have installed the MySQL node driver in your project, if not just use `npm i pg` to do it. 
+
+Configuring database access for Postgres is very similar to the doing the same for MySQL so please first read it diligently before you read the Postgres section. The are 2 main differences.  To start go to the resources tab in the Heroku and select a Heroku Postgres. Go the settings tab and copy the DATABASE_URL and paste it in your .env file.  Append `?ssl=no-verify` to the DATABASE_URL in both .env file and in your settings tab under Reveal Config Vars. This ensures you do not run into any SSL issues. Only remove it if you know what you are doing. 
+Lastly to configure Postgres for production replace your connection string with the code below
+
+```js
+connection: Application.inDev ? ‘sqlite’ : ‘pgs’ 
+```
+
+**?ssl=no-verify**
+
+## Dynamicity
+Since will be running on application in both the development and production environments it important to make sure values being used in the application are dynamic.  They can be hard-coded but that will introduce a lot of boilerplate code and you will disregarding the DRY principles of programming. To solve this problem Adonis.js has an Application class that contains properties with information about your application and one of the properties on the  Application class is `inDev`. You can for example use it to set a default database connection as seen above or set a default email address for testing purposes in development
+
+```js
+const email = Application.inDev ? 'test@test.com' : 'johndoe@company.com'
+
+Mail.send((message) => {
+  message
+    .from(email)
+    .to('test@adonisjs.com')
+    .subject('Welcome Onboard!')
+    .htmlView('emails/welcome', { name: 'John Doe' })
+})
+
+```
+
+
+# Deploy 
+Once the you completed everything above. You can now joyfully deploy your application to heroku. 
+
+```
+git add . 
+git commit -m "initial commit"
+git push -u origin master
+git push heroku master
+```
+
+Once deployed, the application will show you a link to the application if deployed correctly. Click on the link and voila, you should see your application running just fine. 
+
+### Port and host errors
+
+## Conclusion
+Deploying Adonis on Heroku is quite similar to deploying to deploying other node applications. You can use the steps in the tutorial and apply it to other Adonis.js application you build.
+
+## 

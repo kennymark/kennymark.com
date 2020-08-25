@@ -18,8 +18,6 @@ function Blog({ posts }) {
   const titleC = useColorModeValue('black', 'gray.300')
 
   useEffect(() => {
-    // console.log({ blogPosts })
-
   }, [])
 
   return (
@@ -33,22 +31,22 @@ function Blog({ posts }) {
           const { title, author } = post.data
 
           return (
-            <Center key={title} width={['', '', 800]} mx='auto'>
+            <Box key={title} width={['', '', 800]} mx='auto' cursor='pointer'>
               <Link href={post.slug}>
 
-                <Flex justify='space-around' direction='column' p={6} max>
+                <Flex justify='space-around' direction='column' p={6} >
                   <Heading fontWeight={500} mb={4} fontSize={30} color={titleC}>{title}</Heading>
 
-                  <Text color={description} fontSize={17} mb={4}>{post?.excerpt}</Text>
+                  <Text color={description} fontSize={17} mb={4}>{post?.data.description}</Text>
 
                   <Flex justify='space-between' alignItems='center'>
                     {/* <AuthorCard author={author} /> */}
-                    <Text color='green.500' fontSize={14} rounded='lg' >{post?.timeToRead.m}  min read</Text>
+                    <Text color='green.500' fontSize={14} rounded='lg' >{post?.timeToRead.m + 1}  min read</Text>
                   </Flex>
                 </Flex>
 
               </Link>
-            </Center>
+            </Box>
           )
         })}
       </Box>
@@ -66,19 +64,17 @@ export const getStaticProps = async () => {
   const postMatter = (file) => matter(fs.readFileSync(path.join("posts", file, 'blog' + ".mdx"))
     .toString())
 
-  const posts = files.filter(name => !name.includes('.DS_Store')).map(filename => {
+  const posts = files.filter(name => !name.includes('.DS_Store')).map(filename => ({
 
-    return {
-      blog: postMatter(filename).content,
-      timeToRead: timeRead(postMatter(filename).content),
-      data: postMatter(filename).data,
-      excerpt: postMatter(filename).content.slice(0, 200) + '...',
-      slug: 'blog/' + slug(filename).replace(/[0-9]-/gm, '')
-    }
-  })
+    timeToRead: timeRead(postMatter(filename).content),
+    data: postMatter(filename).data,
+    slug: 'blog/' + slug(filename)
 
+  }))
+
+  console.log({ posts: posts.map(post => post.data) })
   return {
-    props: { posts, }
+    props: { posts }
   };
 };
 

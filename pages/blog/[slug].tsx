@@ -1,90 +1,76 @@
-import { Box, Flex, Text } from '@chakra-ui/core'
+import { Box, Container, Flex, Text, Heading } from '@chakra-ui/core'
+import Date from 'components/blog/Date'
+import { components } from 'components/mdx/provider'
+import SEO from 'components/seo'
 import fs from 'fs'
 import matter from 'gray-matter'
-import { startCase } from 'lodash'
-import marked from 'marked'
+import { lowerCase, startCase } from 'lodash'
+import hydrate from 'next-mdx-remote/hydrate'
+import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
-import React, { createRef, Fragment, useEffect } from 'react'
+import React from 'react'
 import { Img } from 'react-image'
 import timeRead from 'read-time'
 import slugify from 'slug'
-import Date from '../../src/components/blog/Date'
-import MDXWrapper from '../../src/components/mdx/provider'
-import SEO from '../../src/components/seo'
-import PageHeader from '../../src/components/ui/page-header'
+import AuthorCard from 'components/blog/AuthorCard'
 
 function Post({ post }) {
-  const { author, date, image, title } = post.frontmatter
+  const { author, date, image, title, description } = post.frontmatter
+  const content = hydrate(post.body, { components })
 
-  useEffect(() => {
-
-  }, [])
 
   return (
-    <Fragment>
-      <SEO title={startCase(title)} />
+    <Container mb={20} my={10} maxW="md">
 
+      <SEO title={startCase(title)} description={description} />
 
-      <PageHeader title={title} />
+      <Heading mb={3} fontSize={40} textAlign='center'>{title}</Heading>
 
-      <Flex justifyContent='space-evenly' alignItems='center' mb={4} fontWeight='600' color='gray.600' direction={['column', null, 'row']} fontSize={16}>
-        {/* <AuthorCard author={author} /> */}
-        <Date date={date} />
-        <Text bg='gray.200' p={2} borderRadius='md' >{post.timeToRead.m} min read</Text>
+      <Flex justify='space-between' alignItems='center' color='gray.400' fontSize={15} mb={10}>
+        <Flex alignItems='center'>
+          <AuthorCard author={author} mr={3} />
+          <Date date={date} />
+        </Flex>
+        <Text>{post.timeToRead.m} min read</Text>
       </Flex>
 
       <Box as={Img} src={image} height={[400, '', 620]} borderRadius='lg' mb={10} />
-      <MDXWrapper>
-        {post.body}
-      </MDXWrapper>
+      <Box>
+        {content}
+      </Box>
 
-      {/* <div dangerouslySetInnerHTML={{ __html: post.html }} /> */}
-
-
-
-    </Fragment>
+    </Container>
   )
 }
 
 
 export const getStaticPaths = async () => {
   const files = fs.readdirSync("posts");
-
   const paths = files.filter(file => !file.includes('DS_Store'))
-    .map(filename => ({
-      params: { slug: slugify(filename.replace(".mdx", "")).replace(/[0-9]-/gm, '') }
+    .map(name => ({
+      params: { slug: slugify(name.replace(".mdx", "")) }
     }));
 
-  console.log("paths: ", paths);
-
-  return {
-    paths,
-    fallback: false
-  };
+  return { paths, fallback: false }
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const files = fs.readdirSync("posts").filter(filename => !filename.includes('DS_Store'))
   const unSlugged = slug.replace(/-/gi, ' ')
-  const actualFolder = files.find(filename => filename.toLocaleLowerCase().includes(unSlugged.slice(0, 10)))
+  const actualFolder = files.find(filename => lowerCase(filename).includes(unSlugged.slice(0, 10)))
 
+  const mdx = fs.readFileSync(path.join('posts', actualFolder, 'blog' + ".mdx"), 'utf-8')
+  const { content, data } = matter(mdx);
+  const mdxSource = await renderToString(content, { components, scope: data })
 
-  const markdownWithMetadata = fs
-    .readFileSync(path.join('posts', actualFolder, 'blog' + ".mdx"))
-    .toString();
-
-  const parsedMarkdown = matter(markdownWithMetadata);
-  const htmlString = marked(parsedMarkdown.content);
 
 
   return {
     props: {
       post: {
-        body: parsedMarkdown.content,
-        mdx: parsedMarkdown.orig.toString(),
-        html: htmlString,
-        frontmatter: parsedMarkdown.data,
-        timeToRead: timeRead(parsedMarkdown.content),
+        body: mdxSource,
+        frontmatter: data,
+        timeToRead: timeRead(content),
       }
     }
   };

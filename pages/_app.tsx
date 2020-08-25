@@ -1,22 +1,11 @@
+
 import '../styles/main.css'
-import { useRouter } from "next/router"
-import BlogLayout from "../src/components/layout/blog-layout"
-import AppLayout from "../src/components/layout/app-layout"
+import AppLayout from 'components/layout/app-layout'
 
 
 
 function MyApp({ Component, pageProps, cookies }) {
 
-  const { pathname } = useRouter()
-
-  if (pathname.includes('blog')) {
-    return (
-      <BlogLayout>
-        <Component {...pageProps} />
-      </BlogLayout>
-    )
-
-  }
 
   return (
     <AppLayout >

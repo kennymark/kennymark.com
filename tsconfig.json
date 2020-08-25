@@ -16,6 +16,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "baseUrl": "./",
+    "paths": {
+      "components/*": [
+        "src/components/*"
+      ]
+    },
     "isolatedModules": true,
     "jsx": "preserve"
   },
