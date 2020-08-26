@@ -1,11 +1,11 @@
-import { Box, Flex, Link, Text } from '@chakra-ui/core'
-import { startCase, upperFirst } from 'lodash'
-import React from 'react'
+import { Box, Flex, Link, Text } from '@chakra-ui/core';
+import SEO from 'components/seo';
+import PageHeader from 'components/ui/page-header';
+import { startCase, upperFirst } from 'lodash';
+import React from 'react';
 import Img from "react-cool-img";
-import SEO from '../../src/components/seo'
-import PageHeader from '../../src/components/ui/page-header'
-import { topProjects } from '../../src/data/projects'
-import slugify from 'slug'
+import slugify from 'slug';
+import { topProjects } from 'src/data/projects';
 
 
 export default function Project(project) {

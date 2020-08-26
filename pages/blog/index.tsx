@@ -6,11 +6,14 @@ import Link from "next/link";
 import path from "path";
 import timeRead from 'read-time';
 import slug from 'slug';
-import SEO from "../../src/components/seo";
-import PageHeader from "../../src/components/ui/page-header";
 import { Fragment, useEffect } from "react";
 import AuthorCard from 'components/blog/AuthorCard';
+import SEO from 'components/seo';
+import PageHeader from 'components/ui/page-header';
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 
+dayjs.extend(customParseFormat)
 
 
 
@@ -72,8 +75,12 @@ export const getStaticProps = async () => {
 
   }))
 
-
-  return { props: { posts } }
+  // 
+  return {
+    props: {
+      posts: posts.sort((a, b) => dayjs(a.data.date, 'DD-MM-YY').date() + dayjs(b.data.date, 'DD-MM-YY').date())
+    }
+  }
 };
 
 export default Blog;
