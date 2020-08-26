@@ -1,6 +1,6 @@
 
-import { ChakraProvider, CSSReset, } from '@chakra-ui/core'
-import customeTheme from '../../../theme'
+import { ChakraProvider, CSSReset, Box } from '@chakra-ui/core'
+import customeTheme from '../../../lib/theme'
 import Header from './header'
 import Footer from './footer'
 
@@ -10,11 +10,11 @@ function AppLayout({ children, }) {
       <CSSReset />
       <Header />
 
-      <main className='main'>
+      <Box as='main' className='main'>
         {children}
-      </main>
-      <Footer />
+      </Box>
 
+      <Footer />
 
     </ChakraProvider>
   )
