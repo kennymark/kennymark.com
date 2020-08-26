@@ -1,5 +1,5 @@
 import React from 'react'
-import { Heading, useColorMode } from '@chakra-ui/core'
+import { Heading } from '@chakra-ui/core'
 
 interface Props {
   title: string;

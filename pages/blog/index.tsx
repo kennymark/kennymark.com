@@ -9,7 +9,7 @@ import slug from 'slug';
 import { Fragment, useEffect } from "react";
 import AuthorCard from 'components/blog/AuthorCard';
 import SEO from 'components/seo';
-import PageHeader from 'components/ui/page-header';
+import PageHeader from 'components/page-header';
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 

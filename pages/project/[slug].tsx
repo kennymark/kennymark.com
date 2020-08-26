@@ -1,6 +1,6 @@
 import { Box, Flex, Link, Text } from '@chakra-ui/core';
 import SEO from 'components/seo';
-import PageHeader from 'components/ui/page-header';
+import PageHeader from 'components/page-header';
 import { startCase, upperFirst } from 'lodash';
 import React from 'react';
 import Img from "react-cool-img";

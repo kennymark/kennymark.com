@@ -1,7 +1,7 @@
 import { Box, Text, Container, Link } from '@chakra-ui/core';
 import React from 'react';
 import SEO from 'components/seo';
-import PageHeader from 'components/ui/page-header';
+import PageHeader from 'components/page-header';
 
 
 export default function Profiles() {
