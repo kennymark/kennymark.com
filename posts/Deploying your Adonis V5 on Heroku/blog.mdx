@@ -97,6 +97,7 @@ Once you have pasted the code above, replace the MySQL object with the one below
 
 **Configure for production**
 To make use of our new MySQL this production we can dynamically set the default connection based on the environment we are running our application in.  Ensure you import the Application module before you copy the code below.
+
 ```js
 connection: Application.inDev ? ‘sqlite’ : ‘mysql’ 
 ```
@@ -134,7 +135,7 @@ Mail.send((message) => {
 # Deploy 
 Once the you completed everything above. You can now joyfully deploy your application to heroku. 
 
-```
+```bash
 git add . 
 git commit -m "initial commit"
 git push -u origin master
