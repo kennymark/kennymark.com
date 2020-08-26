@@ -2,7 +2,7 @@
 import { Box, Heading, Flex, Text, Link as NLink, Button, useColorMode, Stack, useColorModeValue } from '@chakra-ui/core';
 import Link from "next/link";
 import React, { Fragment } from 'react';
-import { Img } from 'react-image';
+import Img from "react-cool-img";
 import Masonry from 'react-masonry-css';
 import slug from 'slug';
 import SEO from "../src/components/seo";

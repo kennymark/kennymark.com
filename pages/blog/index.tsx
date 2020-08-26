@@ -1,5 +1,5 @@
 
-import { Box, Center, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/core";
+import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/core";
 import fs from "fs";
 import matter from 'gray-matter';
 import Link from "next/link";
@@ -9,12 +9,13 @@ import slug from 'slug';
 import SEO from "../../src/components/seo";
 import PageHeader from "../../src/components/ui/page-header";
 import { Fragment, useEffect } from "react";
+import AuthorCard from 'components/blog/AuthorCard';
 
 
 
 
 function Blog({ posts }) {
-  const description = useColorModeValue('gray.700', 'gray.400')
+  const description = useColorModeValue('gray.600', 'gray.400')
   const titleC = useColorModeValue('black', 'gray.300')
 
   useEffect(() => {
@@ -27,7 +28,6 @@ function Blog({ posts }) {
       <Box p={3}>
         <PageHeader title='Thoughts' />
         {posts.map((post) => {
-
           const { title, author } = post.data
 
           return (
@@ -37,11 +37,11 @@ function Blog({ posts }) {
                 <Flex justify='space-around' direction='column' p={6} >
                   <Heading fontWeight={500} mb={4} fontSize={30} color={titleC}>{title}</Heading>
 
-                  <Text color={description} fontSize={17} mb={4}>{post?.data.description}</Text>
+                  <Text color={description} fontSize={17} mb={4} letterSpacing={0.5}>{post?.data.description}</Text>
 
-                  <Flex justify='space-between' alignItems='center'>
-                    {/* <AuthorCard author={author} /> */}
-                    <Text color='green.500' fontSize={14} rounded='lg' >{post?.timeToRead.m + 1}  min read</Text>
+                  <Flex justify='space-between' alignItems='center' color='gray.500' fontSize={14}>
+                    <AuthorCard author={author} withAvatar={false} />
+                    <Text color='green.500' rounded='lg' >{post?.timeToRead.m + 1}  min read</Text>
                   </Flex>
                 </Flex>
 
@@ -51,7 +51,7 @@ function Blog({ posts }) {
         })}
       </Box>
 
-    </Fragment>
+    </Fragment >
   )
 }
 
