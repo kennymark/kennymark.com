@@ -20,7 +20,7 @@ function SEO({ description, lang, title }) {
       meta={[
         {
           name: `description`,
-          content: description ?? meta.description,
+          content: description || meta.description,
         },
         {
           property: `og:title`,
