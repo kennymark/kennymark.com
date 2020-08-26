@@ -9,7 +9,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
 import React from 'react'
-import { Img } from 'react-image'
+import Img from "react-cool-img";
 import timeRead from 'read-time'
 import slugify from 'slug'
 import AuthorCard from 'components/blog/AuthorCard'
