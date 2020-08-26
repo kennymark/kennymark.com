@@ -34,7 +34,7 @@ function Post({ post }) {
         <Text>{post.timeToRead.m + 1} min read</Text>
       </Flex>
 
-      <Box as={Img} src={image} height={[400, '', 620]} borderRadius='lg' mb={10} />
+      {image && <Box as={Img} src={image} height={[400, '', 620]} borderRadius='lg' mb={10} />}
       <Box>
         {content}
       </Box>
