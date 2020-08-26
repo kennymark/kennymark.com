@@ -10,7 +10,7 @@ import { ChevronRightIcon } from '@chakra-ui/icons'
 
 function Portfolio() {
   return (
-    <Box>
+    <Box w={['', '', 700,]} mx='auto' mt={20}>
       <Flex alignItems='center' mb={5} justify={['space-around', null, 'space-between']}>
         <PageHeader simple title='Projects' />
 

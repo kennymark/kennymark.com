@@ -70,7 +70,7 @@ function Contact() {
     }
   }
   return (
-    <Box pb={40} id='contact-section'>
+    <Box pb={40} w={['', '', '', 700]} mx='auto' mt={20} p={4}>
       <PageHeader simple title='Contact me' hasB />
       <form onSubmit={handleSubmit(sendMail)}>
         <Stack>

@@ -14,7 +14,7 @@ function Skills() {
 
 
   return (
-    <Box px={5}>
+    <Box px={5} w={['', '', 700, 1400,]} mx='auto' mt={20}>
       <Heading as='h1' mb={5} textAlign={['left', 'center']}>Skills</Heading>
 
       <SimpleGrid columns={[1, 1, 2, 4]} spacing={5} >
