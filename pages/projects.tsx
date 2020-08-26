@@ -7,7 +7,7 @@ import Masonry from 'react-masonry-css';
 import slug from 'slug';
 import SEO from "../src/components/seo";
 import { extraProjects, topProjects } from '../src/data/projects';
-import PageHeader from '../src/components/ui/page-header';
+import PageHeader from '../src/components/page-header';
 
 export default function Projects() {
   const extraBg = useColorModeValue('gray.200', 'gray.700')

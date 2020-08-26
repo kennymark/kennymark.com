@@ -3,7 +3,7 @@
 import { Box, Button, FormControl, FormLabel, Input, Stack, Textarea, useColorMode, useToast, Text, } from '@chakra-ui/core';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import PageHeader from '../ui/page-header';
+import PageHeader from '../page-header';
 import { ErrorMessage } from '@hookform/error-message';
 
 function Contact() {

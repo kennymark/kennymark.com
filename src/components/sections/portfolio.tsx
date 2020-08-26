@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import Img from "react-cool-img";
 import { mainProjects } from '../../data/projects'
-import PageHeader from '../ui/page-header'
+import PageHeader from '../page-header'
 import { ChevronRightIcon } from '@chakra-ui/icons'
 
 
