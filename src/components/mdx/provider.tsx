@@ -6,8 +6,8 @@ import CodeBlock from './code-block'
 
 const components = {
   h1: props => <Heading mb={10} textAlign='center'  {...props} />,
-  h2: props => <Heading mt={5} mb={3}{...props} />,
-  h3: props => <Heading mt={5} mb={3}{...props} />,
+  h2: props => <Heading mt={5} mb={3}{...props} fontSize={30} />,
+  h3: props => <Heading mt={5} mb={3}{...props} fontSize={20} />,
   a: props => <Link isExternal {...props} color='blue.600' _hover={{ color: 'blue.800' }} />,
   p: props => <Text fontSize={19} pb={4} color='gray.500' {...props} />,
   ul: props => <List p={5} {...props} />,
