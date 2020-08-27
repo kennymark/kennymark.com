@@ -24,8 +24,7 @@
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.4.0",
     "react-masonry-css": "^1.0.14",
-    "read-time": "^1.0.0",
-    "slug": "^3.3.4"
+    "read-time": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^14.6.0",
