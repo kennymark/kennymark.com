@@ -35,9 +35,9 @@ function Blog({ posts }) {
 
           return (
             <Box key={title} width={['', '', 800]} mx='auto' cursor='pointer'>
-              <Link href={post.slug}>
+              <Link href={post.slug.replace('mdx', '')}>
 
-                <Flex justify='space-around' direction='column' p={6} >
+                <Flex as='a' justify='space-around' direction='column' p={6} >
                   <Heading fontWeight={500} mb={4} fontSize={30} color={titleC}>{title}</Heading>
 
                   <Text color={description} fontSize={17} mb={4} letterSpacing={0.5}>{post?.data.description}</Text>
@@ -64,15 +64,13 @@ function Blog({ posts }) {
 export const getStaticProps = async () => {
   const files = fs.readdirSync("posts");
 
-  const postMatter = (file) => matter(fs.readFileSync(path.join("posts", file, 'blog' + ".mdx"))
-    .toString())
+  const postMatter = (file) => matter(fs.readFileSync(path.join("posts", file), 'utf-8'))
 
   const posts = files.filter(name => !name.includes('.DS_Store')).map(filename => ({
 
     timeToRead: timeRead(postMatter(filename).content),
     data: postMatter(filename).data,
     slug: 'blog/' + slug(filename)
-
   }))
 
   // 
