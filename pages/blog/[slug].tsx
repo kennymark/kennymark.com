@@ -4,13 +4,12 @@ import { components } from 'components/mdx/provider'
 import SEO from 'components/seo'
 import fs from 'fs'
 import matter from 'gray-matter'
-import { lowerCase, startCase } from 'lodash'
+import { startCase, } from 'lodash'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
 import React from 'react'
 import Img from "react-cool-img";
-import timeRead from 'read-time'
 import slugify from 'slug'
 import AuthorCard from 'components/blog/AuthorCard'
 
@@ -45,33 +44,23 @@ function Post({ post }) {
 
 
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync("posts");
-  const paths = files.filter(file => !file.includes('DS_Store'))
-    .map(name => ({
-      params: { slug: slugify(name.replace(".mdx", "")) }
-    }));
+  const files = fs.readdirSync("posts")
+  const paths = files.map(name => ({
+    params: { slug: slugify(name.replace(".mdx", "")) }
+  }));
 
   return { paths, fallback: false }
 };
 
 export const getStaticProps = async ({ params: { slug } }) => {
-  const files = fs.readdirSync("posts").filter(filename => !filename.includes('DS_Store'))
-  const unSlugged = slug.replace(/-/gi, ' ')
-  const actualFolder = files.find(filename => lowerCase(filename).includes(unSlugged.slice(0, 10)))
-
-  const mdx = fs.readFileSync(path.join('posts', actualFolder, 'blog' + ".mdx"), 'utf-8')
+  const time = require('read-time')
+  const mdx = fs.readFileSync(path.join('posts', slug + '.mdx'), 'utf-8')
   const { content, data } = matter(mdx);
-  const mdxSource = await renderToString(content, { components, scope: data })
-
-
+  const source = await renderToString(content, { components, scope: data })
 
   return {
     props: {
-      post: {
-        body: mdxSource,
-        frontmatter: data,
-        timeToRead: timeRead(content),
-      }
+      post: { body: source, frontmatter: data, timeToRead: time(content) }
     }
   };
 };
