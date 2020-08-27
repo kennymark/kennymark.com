@@ -1,6 +1,6 @@
-import { Box, Center, Flex, Link as NLink, Text, useColorMode, useColorModeValue } from "@chakra-ui/core";
+import { Box, Flex, Link as NLink, Text, useColorMode } from "@chakra-ui/core";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import Link from 'next/link';
+import ActiveLink from 'components/active-link';
 import React from "react";
 
 
@@ -8,14 +8,12 @@ import React from "react";
 
 
 const MenuItems = ({ children, to }) => {
-  const color = useColorModeValue('gray.500', 'green.600')
-
   return (
-    <Link href={to}>
-      <NLink mr={3} color={color} textDecoration='none'>
+    <ActiveLink href={to}>
+      <NLink mr={3} color='gray.500' >
         {children}
       </NLink>
-    </Link>
+    </ActiveLink>
   )
 };
 
@@ -23,10 +21,7 @@ const Header = props => {
   const [show, setShow] = React.useState(false);
   const { colorMode, toggleColorMode } = useColorMode();
 
-  const handleToggle = () => {
-    console.log({ show })
-    setShow(!show)
-  }
+  const handleToggle = () => setShow(!show)
 
   const iconProps = {
     mr: [0, 3],

@@ -11,8 +11,12 @@ body {
 a {
   text-decoration: none !important;
 }
-
-
+.selected{
+  color:black !important;
+}
+.chakra-ui-dark .selected {
+  color:#38a169 !important;
+}
 
 main {
   flex: 1;
