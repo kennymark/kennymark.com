@@ -14,6 +14,7 @@
     "@hookform/error-message": "0.0.4",
     "@sendgrid/mail": "^7.2.3",
     "dayjs": "^1.8.34",
+    "framer-motion": "^2.6.3",
     "gray-matter": "^4.0.2",
     "next": "canary",
     "next-mdx-remote": "^1.0.0",
