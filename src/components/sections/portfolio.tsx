@@ -1,5 +1,5 @@
 //@ts-nocheck
-import { Box, Flex, Icon, Link as NLink, Text } from '@chakra-ui/core'
+import { Box, Flex, Link as NLink, Text } from '@chakra-ui/core'
 import Link from 'next/link'
 import React from 'react'
 import Img from "react-cool-img";

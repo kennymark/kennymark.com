@@ -7,7 +7,7 @@ import PageHeader from '../page-header';
 import { ErrorMessage } from '@hookform/error-message';
 
 function Contact() {
-  const { register, handleSubmit, errors, reset, control } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm();
 
   const toast = useToast()
   const { colorMode } = useColorMode()
