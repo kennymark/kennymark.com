@@ -5,7 +5,6 @@ import matter from 'gray-matter';
 import Link from "next/link";
 import path from "path";
 import timeRead from 'read-time';
-import slug from 'slug';
 import { Fragment, useEffect } from "react";
 import AuthorCard from 'components/blog/AuthorCard';
 import SEO from 'components/seo';
@@ -35,9 +34,9 @@ function Blog({ posts }) {
 
           return (
             <Box key={title} width={['', '', 800]} mx='auto' cursor='pointer'>
-              <Link href={post.slug.replace('mdx', '')}>
+              <Link href={post.slug.replace('.mdx', '')}>
 
-                <Flex as='a' justify='space-around' direction='column' p={6} >
+                <Flex justify='space-around' direction='column' p={6} >
                   <Heading fontWeight={500} mb={4} fontSize={30} color={titleC}>{title}</Heading>
 
                   <Text color={description} fontSize={17} mb={4} letterSpacing={0.5}>{post?.data.description}</Text>
@@ -62,18 +61,15 @@ function Blog({ posts }) {
 
 
 export const getStaticProps = async () => {
-  const files = fs.readdirSync("posts");
+  const files = fs.readdirSync("posts").filter(name => !name.includes('.DS_Store'))
+  const postMatter = file => matter(fs.readFileSync(path.join("posts", file), 'utf-8'))
 
-  const postMatter = (file) => matter(fs.readFileSync(path.join("posts", file), 'utf-8'))
-
-  const posts = files.filter(name => !name.includes('.DS_Store')).map(filename => ({
-
+  const posts = files.map(filename => ({
     timeToRead: timeRead(postMatter(filename).content),
     data: postMatter(filename).data,
-    slug: 'blog/' + slug(filename)
+    slug: 'blog/' + filename
   }))
 
-  // 
   return {
     props: {
       posts: posts.sort((a, b) => dayjs(a.data.date, 'DD-MM-YY').date() + dayjs(b.data.date, 'DD-MM-YY').date())
