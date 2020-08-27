@@ -9,7 +9,7 @@ function AuthorCard({ author, withAvatar = true, ...rest }) {
       {withAvatar && <Avatar name="me" size='sm' src="/images/me.jpg" mr={3} />}
 
       <Link href='/profile'>
-        <NLink _hover={{ color: 'green.500' }} _focus={{ outline: 0 }} letterSpacing={0.5} fontWeight={500}>{author} </NLink>
+        <NLink _hover={{ color: 'blue.500' }}>{author} </NLink>
       </Link>
 
     </Flex>

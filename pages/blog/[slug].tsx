@@ -21,7 +21,7 @@ function Post({ post }) {
 
       <SEO title={title} description={description} />
 
-      <Heading mb={3} fontSize={40} textAlign='center'>{title}</Heading>
+      <Heading mb={3} fontSize={40} textAlign='center' >{title}</Heading>
 
       <Flex justify='space-between' alignItems='center' color='gray.400' fontSize={15} mb={10}>
         <Flex alignItems='center'>
