@@ -1,12 +1,13 @@
 import React from 'react'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+import { dateFormat } from 'lib/dateFormat'
 
 dayjs.extend(customParseFormat)
 
 function Date({ date }) {
   return (
-    <p>{dayjs(date, 'DD-MM-YY').format('MMMM DD, YYYY')} </p>
+    <p>{dateFormat(date).format('MMMM DD, YYYY')} </p>
   )
 }
 
