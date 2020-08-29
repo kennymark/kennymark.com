@@ -7,7 +7,7 @@ import PageHeader from '../page-header';
 import { ErrorMessage } from '@hookform/error-message';
 
 function Contact() {
-  const { register, handleSubmit, errors, reset } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm({ mode: 'onChange' });
 
   const toast = useToast()
   const { colorMode } = useColorMode()
@@ -59,11 +59,11 @@ function Contact() {
 
 
 
-  function setValidation(name: string, isMessage: boolean = false) {
+  function setValidation(name: string, isMessage = false, minLength = 4) {
     return {
       minLength: {
-        value: 4,
-        message: `${name} should be 4 characters or greater`
+        value: minLength,
+        message: `${name} should be ${minLength} characters or greater`
       },
       maxLength: isMessage ? 2000 : 40,
       required: `${name} is required`
@@ -77,7 +77,7 @@ function Contact() {
 
           <FormControl mb={5}>
             <FormLabel htmlFor="subject" color='gray.600'>Subject</FormLabel>
-            <Input id='subject' type="text" name="subject"  {...inputProps} ref={register(setValidation('Subject'))} />
+            <Input id='subject' type="text" name="subject"  {...inputProps} ref={register(setValidation('Subject', false, 2))} />
             <ErrorMessage errors={errors} name='subject' as={<Text color='red.600' />} />
           </FormControl>
 
@@ -89,7 +89,7 @@ function Contact() {
 
           <FormControl>
             <FormLabel htmlFor="email" color='gray.600'>Email address</FormLabel>
-            <Input id='email' type="email" name="email" ref={register(setValidation('Email'))}  {...inputProps} />
+            <Input id='email' type="email" name="email" ref={register({ ...setValidation('Email') })}  {...inputProps} />
             <ErrorMessage errors={errors} name='email' as={<Text color='red.600' />} />
           </FormControl>
 
@@ -103,7 +103,9 @@ function Contact() {
             <Button type='submit' bg='gray.900' variant='solid' color='white' width='100%' height={55} mt={5}
               _focus={{ outline: 0, border: '1px' }}
               _active={{ border: 0 }}
-              _hover={{ color: 'gray.900', bg: 'gray.500' }}>Submit</Button>
+              _hover={{ color: 'gray.900', bg: 'gray.500' }}>
+              Submit
+              </Button>
           </FormControl>
         </Stack>
 
