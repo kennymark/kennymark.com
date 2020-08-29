@@ -1,16 +1,34 @@
 
-import { Box, Heading, Flex, Text, Link as NLink, Button, useColorMode, Stack, useColorModeValue } from '@chakra-ui/core';
+import { Box, Button, Flex, Heading, Link as NLink, Stack, Text, useColorModeValue } from '@chakra-ui/core';
 import Link from "next/link";
 import React, { Fragment } from 'react';
 import Img from "react-cool-img";
 import Masonry from 'react-masonry-css';
 import slug from 'slug';
+import PageHeader from '../src/components/page-header';
 import SEO from "../src/components/seo";
 import { extraProjects, topProjects } from '../src/data/projects';
-import PageHeader from '../src/components/page-header';
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer';
+
+const MBox = motion.custom(Box)
+
 
 export default function Projects() {
   const extraBg = useColorModeValue('gray.200', 'gray.700')
+  const extraHeader = useColorModeValue('black', 'gray.400')
+  const [ref, inView, entry] = useInView({
+    threshold: 0.5,
+    triggerOnce: false
+  });
+  const variants = {
+    visible: { opacity: 1, scale: 1, y: 0 },
+    hidden: {
+      opacity: 0,
+      scale: 0.65,
+      y: 50
+    }
+  };
 
   return (
     <Fragment>
@@ -26,10 +44,21 @@ export default function Projects() {
 
           {topProjects.reverse().map((project, idx) => (
             <Link href={`/project/${slug(project.name)}`} key={idx}>
-              <Box bg={project.color} p={5} rounded='lg' m={4} cursor='pointer' _hover={{ shadow: '2xl' }} position='relative' className='proj' minH={300} >
+              <MBox bg={project.color} p={5}
+                rounded='lg' m={4}
+                cursor='pointer'
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ duration: 0.3 } as any}
+                _hover={{ shadow: '2xl' }}
+                className='proj'
+                minH={300} >
 
 
-                <Heading as='h2' fontSize={18} textTransform='capitalize' textAlign='center' mb={2} color='black'>{project.name} </Heading>
+                <Heading as='h2' fontSize={18} textTransform='capitalize' textAlign='center' mb={2} color='black' >
+                  {project.name}
+                </Heading>
+
                 <Box as={Img} src={project.image} alt={project.name} borderRadius='md' shadow='lg' />
 
                 <Stack
@@ -43,11 +72,15 @@ export default function Projects() {
                   borderRadius='inherit'
                   p={4}
                   justifyContent='center'
-                  className=" desc">
-                  <Box position='relative' textAlign='center' mx='auto' mb={5} fontSize={20} color='black'>{project.description}</Box>
+                  className="desc">
+
+                  <MBox position='relative' textAlign='center' mx='auto' mb={5} fontSize={20} color='black'>
+                    {project.description}
+                  </MBox>
+
                 </Stack>
 
-              </Box>
+              </MBox>
             </Link>
 
           ))}
@@ -63,7 +96,7 @@ export default function Projects() {
           <Box bg={extraBg} borderRadius='md' p={3} mt={4} key={idx} >
             <Flex justifyContent='space-between'>
 
-              <Heading textTransform='capitalize' size='lg' mb={2} fontSize={20} color='black'>{project.name} </Heading>
+              <Heading textTransform='capitalize' size='lg' mb={2} fontSize={20} color={extraHeader}>{project.name} </Heading>
               <Button as={NLink} href={project.link} isExternal
                 px={5} ml={2} borderRadius='md' bg='white'
                 color='black'

@@ -5,6 +5,7 @@ function Home() {
   const bgColor = useColorModeValue('orange.50', null)
   const color = useColorModeValue('black', 'white')
 
+
   return (
     <Stack h={['70vh', null, '70vh', '90vh']} mx='auto' w='80%' justifyContent='center' flexDirection='column'>
       <Flex alignSelf='center' mb={20} zIndex={100}>

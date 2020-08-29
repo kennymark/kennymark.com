@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { Box, Flex, Link, Text } from '@chakra-ui/core';
 import SEO from 'components/seo';
 import PageHeader from 'components/page-header';
@@ -6,7 +7,11 @@ import React from 'react';
 import Img from "react-cool-img";
 import slugify from 'slug';
 import { topProjects } from 'src/data/projects';
+import { motion } from 'framer-motion'
 
+const MFlex = motion.custom(Flex)
+const MText = motion.custom(Text)
+const MPageHeader = motion.custom(PageHeader)
 
 export default function Project(project) {
 
@@ -18,17 +23,26 @@ export default function Project(project) {
     color: 'gray.200',
     rounded: 'md'
   }
+  const variants = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: 1 } }
+  }
 
+  const spring = { type: "spring", damping: 10, stiffness: 100 } as any
   return (
     <>
       <SEO title={startCase(project.name)} />
 
-      <PageHeader title={startCase(project.name)} hasB />
-      <Text textAlign='center' color='gray.500' my={5} fontSize={20}>{upperFirst(project.description)}</Text>
+      <MPageHeader variants={variants} initial="initial" animate="animate" transition={{ duration: 0.8 }} title={startCase(project.name)} hasB />
 
-      <Flex mx='auto' rounded={[null, 'lg']} shadow='lg' p={12} backgroundColor={project.color} maxW={600} maxH={600}>
-        <Box as={Img} src={project.image} mx='auto' shadow='md' />
-      </Flex>
+      <MText variants={variants} initial="initial" animate="animate"
+        textAlign='center' color='gray.500' my={5} fontSize={20}>
+        {upperFirst(project.description)}
+      </MText>
+
+      <MFlex initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }} transition={spring} mx='auto' rounded={[null, 'lg']} shadow='xl' p={20} backgroundColor={project.color} maxW={{ xs: 400, xl: 1000 }}>
+        <Box as={Img} src={project.image} mx='auto' shadow='md' maxHeight={700} />
+      </MFlex>
 
       <Box mx='auto' my={30} justifySelf='center' alignSelf='center' w='fit-content'>
         {project.link && <Link isExternal href={project.link} mr={5} {...btn}>Demo</Link>}
@@ -42,22 +56,12 @@ export default function Project(project) {
 
 
 export async function getStaticPaths() {
-  const paths = topProjects.map(proj => {
-    return {
-      params: { slug: slugify(proj.name) }
-    }
-  })
-  return {
-    paths, fallback: false
-  }
+  const paths = topProjects.map(proj => ({ params: { slug: slugify(proj.name) } }))
 
-
+  return { paths, fallback: false }
 }
 
 export async function getStaticProps({ params: { slug } }) {
-  const project = topProjects.find(proj => slugify(proj.name) === slug)
-
-  return {
-    props: project
-  }
+  const props = topProjects.find(proj => slugify(proj.name) === slug)
+  return { props }
 }

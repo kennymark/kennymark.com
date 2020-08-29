@@ -7,22 +7,25 @@ import SEO from 'components/seo'
 
 
 
-const IndexPage = () => (
 
-  <Fragment>
-    <SEO title="Home" />
+const IndexPage = () => {
 
-    <Main />
+  return (
+    <Fragment>
+      <SEO title="Home" />
 
-    <Portfolio />
+      <Main />
 
-    <Skills />
+      <Portfolio />
 
-    <Contact />
+      <Skills />
 
-  </Fragment>
+      <Contact />
 
-)
+    </Fragment>
+
+  )
+}
 
 
 export default IndexPage

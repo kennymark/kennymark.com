@@ -33,6 +33,7 @@ const mainProjects = [
     color: 'gray'
   },
 ]
+
 const topProjects = [
   {
     name: 'E-Commerce Store',
@@ -41,7 +42,7 @@ const topProjects = [
     image: 'https://gitlab.com/kennymark/nuxt-mercado/-/raw/master/screenshots/products.png',
     link: 'https://nuxt-mercado.netlify.app/',
     source: 'https://gitlab.com/kennymark/nuxt-mercado',
-    color: '#e2daeb'
+    color: '#FED7D7'
   },
   {
     name: 'Fullstack JavaScript Boilerplate',
@@ -50,7 +51,7 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/kennymark/express-starter/master/screenshots/account.png',
     link: 'https://express-kenny.herokuapp.com/',
     source: 'https://github.com/kennymark/express-starter',
-    color: '#f3d2c1'
+    color: '#f7e7df'
   },
   {
     name: 'good notes',
@@ -59,7 +60,7 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/kennymark/Good-Notes/master/screenshots/main-page.png',
     link: 'https://goodnotes.netlify.com/',
     source: 'https://github.com/kennymark/Good-Notes',
-    color: '#fec7d7'
+    color: '#cfceff'
   },
   {
     name: 'stripe payment and subscriptions',
@@ -77,7 +78,7 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/kennymark/british-petitions-dashboard/master/screenshots/table-view.png',
     link: 'https://petitions.now.sh/',
     source: 'https://github.com/kennymark/british-petitions-dashboard',
-    color: '#ffedc5'
+    color: '#C6F6D5'
   },
   {
     name: 'flux weather',
@@ -86,7 +87,7 @@ const topProjects = [
     image: 'https://camo.githubusercontent.com/2545a369f71065156e739ffbdc3b7cf9238361d1/68747470733a2f2f7374617469632e6e6f74696f6e2d7374617469632e636f6d2f61643364303635642d373135392d346138302d386130362d6134353531666361663938642f53696d756c61746f725f53637265656e5f53686f745f2d5f6950686f6e655f585f2d5f323031382d30322d32375f61745f31352e32312e33352e706e67',
     link: null,
     source: 'https://github.com/kennymark/Flux-Weather',
-    color: '#ffc6c7'
+    color: '#dafdff'
   },
   {
     name: 'angular hub',
@@ -105,7 +106,7 @@ const topProjects = [
     image: 'https://gitlab.com/kennymark/clever-advisor/-/raw/master/screenshots/home.png',
     link: 'https://clever-advisor.netlify.com/',
     source: 'https://gitlab.com/kennymark/clever-advisor',
-    color: '#90b4ce'
+    color: '#c9e8ff'
   },
 ]
 
@@ -137,11 +138,6 @@ const extraProjects = [
     description: 'The FSE-REC is an asp.net web app built by me and and 3 other friends as my second year work based learning project for the University. It includes functionality ranging from a SQL database, dynamic routing, login integration.',
     link: 'https://codepen.io/kennymark/full/GmeGoa'
   },
-  // {
-  //   name: 'text editor',
-  //   description: 'This is a web based text editor that does real time text analysis using natural language processing via the compromise.cool and rita.js libraries.',
-  //   link: 'https://codepen.io/kennymark/full/KmRVjp/'
-  // },
   {
     name: 'simple card design',
     description: 'A showcase of my skills to reproduce pixel by pixel a projuct after it has been designed by a designer using normal front-end technologies.',
