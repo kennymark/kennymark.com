@@ -9,7 +9,7 @@ import PageHeader from '../src/components/page-header';
 import SEO from "../src/components/seo";
 import { extraProjects, topProjects } from '../src/data/projects';
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer';
+
 
 const MBox = motion.custom(Box)
 
@@ -17,18 +17,7 @@ const MBox = motion.custom(Box)
 export default function Projects() {
   const extraBg = useColorModeValue('gray.200', 'gray.700')
   const extraHeader = useColorModeValue('black', 'gray.400')
-  const [ref, inView, entry] = useInView({
-    threshold: 0.5,
-    triggerOnce: false
-  });
-  const variants = {
-    visible: { opacity: 1, scale: 1, y: 0 },
-    hidden: {
-      opacity: 0,
-      scale: 0.65,
-      y: 50
-    }
-  };
+
 
   return (
     <Fragment>
