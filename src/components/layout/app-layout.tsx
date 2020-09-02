@@ -1,13 +1,12 @@
 
-import { ChakraProvider, CSSReset, Box } from '@chakra-ui/core'
+import { ChakraProvider, Box } from '@chakra-ui/core'
 import customeTheme from '../../../lib/theme'
 import Header from './header'
 import Footer from './footer'
 
 function AppLayout({ children, }) {
   return (
-    <ChakraProvider theme={customeTheme} >
-      <CSSReset />
+    <ChakraProvider resetCSS theme={customeTheme} >
       <Header />
 
       <Box as='main' className='main'>

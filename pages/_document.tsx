@@ -1,5 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { InitializeColorMode } from "@chakra-ui/core"
+import { ColorModeScript } from "@chakra-ui/core"
 import { GA_TRACKING_ID } from 'lib/gtag'
 
 class MyDocument extends Document {
@@ -29,7 +29,7 @@ class MyDocument extends Document {
           }}
         />
         <body>
-          <InitializeColorMode />
+          <ColorModeScript />
 
           <Main />
           <NextScript />
