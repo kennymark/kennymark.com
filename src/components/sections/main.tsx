@@ -9,7 +9,7 @@ function Home() {
   return (
     <Stack h={['70vh', null, '70vh', '90vh']} mx='auto' w='80%' justifyContent='center' flexDirection='column'>
       <Flex alignSelf='center' mb={20} zIndex={100}>
-        <Heading as='h1' fontSize={['4xl', '5xl', '6xl', '140px']} letterSpacing={2} >
+        <Heading as='h1' fontSize={['4xl', '5xl', '6xl', '140px']} letterSpacing={2} lineHeight={1.3} >
           I design & build beautiful web
           <Box as='span' bg={bgColor} color={color}> experiences</Box >
         </Heading>
