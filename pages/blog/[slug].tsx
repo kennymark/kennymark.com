@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Box, Container, Flex, Text, Heading } from '@chakra-ui/core'
 import Date from 'components/blog/Date'
 import { components } from 'components/mdx/provider'
