@@ -3,7 +3,7 @@ import { ColorModeScript } from "@chakra-ui/core"
 import { GA_TRACKING_ID } from 'lib/gtag'
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx) {
+  static async getInitialProps(ctx: any) {
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
   }
