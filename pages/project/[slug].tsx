@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import { Box, Flex, Link, Text, Container } from '@chakra-ui/react';
 import SEO from '@components/seo';
 import PageHeader from '@components/page-header';

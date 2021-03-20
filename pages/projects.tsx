@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import { Box, Button, Flex, Heading, Link as NLink, Stack, Text, useColorModeValue, Container } from '@chakra-ui/react';
 import Link from "next/link";
 import React, { Fragment } from 'react';
