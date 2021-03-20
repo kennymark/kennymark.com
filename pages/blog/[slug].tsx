@@ -54,6 +54,7 @@ export const getStaticPaths = async () => {
 };
 
 // parsing mdx 
+
 export const getStaticProps = async ({ params: { slug } }) => {
   const time = require('read-time')
   const mdx = fs.readFileSync(path.join('posts', slug + '.mdx'), 'utf-8')
@@ -61,6 +62,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const source = await renderToString(content, { components, scope: data })
 
   return {
+    revalidate: 1,
     props: {
       post: { body: source, frontmatter: data, timeToRead: time(content) }
     }
