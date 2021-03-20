@@ -43,7 +43,7 @@ function Post({ post }) {
   )
 }
 
-
+// Create paths without .mdx
 export const getStaticPaths = async () => {
   const files = fs.readdirSync("posts")
   const paths = files.map(name => ({
@@ -53,6 +53,7 @@ export const getStaticPaths = async () => {
   return { paths, fallback: false }
 };
 
+// parsing mdx 
 export const getStaticProps = async ({ params: { slug } }) => {
   const time = require('read-time')
   const mdx = fs.readFileSync(path.join('posts', slug + '.mdx'), 'utf-8')
