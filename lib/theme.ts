@@ -60,8 +60,8 @@ const customeTheme = extendTheme({
       a: {
         textDecoration: 'none'
       },
+      pre: { fontFamily: 'monospace' },
       body: {
-        color: mode('gray.800', 'whiteAlpha.900')(props),
         bg: mode('white', 'darkMode')(props),
       },
     }),
