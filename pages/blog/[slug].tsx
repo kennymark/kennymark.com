@@ -17,7 +17,7 @@ function Post({ post }) {
   const { author, date, image, title, description } = post.frontmatter
   const content = hydrate(post.body, { components })
 
-  console.log(post)
+
   return (
     <Container mb={20} my={10} maxW='3xl'>
 
