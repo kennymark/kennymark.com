@@ -4,7 +4,7 @@ import AuthorCard from '@components/blog/AuthorCard'
 import Date from '@components/blog/Date'
 import { components } from '@components/mdx/provider'
 import SEO from '@components/seo'
-import fs from 'fs'
+import { readFileSync, readdirSync } from 'fs'
 import matter from 'gray-matter'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
@@ -17,7 +17,7 @@ function Post({ post }) {
   const { author, date, image, title, description } = post.frontmatter
   const content = hydrate(post.body, { components })
 
-
+  console.log(post)
   return (
     <Container mb={20} my={10} maxW='3xl'>
 
@@ -45,7 +45,7 @@ function Post({ post }) {
 
 // Create paths without .mdx
 export const getStaticPaths = async () => {
-  const files = fs.readdirSync("posts")
+  const files = readdirSync("posts")
   const paths = files.map(name => ({
     params: { slug: name.replace(".mdx", "") }
   }));
@@ -57,7 +57,7 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const time = require('read-time')
-  const mdx = fs.readFileSync(path.join('posts', slug + '.mdx'), 'utf-8')
+  const mdx = readFileSync(path.join('posts', slug + '.mdx'), 'utf-8')
   const { content, data } = matter(mdx);
   const source = await renderToString(content, { components, scope: data })
 

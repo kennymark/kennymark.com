@@ -1,16 +1,15 @@
 
-import { Box, Flex, Heading, Text, Container, useColorModeValue, chakra } from "@chakra-ui/react";
+import { Box, Container, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import AuthorCard from '@components/blog/AuthorCard';
+import PageHeader from '@components/page-header';
+import SEO from '@components/seo';
+import fs from 'fs';
 import matter from 'gray-matter';
+import { ago, dateFormat } from 'lib/dateFormat';
 import Link from "next/link";
 import path from "path";
-import timeRead from 'read-time';
 import { Fragment } from "react";
-import AuthorCard from '@components/blog/AuthorCard';
-import SEO from '@components/seo';
-import PageHeader from '@components/page-header';
-import { ago, dateFormat } from 'lib/dateFormat';
-
-
+import timeRead from 'read-time';
 
 
 
@@ -60,7 +59,6 @@ function Blog({ posts }) {
 
 
 export const getStaticProps = async () => {
-  const fs = require("fs");
   const files = fs.readdirSync("posts").filter((name: string) => !name.includes('.DS_Store'))
   const postMatter = (file: string) => matter(fs.readFileSync(path.join("posts", file), 'utf-8'))
 
