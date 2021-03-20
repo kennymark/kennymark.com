@@ -32,7 +32,7 @@ function Blog({ posts }) {
               <Link href={post.slug.replace('.mdx', '')}>
 
                 <Flex direction='column' >
-                  <Text color='gray.600' fontSize='sm' fontStyle="italic">{ago(post.data.date)}</Text>
+
 
                   <Heading fontWeight={900} mb={4} fontSize="4xl" color={titleC} >{title}</Heading>
 
@@ -41,6 +41,7 @@ function Blog({ posts }) {
                   <Flex fontSize="sm" >
                     <AuthorCard author={author} withAvatar={false} mr={3} color={description} fontWeight='bold' />
                     <Text rounded='lg' mr={3} color='gray.400'>{post?.timeToRead.m + 1}  min read</Text>
+                    <Text color='gray.400' fontSize='sm' fontStyle="italic">{ago(post.data.date)}</Text>
                   </Flex>
 
                 </Flex>

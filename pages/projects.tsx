@@ -5,7 +5,7 @@ import React, { Fragment } from 'react';
 import Img from "react-cool-img";
 import Masonry from 'react-masonry-css';
 import slug from 'slug';
-import PageHeader from '../src/components/page-header';
+import PageHeader from '@components/page-header';
 import SEO from "@components/seo";
 import { extraProjects, topProjects } from '../src/data/projects';
 import { motion } from 'framer-motion'

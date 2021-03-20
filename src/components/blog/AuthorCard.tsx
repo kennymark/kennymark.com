@@ -6,7 +6,7 @@ function AuthorCard({ author, withAvatar = true, ...rest }) {
   return (
     <Flex alignItems='center' {...rest}>
 
-      {withAvatar && <Avatar name="me" size='sm' src="/images/me.jpg" mr={3} />}
+      {withAvatar && <Avatar name="me" size='sm' src="/images/me2.jpg" mr={3} />}
 
       <Link href='/profile'>
         <NLink _hover={{ color: 'blue.500' }}>{author} </NLink>
