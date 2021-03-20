@@ -1,5 +1,5 @@
 
-import { ChakraProvider, Box } from '@chakra-ui/core'
+import { ChakraProvider, Box } from '@chakra-ui/react'
 import customeTheme from '../../../lib/theme'
 import Header from './header'
 import Footer from './footer'
@@ -9,7 +9,7 @@ function AppLayout({ children, }) {
     <ChakraProvider resetCSS theme={customeTheme} >
       <Header />
 
-      <Box as='main' className='main'>
+      <Box as='main' className='main' flex={1} minH='80vh' mx='auto'>
         {children}
       </Box>
 

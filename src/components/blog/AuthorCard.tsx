@@ -1,4 +1,4 @@
-import { Avatar, Flex, Link as NLink } from '@chakra-ui/core'
+import { Avatar, Flex, Link as NLink } from '@chakra-ui/react'
 import Link from 'next/link'
 
 

@@ -1,7 +1,7 @@
 import React from "react"
 
-import SEO from "../src/components/seo"
-import { Heading, Text, Box, useColorModeValue } from "@chakra-ui/core"
+import SEO from "@components/seo"
+import { Heading, Text, Box, useColorModeValue } from "@chakra-ui/react"
 
 const NotFoundPage = () => {
   const text = useColorModeValue('black', 'gray.300')

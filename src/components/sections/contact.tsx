@@ -1,6 +1,6 @@
 
 
-import { Box, Button, FormControl, FormLabel, Input, Stack, Textarea, useColorMode, useToast, Text, } from '@chakra-ui/core';
+import { Box, Button, FormControl, FormLabel, Input, Stack, Textarea, useColorMode, useToast, Text, } from '@chakra-ui/react';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import PageHeader from '../page-header';
@@ -19,9 +19,6 @@ function Contact() {
   } as any
 
   const inputProps = {
-    size: 'lg',
-    borderRadius: 'md',
-    border: '1px',
     color: colorMode == 'light' ? 'black' : 'gray.300',
     borderColor: colorMode == 'light' ? 'gray.200' : 'gray.900',
     focusBorderColor: colorMode == 'light' ? 'gray.900' : 'green.900',
@@ -70,40 +67,37 @@ function Contact() {
     }
   }
   return (
-    <Box pb={40} w={['', '', '', 700]} mx='auto' mt={20} p={4}>
+    <Box pb={40} w={{ lg: 700 }} mx='auto' mt={20} p={4}>
       <PageHeader simple title='Contact me' hasB />
       <form onSubmit={handleSubmit(sendMail)}>
         <Stack>
 
-          <FormControl mb={5}>
-            <FormLabel htmlFor="subject" color='gray.600'>Subject</FormLabel>
+          <FormControl >
+            <FormLabel htmlFor="subject">Subject</FormLabel>
             <Input id='subject' type="text" name="subject"  {...inputProps} ref={register(setValidation('Subject', false, 2))} />
             <ErrorMessage errors={errors} name='subject' as={<Text color='red.600' />} />
           </FormControl>
 
           <FormControl>
-            <FormLabel htmlFor="name" color='gray.600'>Name</FormLabel>
+            <FormLabel htmlFor="name" >Name</FormLabel>
             <Input id='name' type="name" name="name" ref={register(setValidation('Name'))} {...inputProps} />
             <ErrorMessage errors={errors} name='name' as={<Text color='red.600' />} />
           </FormControl>
 
           <FormControl>
-            <FormLabel htmlFor="email" color='gray.600'>Email address</FormLabel>
+            <FormLabel htmlFor="email" >Email address</FormLabel>
             <Input id='email' type="email" name="email" ref={register({ ...setValidation('Email') })}  {...inputProps} />
             <ErrorMessage errors={errors} name='email' as={<Text color='red.600' />} />
           </FormControl>
 
           <FormControl>
-            <FormLabel htmlFor="message" color='gray.600'>Message</FormLabel>
+            <FormLabel htmlFor="message">Message</FormLabel>
             <Textarea id='message' type='textarea' name="message" ref={register(setValidation('Message', true))} {...inputProps} h={300} resize='none' />
             <ErrorMessage errors={errors} name='message' as={<Text color='red.600' />} />
           </FormControl>
 
           <FormControl>
-            <Button type='submit' bg='gray.900' variant='solid' color='white' width='100%' height={55} mt={5}
-              _focus={{ outline: 0, border: '1px' }}
-              _active={{ border: 0 }}
-              _hover={{ color: 'gray.900', bg: 'gray.500' }}>
+            <Button type='submit' color='white' bg='gray.900' width='100%' h={55} mt={5}>
               Submit
               </Button>
           </FormControl>

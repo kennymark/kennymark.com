@@ -1,7 +1,7 @@
-//@ts-nocheck
-import { Box, Flex, Link, Text } from '@chakra-ui/core';
-import SEO from 'components/seo';
-import PageHeader from 'components/page-header';
+
+import { Box, Flex, Link, Text, Container } from '@chakra-ui/react';
+import SEO from '@components/seo';
+import PageHeader from '@components/page-header';
 import { startCase, upperFirst } from 'lodash';
 import React from 'react';
 import Img from "react-cool-img";
@@ -9,9 +9,9 @@ import slugify from 'slug';
 import { topProjects } from 'src/data/projects';
 import { motion } from 'framer-motion'
 
-const MFlex = motion.custom(Flex)
-const MText = motion.custom(Text)
-const MPageHeader = motion.custom(PageHeader)
+const MFlex = motion(Flex)
+const MText = motion(Text)
+const MPageHeader = motion(PageHeader)
 
 export default function Project(project) {
 
@@ -28,9 +28,11 @@ export default function Project(project) {
     animate: { opacity: 1, transition: { duration: 1 } }
   }
 
-  const spring = { type: "spring", damping: 10, stiffness: 100 } as any
+  const spring = { type: "spring", damping: 10, stiffness: 100 }
+
+
   return (
-    <>
+    <Container maxW="5xl">
       <SEO title={startCase(project.name)} />
 
       <MPageHeader variants={variants} initial="initial" animate="animate" transition={{ duration: 0.8 }} title={startCase(project.name)} hasB />
@@ -50,7 +52,7 @@ export default function Project(project) {
         <Link isExternal href={project.source} {...btn}>Source</Link>
       </Box>
 
-    </>
+    </Container>
   )
 }
 

@@ -1,11 +1,11 @@
 
-import { Box, Heading, SimpleGrid, Text, useColorMode } from '@chakra-ui/core';
+import { Box, Heading, SimpleGrid, Text, useColorMode } from '@chakra-ui/react';
 import React from 'react';
 import { skillTypes } from '../../data/data';
 import { motion } from 'framer-motion'
 
 
-const MBox = motion.custom(Box)
+const MBox = motion(Box)
 
 
 function Skills() {
@@ -15,7 +15,7 @@ function Skills() {
 
 
   return (
-    <Box px={5} w={['', '', 700, 1400,]} mx='auto' mt={20}>
+    <Box px={5} w={{ lg: 700, xl: 1400 }} mx='auto' mt={20}>
       <Heading as='h1' mb={5} textAlign={['left', 'center']}>Skills</Heading>
 
       <SimpleGrid columns={[1, 1, 2, 4]} spacing={5} >
@@ -30,7 +30,9 @@ function Skills() {
             </Heading>
 
             {skillTypes[type].skills.map(item => (
-              <Text py={2} textAlign='center' width='80%' borderRadius='lg' mb={2} mx='auto' color={'gray.700'} fontWeight='600' key={item}>{item}</Text>
+              <Text py={2} textAlign='center' width='80%' borderRadius='lg' mb={2} mx='auto' color='gray.700' fontWeight='600' key={item}>
+                {item}
+              </Text>
             ))}
 
           </MBox>
