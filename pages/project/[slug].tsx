@@ -35,7 +35,7 @@ export default function Project(project) {
     <Container maxW="5xl">
       <SEO title={startCase(project.name)} />
 
-      <MPageHeader variants={variants} initial="initial" animate="animate" transition={{ duration: 0.8 }} title={startCase(project.name)} hasB />
+      <MPageHeader variants={variants} initial="initial" animate="animate" title={startCase(project.name)} hasB />
 
       <MText variants={variants} initial="initial" animate="animate"
         textAlign='center' color='gray.500' my={5} fontSize={20}>
