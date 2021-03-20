@@ -1,9 +1,7 @@
-import { Box, Flex, Link as NLink, Text, useColorMode } from "@chakra-ui/core";
+import { Box, Flex, Link as NLink, Text, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
-import ActiveLink from 'components/active-link';
 import React from "react";
-
-
+import ActiveLink from '@components/active-link';
 
 
 
@@ -19,6 +17,8 @@ const MenuItems = ({ children, to }) => {
 
 const Header = props => {
   const [show, setShow] = React.useState(false);
+  const bottomColor = useColorModeValue('gray.100', 'green.900')
+  const iconColor = useColorModeValue('gray.800', 'green.500')
   const { colorMode, toggleColorMode } = useColorMode();
 
   const handleToggle = () => setShow(!show)
@@ -38,18 +38,17 @@ const Header = props => {
       px={10}
       py={6}
       borderBottom={['1px', 0]}
-      borderBottomColor={colorMode === 'light' ? 'gray.100' : 'green.900'}
+      borderBottomColor={bottomColor}
       direction={['column', 'row']}
       color="gray.700"
       {...props}>
 
-      <Box display={['inline', 'none']} mr={3} onClick={handleToggle} color={colorMode === 'light' ? 'gray.800' : 'green.500'}>
+      <Box display={['inline', 'none']} mr={3} onClick={handleToggle} color={iconColor}>
         <svg fill="currentColor" width="25px" viewBox="0 0 20 20">
           <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd"></path></svg>
       </Box>
 
       <Flex
-        color='gray.500'
         fontWeight='bold'
         flexGrow={1}
         direction={['column', 'row']}

@@ -1,9 +1,9 @@
 import React from 'react'
-import { Box, Flex, Link, useColorModeValue } from '@chakra-ui/core'
+import { Box, Flex, Link, useColorModeValue } from '@chakra-ui/react'
 
 function Footer() {
   const footColor = useColorModeValue('gray.200', 'gray.800')
-  const year = new Date().getFullYear() || '2020'
+  const year = new Date().getFullYear() || '2021'
 
 
   return (

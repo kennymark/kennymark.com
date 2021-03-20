@@ -1,0 +1,84 @@
+---
+title: How to write a simple CLI in Node.js
+author: Kenneth Coffie
+date: 20/03/21
+category: nodejs, tools
+description: Writing a CLI in Node.js the simple way using inquirer
+image: 
+---
+
+
+
+I was recently took it upon myself to write a simple CLI for code generation for an enterprise application for my current employer. The goal of the CLI was to make it easy to create files and components as we were using the [atomic design system](https://xd.adobe.com/ideas/process/ui-design/atomic-design-principles-methodology-101/#:~:text=Atomic%20Design%20is%20a%20methodology,with%20explicit%20order%20and%20hierarchy.). Not to explain in depth, but atomic design consists of breakup down your components into either atoms, molecule, organisms,templates and pages, all of which were nested in the components folder located in the src folder at the root of the project. 
+
+So to make it easy for the developers on our team to follow this design system, it was suggested a CLI would be a good way to make this process.
+
+
+
+## Using Inquirer
+
+In the Nodejs ecosystem, there are a lot of CLI tools such as inquirer, commander, yargs etc. They all serve a different purpose and sometimes share funtionality but inquirer seemed the most intuitive to me. It's API looks very human readable and subjectively easy to implement. 
+
+```js
+const inquirer = require('inquirer');
+
+inquirer
+  .prompt([
+    /* Pass your questions in here */
+  ])
+  .then(answers => {
+    // Use user feedback for... whatever!!
+  })
+
+```
+The key to understand and using Inquirer is passing in the questions to the prompt method. A question is an object that looks like this:
+
+```js
+{
+  message: "What is your name?",
+  type: input | number | confirm | list | rawlist |  expand | checkbox | password | editor,
+  choices: ["Kenny","James"],
+}
+
+```
+
+
+Here is an actual example of a complete implementation adapted from [here](https://github.com/SBoudrias/Inquirer.js/blob/master/packages/inquirer/examples/rawlist.js)
+
+
+```js
+const inquirer = require('inquirer');
+
+inquirer
+  .prompt([
+    {
+      type: 'rawlist',
+      name: 'theme',
+      message: 'What do you want to do?',
+      choices: [
+        'Order a pizza',
+        'Make a reservation',
+        new inquirer.Separator(),
+        'Ask opening hours',
+        'Talk to the receptionist',
+      ],
+    },
+    {
+      type: 'rawlist',
+      name: 'size',
+      message: 'What size do you need',
+      choices: ['Jumbo', 'Large', 'Standard', 'Medium', 'Small', 'Micro'],
+      filter: function (val) {
+        return val.toLowerCase();
+      },
+    },
+  ])
+  .then((answers) => {
+    console.log(JSON.stringify(answers, null, '  '));
+  });
+```
+
+
+To run this, ensure you first have the library installed and then put it in a file are the root and then run node [file].js 
+
+If inquirer doesn't suffice, you can look into combining it with a couple of the libraries I have mentioned above such as commander or yargs. These libraries allows you to accept arguments, produce default help menu, versioning etc. 

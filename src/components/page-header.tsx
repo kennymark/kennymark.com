@@ -1,18 +1,18 @@
 import React from 'react'
-import { Heading } from '@chakra-ui/core'
+import { Heading, TextProps } from '@chakra-ui/react'
 
-interface Props {
+interface Props extends TextProps {
   title: string;
   simple: boolean;
   hasB: boolean;
 }
-function PageHeader({ title, simple, hasB }: Partial<Props>) {
+function PageHeader({ title, simple, hasB, ...props }: Partial<Props>) {
 
   if (simple) {
-    return <Heading as='h1' mb={hasB && 5}>{title}</Heading>
+    return <Heading as='h1' mb={hasB && 5} >{title}</Heading>
   }
   return (
-    <Heading as='h1' textAlign='center' fontSize={[30, 40]} mb={[5, 10]} mt={3}>{title}</Heading>
+    <Heading as='h1' fontSize='5xl' mb={[5, 10]} mt={3} {...props}>{title}</Heading>
   )
 }
 

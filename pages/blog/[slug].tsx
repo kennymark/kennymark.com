@@ -1,8 +1,9 @@
-// @ts-nocheck
-import { Box, Container, Flex, Text, Heading } from '@chakra-ui/core'
-import Date from 'components/blog/Date'
-import { components } from 'components/mdx/provider'
-import SEO from 'components/seo'
+
+import { Box, Container, Flex, Text, Heading } from '@chakra-ui/react'
+import AuthorCard from '@components/blog/AuthorCard'
+import Date from '@components/blog/Date'
+import { components } from '@components/mdx/provider'
+import SEO from '@components/seo'
 import fs from 'fs'
 import matter from 'gray-matter'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -10,7 +11,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import path from 'path'
 import React from 'react'
 import Img from "react-cool-img";
-import AuthorCard from 'components/blog/AuthorCard'
+
 
 function Post({ post }) {
   const { author, date, image, title, description } = post.frontmatter
@@ -18,13 +19,15 @@ function Post({ post }) {
 
 
   return (
-    <Container mb={20} my={10} maxW="md">
+    <Container mb={20} my={10} maxW='3xl'>
 
       <SEO title={title} description={description} />
 
-      <Heading mb={3} fontSize={40} textAlign='center' >{title}</Heading>
+      <Heading mb={10} fontSize="5xl"  >
+        {title}
+      </Heading>
 
-      <Flex justify='space-between' alignItems='center' color='gray.400' fontSize={15} mb={10}>
+      <Flex justify='space-between' alignItems='center' color='gray.400' mb={10}>
         <Flex alignItems='center'>
           <AuthorCard author={author} mr={3} />
           <Date date={date} />
@@ -33,9 +36,8 @@ function Post({ post }) {
       </Flex>
 
       {image && <Box as={Img} src={image} height={[400, '', 620]} borderRadius='lg' mb={10} />}
-      <Box>
-        {content}
-      </Box>
+
+      <Box>{content}</Box>
 
     </Container>
   )
