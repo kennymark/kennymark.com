@@ -1,5 +1,4 @@
 import { extendTheme } from "@chakra-ui/react"
-import { mode } from "@chakra-ui/theme-tools"
 
 const customeTheme = extendTheme({
   colors: {
@@ -62,7 +61,7 @@ const customeTheme = extendTheme({
       },
       pre: { fontFamily: 'monospace' },
       body: {
-        bg: mode('white', 'darkMode')(props),
+        bg: props.colorMode === 'light' ? 'white' : 'darkMode'
       },
     }),
   }
