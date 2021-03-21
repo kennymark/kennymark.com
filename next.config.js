@@ -2,7 +2,7 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: 'v1',
+        source: '/v1',
         destination: "https://kennymark.github.io/",
         permanent: true,
       },
