@@ -26,6 +26,26 @@ module.exports = {
         destination: 'https://twitter.com/mrkennymark',
         permanent: true,
       },
+      {
+        source: '/next-starter',
+        destination: 'https://next-adonis.vercel.app/',
+        permanent: true,
+      },
+      {
+        source: '/petitions',
+        destination: 'https://petitions.now.sh/',
+        permanent: true
+      },
+      {
+        source: '/mercado',
+        destination: 'https://nuxt-mercado.now.sh/',
+        permanent: true
+      },
+      {
+        source: '/next-lite',
+        destination: 'https://next-starter-lite.vercel.app/',
+        permanent: true
+      }
     ]
   }
 }
