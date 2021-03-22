@@ -17,7 +17,7 @@ const ActiveLink = ({ href, children, ...props }: ActiveLinkProps) => {
     className = `${className} selected`
   }
 
-  return <CLink as={Link} href={href} {...props} >{React.cloneElement(children, { className })}</CLink>
+  return <CLink as={Link} href={href} {...props} textDecor="none" >{React.cloneElement(children, { className })}</CLink>
 }
 
 

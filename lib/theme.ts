@@ -55,11 +55,15 @@ const customeTheme = extendTheme({
     useSystemColorMode: false,
   },
   styles: {
+
     global: props => ({
+      pre: { fontFamily: 'monospace' },
+      ul: {
+        listStyleType: "none",
+      },
       a: {
         textDecoration: 'none'
       },
-      pre: { fontFamily: 'monospace' },
       body: {
         bg: props.colorMode === 'light' ? 'white' : 'darkMode'
       },

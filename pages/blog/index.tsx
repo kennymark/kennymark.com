@@ -1,6 +1,6 @@
 
 import { Box, Container, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
-import AuthorCard from '@components/blog/AuthorCard';
+import AuthorCard from '@components/blog/author-card';
 import PageHeader from '@components/page-header';
 import SEO from '@components/seo';
 import fs from 'fs';
@@ -33,7 +33,7 @@ function Blog({ posts }) {
                 <Flex direction='column' >
 
 
-                  <Heading fontWeight={900} mb={4} fontSize="4xl" color={titleC} >{title}</Heading>
+                  <Heading fontWeight={900} mb={4} fontSize={{ lg: "4xl", base: "2xl" }} color={titleC} >{title}</Heading>
 
                   <Text color="gray.600" fontSize="lg" mb={4} >{post?.data.description}</Text>
 
@@ -59,7 +59,7 @@ function Blog({ posts }) {
 
 
 export const getStaticProps = async () => {
-  const files = fs.readdirSync("posts").filter((name: string) => !name.includes('.DS_Store'))
+  const files = fs.readdirSync("posts")
   const postMatter = (file: string) => matter(fs.readFileSync(path.join("posts", file), 'utf-8'))
 
   const posts = files.map(filename => ({

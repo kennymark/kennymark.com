@@ -81,11 +81,12 @@ export default function Projects() {
 
       <Container py={8} px={{ sm: 4 }} maxW="8xl" >
 
-        <PageHeader simple title='More...' />
+        <PageHeader simple title='More...' ml="4" />
 
         {extraProjects.map((project, idx) => (
 
           <Box bg={extraBg} borderRadius='md' p={3} m={4} key={idx} >
+
             <Flex justifyContent='space-between'>
 
               <Heading textTransform='capitalize' size='lg' mb={2} fontSize="lg" color={extraHeader}>
