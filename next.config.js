@@ -13,7 +13,7 @@ module.exports = {
       },
       {
         source: '/v3',
-        destination: 'https://kenny-v3.netlify.app/',
+        destination: 'https://kenny-test.netlify.app/',
         permanent: true,
       },
       {

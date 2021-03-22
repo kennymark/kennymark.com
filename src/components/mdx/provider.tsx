@@ -19,7 +19,6 @@ export const components = {
   blockquote: props => <chakra.blockquote px={3} borderLeft={4} borderLeftColor='green.400' {...props} />
 }
 
-
 const MDXWrapper = props => (
   <MDXProvider components={components}>
     <article {...props} />
