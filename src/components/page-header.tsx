@@ -9,10 +9,10 @@ interface Props extends TextProps {
 function PageHeader({ title, simple, hasB, ...props }: Partial<Props>) {
 
   if (simple) {
-    return <Heading as='h1' mb={hasB && 5} >{title}</Heading>
+    return <Heading as='h1' mb={hasB && 5} {...props} >{title}</Heading>
   }
   return (
-    <Heading as='h1' fontSize='5xl' mb={[5, 10]} mt={3} {...props}>{title}</Heading>
+    <Heading as='h1' fontSize={{ lg: '5xl', base: "4xl" }} mb={[5, 10]} mt={3} {...props}>{title}</Heading>
   )
 }
 
