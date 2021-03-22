@@ -8,7 +8,7 @@ export const components = {
   h1: props => <Heading mb={10} textAlign='center'  {...props} />,
   h2: props => <Heading mt={5} mb={3}{...props} fontSize="4xl" />,
   h3: props => <Heading mt={5} mb={3}{...props} fontSize="3xl" />,
-  a: props => <chakra.a isExternal {...props} color='blue.600' _hover={{ color: 'blue.800' }} />,
+  a: props => <chakra.a target='_blank' {...props} color='blue.600' _hover={{ color: 'blue.800' }} />,
   p: props => <chakra.p fontSize="lg" pb={4} color='gray.600' {...props} />,
   ul: props => <chakra.ul p={5} {...props} />,
   li: props => <chakra.li  {...props} fontSize="lg" pb={1} color='gray.600' />,
