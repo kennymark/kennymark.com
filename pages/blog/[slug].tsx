@@ -1,7 +1,7 @@
 
 import { Box, Container, Flex, Text, Heading } from '@chakra-ui/react'
 import AuthorCard from '@components/blog/author-card'
-import Date from '@components/blog/date'
+import Date from '@components/blog/Date'
 import { components } from '@components/mdx/provider'
 import SEO from '@components/seo'
 import { readFileSync, readdirSync } from 'fs'
