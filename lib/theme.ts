@@ -7,7 +7,7 @@ const customeTheme = extendTheme({
     darkMode: '#111216'
   },
   fonts: {
-    body: "Poppins, sans-serif",
+    body: "Inter, sans-serif",
     heading: "IBM Plex Sans, sans-serif",
     monospace: "Source Code Pro, monospace",
   },

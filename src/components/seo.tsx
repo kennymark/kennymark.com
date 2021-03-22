@@ -2,12 +2,12 @@ import React from "react"
 import Helmet from "react-helmet"
 
 
-function SEO({ description, lang, title }) {
+function SEO({ lang = 'en', title, description = "" }) {
 
 
   const meta = {
     author: 'Kenneth Coffie',
-    description: `Kenny Mark's Personal Website. I am software engineer based in Cheshire. I am a front-end dev with fullstack experience who loves to code and build cool stuff. Currently employed at Sabs Travel Technologies`,
+    description: `Kenny Mark's Personal Website. I am software engineer based in the Northwest. I am a front-end dev with fullstack experience who loves to code and build cool stuff. Currently employed at Sabs Travel Technologies`,
     title: 'Kenny Coffie',
     'og:description': '',
   }
@@ -53,12 +53,6 @@ function SEO({ description, lang, title }) {
       ].concat()}
     />
   )
-}
-
-SEO.defaultProps = {
-  lang: `en`,
-  meta: [],
-  description: ``,
 }
 
 

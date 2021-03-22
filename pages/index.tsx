@@ -13,7 +13,7 @@ const IndexPage = () => {
 
   return (
     <Fragment>
-      <SEO title="Home" description='welcome to my blog' lang='en' />
+      <SEO title="Home" />
 
       <Main />
       <Portfolio />
