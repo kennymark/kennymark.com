@@ -9,15 +9,22 @@ image:
 
 
 
-I was recently took it upon myself to write a simple CLI for code generation for an enterprise application for my current employer. The goal of the CLI was to make it easy to create files and components as we were using the [atomic design system](https://xd.adobe.com/ideas/process/ui-design/atomic-design-principles-methodology-101/#:~:text=Atomic%20Design%20is%20a%20methodology,with%20explicit%20order%20and%20hierarchy.). Not to explain in depth, but atomic design consists of breakup down your components into either atoms, molecule, organisms,templates and pages, all of which were nested in the components folder located in the src folder at the root of the project. 
+I recently took it upon myself to write a simple CLI for code generation for an enterprise application for my current employer. The goal of the CLI was to make it easy to create files and components as we were using the [atomic design system](https://xd.adobe.com/ideas/process/ui-design/atomic-design-principles-methodology-101/#:~:text=Atomic%20Design%20is%20a%20methodology,with%20explicit%20order%20and%20hierarchy.). Not to explain in depth, but atomic design consists of breaking down your components into atoms, molecules, organisms,templates and pages, all of which were nested in the components folder located in the src folder at the root of the project. 
 
-So to make it easy for the developers on our team to follow this design system, it was suggested a CLI would be a good way to make this process.
+So to make it easy for the developers on our team to follow this design system, it was suggested a CLI be implemented to make this process enjoyable for all developers and encourage adoption.
+The goal of the CLI, was to prompt questions and then use the answers to generate the a file, a storybook story and then copy default templates into these files so the component is already set up with the basics such as the default imports, defaults exports and component name.
 
+In pseudocode:
 
-
+```
+- Ask what type unit do you want to create. Could be one of atom, molecule, organism etc
+- Ask for name of the file and format it
+- Get answers above and create a folder and file based on these answers 
+- Use created templates and replace 
+```
 ## Using Inquirer
 
-In the Nodejs ecosystem, there are a lot of CLI tools such as inquirer, commander, yargs etc. They all serve a different purpose and sometimes share funtionality but inquirer seemed the most intuitive to me. It's API looks very human readable and subjectively easy to implement. 
+In the Node.js ecosystem, there are a lot of CLI libraries such as inquirer, commander, yargs, args etc. They all serve different purposes and sometimes share funtionality but inquirer seemed the most appropriate for this project. It's API looks very human readable and subjectively easy to implement. 
 
 ```js
 const inquirer = require('inquirer');
@@ -31,7 +38,7 @@ inquirer
   })
 
 ```
-The key to understand and using Inquirer is passing in the questions to the prompt method. A question is an object that looks like this:
+The key to understand and using inquirer is passing in questions to the prompt method. A question is an object that should look like this:
 
 ```js
 {
@@ -58,7 +65,6 @@ inquirer
       choices: [
         'Order a pizza',
         'Make a reservation',
-        new inquirer.Separator(),
         'Ask opening hours',
         'Talk to the receptionist',
       ],
@@ -78,7 +84,17 @@ inquirer
   });
 ```
 
+THe example above is a bit self explanatory, it should initially prompt the user what if wants to and upon selecting their choice, it would move on the next question which is asking for the size of the chosen pizza. The answers would return an object that should look like this:
+
+```js
+{
+  theme:"Make a reservation",
+  size:  "jumbo"
+}
+
+```
+
+The answers object would look slightly different is the type of prompt is something like a checkbox, in that question the value would be an array instead of a string.
 
 To run this, ensure you first have the library installed and then put it in a file are the root and then run node [file].js 
-
 If inquirer doesn't suffice, you can look into combining it with a couple of the libraries I have mentioned above such as commander or yargs. These libraries allows you to accept arguments, produce default help menu, versioning etc. 
