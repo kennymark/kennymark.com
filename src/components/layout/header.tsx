@@ -58,6 +58,8 @@ const Header = props => {
         <MenuItems to='/'>Home</MenuItems>
         <MenuItems to='/blog'>Blog</MenuItems>
         <MenuItems to='/projects'>Projects</MenuItems>
+        <MenuItems to='/dashboard'>Dashboard</MenuItems>
+
       </Flex>
 
       <Flex
