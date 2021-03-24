@@ -5,7 +5,7 @@ import yearAgo from 'dayjs/plugin/relativeTime'
 dayjs.extend(customParseFormat)
 dayjs.extend(yearAgo)
 
-const dateFormat = (date: string) => dayjs(date, 'DD/MM/YY')
-const ago = (date: string) => dayjs().to(dayjs(date, 'DD/MM/YY'))
+const dateFormat = (date: string) => dayjs(date)
+const ago = (date: string) => dayjs().to(date)
 
 export { dateFormat, ago }

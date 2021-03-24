@@ -1,20 +1,19 @@
 
-import { Box, Container, Flex, Text, Heading } from '@chakra-ui/react'
+import { Box, Container, Flex, Heading, Text } from '@chakra-ui/react'
 import AuthorCard from '@components/blog/author-card'
-import Date from '@components/blog/Date'
+import Date from '@components/blog/date'
 import { components } from '@components/mdx/provider'
 import SEO from '@components/seo'
-import { readFileSync, readdirSync } from 'fs'
 import matter from 'gray-matter'
+import { getAllArticles, getArticleByPath } from 'lib/devblog'
 import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
-import path from 'path'
 import React from 'react'
-import Img from "react-cool-img";
+import Img from "react-cool-img"
 
 
 function Post({ post }) {
-  const { author, date, image, title, description } = post.frontmatter
+  const { image, title, description } = post.frontmatter
   const content = hydrate(post.body, { components })
 
 
@@ -29,8 +28,8 @@ function Post({ post }) {
 
       <Flex justify='space-between' alignItems='center' color='gray.400' mb={10}>
         <Flex alignItems='center'>
-          <AuthorCard author={author} mr={3} />
-          <Date date={date} />
+          <AuthorCard author="Kenneth Coffie" mr={3} />
+          <Date date={post.date} />
         </Flex>
         <Text>{post.timeToRead.m + 1} min read</Text>
       </Flex>
@@ -45,26 +44,28 @@ function Post({ post }) {
 
 // Create paths without .mdx
 export const getStaticPaths = async () => {
-  const files = readdirSync("posts")
-  const paths = files.map(name => ({
-    params: { slug: name.replace(".mdx", "") }
+  const posts = await getAllArticles()
+  const paths = posts.map(name => ({
+    params: { slug: name.devToSlug }
   }));
 
   return { paths, fallback: false }
 };
 
-// parsing mdx 
 
 export const getStaticProps = async ({ params: { slug } }) => {
   const time = require('read-time')
-  const mdx = readFileSync(path.join('posts', slug + '.mdx'), 'utf-8')
-  const { content, data } = matter(mdx);
+  const mdx = await getArticleByPath(slug)
+  const { content, data } = matter(mdx.body_markdown);
   const source = await renderToString(content, { components, scope: data })
+
 
   return {
     revalidate: 1,
     props: {
-      post: { body: source, frontmatter: data, timeToRead: time(content) }
+      post: {
+        body: source, frontmatter: data, timeToRead: time(content),
+      }
     }
   };
 };
