@@ -19,9 +19,15 @@ const config = {
 };
 
 
+interface SEO {
+  description: string;
+  title: string;
+  image?: string;
+  slug?: string;
+  article?: string;
+}
 
-
-export default function SEO({ description, title, image, slug, article }) {
+export default function SEO({ description, title, image, slug, article }: SEO) {
   const {
     originalTitle,
     originalDescription,

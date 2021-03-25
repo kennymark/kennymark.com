@@ -19,7 +19,7 @@ function Post({ post }) {
   return (
     <Container mb={20} my={10} maxW='3xl'>
 
-      <SEO title={title} description={description} />
+      <SEO title={title} description={description} slug={post.slug} />
 
       <Heading mb={10} fontSize="5xl"  >
         {title}
@@ -63,7 +63,10 @@ export const getStaticProps = async ({ params: { slug } }) => {
     revalidate: 1,
     props: {
       post: {
-        body: source, frontmatter: data, timeToRead: time(content),
+        slug,
+        body: source,
+        frontmatter: data,
+        timeToRead: time(content),
       }
     }
   };
