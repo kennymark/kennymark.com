@@ -37,7 +37,7 @@ function Dashboard({ tracks }) {
       <chakra.div p={{ base: 4, lg: 8 }} rounded='lg'>
         <Heading >Top Tracks</Heading>
 
-        <Text my={8}>Here are some of the songs I listen to the most from Tidal. Tracks are being pulled reveser engineering the Tidal API </Text>
+        <Text my={8}>Here are some of the songs I listen to the most from Tidal. Tracks are being pulled by reverse engineering the Tidal API which isn't public yet.</Text>
 
         {cacheTracks.map(track => (
           <Track title={track.item.title}

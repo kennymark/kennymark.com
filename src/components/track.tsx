@@ -1,5 +1,5 @@
-import { Avatar, Center, chakra, Text, Link, Box } from '@chakra-ui/react'
-import React from 'react'
+import { Avatar, Center, chakra, Text } from '@chakra-ui/react';
+import React from 'react';
 
 function Track({ title, artist, album, url }) {
   const imageUrl = 'https://resources.tidal.com/images/' + album.replace(/-/g, '/') + '/' + 640 + 'x' + 640 + '.jpg';
