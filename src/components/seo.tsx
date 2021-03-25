@@ -1,60 +1,91 @@
-import React from "react"
-import Helmet from "react-helmet"
+import Head from "next/head";
 
 
-function SEO({ lang = 'en', title, description = "" }) {
+
+const config = {
+  description: ``,
+
+  originalTitle: "Kenny Coffie",
+  currentURL: "https://namojejwyspie-new.vercel.app",
+  originalImage: "https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80",
+  author: {
+    name: "Kenny Coffie",
+  },
+  originalDescription: "Kenny Mark's Personal Website. I am software engineer based in the Northwest. I am a front-end dev with fullstack experience who loves to code and build cool stuff. Currently employed at Sabs Travel Technologies ",
+  social: {
+    twitter: "mrkennymark",
+  },
+  siteName: "Kenny Marks work",
+};
 
 
-  const meta = {
-    author: 'Kenneth Coffie',
-    description: `Kenny Mark's Personal Website. I am software engineer based in the Northwest. I am a front-end dev with fullstack experience who loves to code and build cool stuff. Currently employed at Sabs Travel Technologies`,
-    title: 'Kenny Coffie',
-    'og:description': '',
-  }
 
+
+export default function SEO({ description, title, image, slug, article }) {
+  const {
+    originalTitle,
+    originalDescription,
+    siteName,
+    social: { twitter },
+    currentURL,
+    originalImage,
+  } = config;
 
   return (
-    <Helmet htmlAttributes={{ lang, }}
-      title={title}
-      titleTemplate={`%s - ${meta.title}`}
-      meta={[
-        {
-          name: `description`,
-          content: description || meta.description,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: meta,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: meta.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: meta.description,
-        },
-      ].concat()}
-    />
-  )
+    <Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta charSet="utf-8" />
+      <title>{`${title} | ${originalTitle}`}</title>
+      <meta
+        name="description"
+      />
+        content={`${description ? description : originalDescription}`}
+      <meta
+        name="image"
+        content={`${image ? image : originalImage}`}
+        key="ogtitle"
+      />
+      {article ? (
+        <meta property="og:type" content="article" key="ogtype" />
+      ) : (<meta property="og:type" content="website" key="ogtype" />
+      )}
+      <meta
+        property="og:title"
+        content={`${title ? title : originalTitle}`}
+        key="ogtitle"
+      />
+      <meta
+        property="og:description"
+        content={`${description ? description : originalDescription}`}
+        key="ogdesc"
+      />
+      <meta
+        property="twitter:card"
+        content="summary_large_image"
+        key="twcard"
+      />
+      <meta name="twitter:creator" content={twitter} key="twhandle" />
+      <meta
+        name="twitter:title"
+        content={`${title ? title : originalTitle}`}
+        key="twtitle"
+      />
+      <meta
+        name="twitter:description" content={`${description ? description : originalDescription}`}
+        key="twdescription"
+      />
+      <meta
+        name="twitter:image"
+        content={`${image ? image : originalImage}`}
+        key="twimage"
+      />
+      <meta property="og:url" content={`${currentURL}/${slug}`} key="ogurl" />
+      <meta
+        property="og:image"
+        content={`${image ? image : originalImage}`}
+        key="ogimage"
+      />
+      <meta property="og:site_name" content={siteName} key="ogsitename" />
+    </Head>
+  );
 }
-
-
-
-export default SEO
