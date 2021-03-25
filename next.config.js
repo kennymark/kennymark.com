@@ -47,6 +47,11 @@ module.exports = {
         source: '/next-lite',
         destination: 'https://next-starter-lite.vercel.app/',
         permanent: true
+      },
+      {
+        source: '/dev',
+        destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
+        permanent: true
       }
     ]
   }
