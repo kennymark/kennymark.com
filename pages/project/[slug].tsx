@@ -11,7 +11,7 @@ import { motion } from 'framer-motion'
 
 const MFlex = motion(Flex)
 const MText = motion(Text)
-const MPageHeader = motion(PageHeader)
+
 
 
 
@@ -35,9 +35,9 @@ export default function Project(project) {
 
   return (
     <Container maxW="5xl">
-      <SEO title={startCase(project.name)} />
+      <SEO title={startCase(project.name)} description={project.description} />
 
-      <MPageHeader variants={variants} initial="initial" animate="animate" title={startCase(project.name)} hasB />
+      <PageHeader title={startCase(project.name)} hasB />
 
       <MText variants={variants} initial="initial" animate="animate"
         textAlign='center' color='gray.500' my={5} fontSize={20}>

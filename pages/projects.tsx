@@ -117,7 +117,7 @@ export function getStaticProps() {
   return {
     props: {
       extraProjects,
-      topProjects: topProjects.reverse()
+      topProjects: topProjects
     }
   }
 }
