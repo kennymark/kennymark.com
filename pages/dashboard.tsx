@@ -7,6 +7,7 @@ import useSWR from 'swr'
 import axios from 'axios'
 import { Tidal } from 'lib/tidal'
 import { cacheTracks } from 'lib/cachedTracks'
+import SEO from '@components/seo'
 
 
 function Dashboard({ tracks }) {
@@ -20,6 +21,7 @@ function Dashboard({ tracks }) {
   return (
     <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={10}>
 
+      <SEO title='Dashboard' description='Keep in touch with my personal stats' />
 
       <chakra.div p={{ base: 4, lg: 8 }}>
         <PageHeader title='Dashboard' />
