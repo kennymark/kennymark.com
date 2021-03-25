@@ -4,11 +4,12 @@ const mainProjects = [
   {
     name: 'E-Commerce Store',
     status: 'live',
-    description: 'A full stack application built with Node, Firebase, VueJs and Stripe for payments. ',
+    description: 'A full stack E-commerce application with built-in support for payments, auth and a dashboard ',
     image: 'https://gitlab.com/kennymark/nuxt-mercado/-/raw/master/screenshots/products.png',
     gif: '../images/gif/mercado.gif',
     link: 'https://nuxt-mercado.netlify.app/',
     source: 'https://gitlab.com/kennymark/nuxt-mercado',
+    stack: ["Vue.js", "Stripe for payments", "Fireabse", "Vue data-grid"],
     color: 'red'
   },
   {
@@ -38,10 +39,12 @@ const topProjects = [
   {
     name: 'E-Commerce Store',
     status: 'live',
-    description: 'A full stack application built with Node, Firebase, VueJs and Stripe for payments. ',
+    description: 'A full stack E-commerce application with built-in support for payments, auth and a dashboard ',
     image: 'https://gitlab.com/kennymark/nuxt-mercado/-/raw/master/screenshots/products.png',
+    gif: '../images/gif/mercado.gif',
     link: 'https://nuxt-mercado.netlify.app/',
     source: 'https://gitlab.com/kennymark/nuxt-mercado',
+    stack: ["Vue.js", "Stripe for payments", "Fireabse Auth", "Firebase Store", "Vue data-grid"],
     color: '#FED7D7'
   },
   {
@@ -51,6 +54,7 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/kennymark/express-starter/master/screenshots/account.png',
     link: 'https://express-kenny.herokuapp.com/',
     source: 'https://github.com/kennymark/express-starter',
+    stack: ["Node.js", "Express", "Passport.js for social/local login", "Handlebars", "Mongo"],
     color: '#f7e7df'
   },
   {
@@ -60,6 +64,7 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/kennymark/Good-Notes/master/screenshots/main-page.png',
     link: 'https://goodnotes.netlify.com/',
     source: 'https://github.com/kennymark/Good-Notes',
+    stack: ["React", "Firebase Auth", "Firebase firestore"],
     color: '#cfceff'
   },
   {
@@ -69,6 +74,7 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/kennymark/stripe-subscriptions/master/screenshots/plans.png',
     link: 'https://stripe-subscriptions.vercel.app/',
     source: 'https://github.com/kennymark/stripe-subscriptions',
+    stack: ["React.js", "ChakraUI", "Stripe api",],
     color: '#faeee7'
   },
   {
@@ -78,6 +84,7 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/kennymark/british-petitions-dashboard/master/screenshots/table-view.png',
     link: 'https://petitions.now.sh/',
     source: 'https://github.com/kennymark/british-petitions-dashboard',
+    stack: ["React.js", "ChakraUI", "Material Datatable Component", "Parliaments API"],
     color: '#C6F6D5'
   },
   {
@@ -87,6 +94,7 @@ const topProjects = [
     image: 'https://camo.githubusercontent.com/2545a369f71065156e739ffbdc3b7cf9238361d1/68747470733a2f2f7374617469632e6e6f74696f6e2d7374617469632e636f6d2f61643364303635642d373135392d346138302d386130362d6134353531666361663938642f53696d756c61746f725f53637265656e5f53686f745f2d5f6950686f6e655f585f2d5f323031382d30322d32375f61745f31352e32312e33352e706e67',
     link: null,
     source: 'https://github.com/kennymark/Flux-Weather',
+    stack: ["React native", "Darksky API", "Expo", "React Native Elements"],
     color: '#dafdff'
   },
   {
@@ -96,6 +104,8 @@ const topProjects = [
     image: 'https://raw.githubusercontent.com/angular-hub/client/master/screenshot/home.jpg',
     link: 'https://angularhub.netlify.com/',
     source: 'https://github.com/angular-hub/client',
+    stack: ["Angular", "Nebular UI"],
+
     color: '#bae8e8'
   },
 
@@ -106,6 +116,7 @@ const topProjects = [
     image: 'https://gitlab.com/kennymark/clever-advisor/-/raw/master/screenshots/home.png',
     link: 'https://clever-advisor.netlify.com/',
     source: 'https://gitlab.com/kennymark/clever-advisor',
+    stack: ["Angular", "Bootstrap", "Ng2 Charts", "Ngx Datatable"],
     color: '#c9e8ff'
   },
 ]

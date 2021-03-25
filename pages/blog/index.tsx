@@ -16,7 +16,6 @@ function Blog({ posts }) {
   const tone = useColorModeValue('gray.900', 'gray.600')
   const titleC = useColorModeValue('black', 'gray.300')
 
-  console.log(posts)
   return (
     <Fragment>
       <SEO title='Blog Posts' />

@@ -49,7 +49,7 @@ module.exports = {
         permanent: true
       },
       {
-        source: '/dev',
+        source: '/_dev',
         destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
         permanent: true
       }
