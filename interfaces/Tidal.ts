@@ -194,3 +194,77 @@ export interface TidalStreamInfo {
   encryptionKey: string,
   codec: string
 }
+
+
+
+export interface TrackResult {
+  limit: number;
+  offset: number;
+  totalNumberOfItems: number;
+  items: ItemElement[];
+}
+
+export interface ItemElement {
+  created: string;
+  item: ItemItem;
+}
+
+export interface ItemItem {
+  id: number;
+  title: string;
+  duration: number;
+  replayGain: number;
+  peak: number;
+  allowStreaming: boolean;
+  streamReady: boolean;
+  streamStartDate: string;
+  premiumStreamingOnly: boolean;
+  trackNumber: number;
+  volumeNumber: number;
+  version: null;
+  popularity: number;
+  copyright: string;
+  url: string;
+  isrc: string;
+  editable: boolean;
+  explicit: boolean;
+  audioQuality: AudioQuality;
+  audioModes: AudioMode[];
+  artist: Artist;
+  artists: Artist[];
+  album: Album;
+  mixes: Mixes;
+}
+
+export interface Album {
+  id: number;
+  title: string;
+  cover: string;
+  videoCover: null;
+}
+
+export interface Artist {
+  id: number;
+  name: string;
+  type: Type;
+  picture: null | string;
+}
+
+export enum Type {
+  Featured = "FEATURED",
+  Main = "MAIN",
+}
+
+export enum AudioMode {
+  Stereo = "STEREO",
+}
+
+export enum AudioQuality {
+  HiRes = "HI_RES",
+  Lossless = "LOSSLESS",
+}
+
+export interface Mixes {
+  TRACK_MIX: string;
+  MASTER_TRACK_MIX?: string;
+}

@@ -48,24 +48,14 @@ const topProjects = [
     color: '#FED7D7'
   },
   {
-    name: 'Fullstack JavaScript Boilerplate',
+    name: 'petitions dashboard',
     status: 'live',
-    description: 'Express based app with email + social auth, password recovery, email etc.',
-    image: 'https://raw.githubusercontent.com/kennymark/express-starter/master/screenshots/account.png',
-    link: 'https://express-kenny.herokuapp.com/',
-    source: 'https://github.com/kennymark/express-starter',
-    stack: ["Node.js", "Express", "Passport.js for social/local login", "Handlebars", "Mongo"],
-    color: '#f7e7df'
-  },
-  {
-    name: 'good notes',
-    status: 'live',
-    description: 'A simple note taking application built with React and Firebase Auth and Firestore.',
-    image: 'https://raw.githubusercontent.com/kennymark/Good-Notes/master/screenshots/main-page.png',
-    link: 'https://goodnotes.netlify.com/',
-    source: 'https://github.com/kennymark/Good-Notes',
-    stack: ["React", "Firebase Auth", "Firebase firestore"],
-    color: '#cfceff'
+    description: 'An SPA that extracts valuable insight into UK parliamentary petition data with just a simple url.',
+    image: 'https://raw.githubusercontent.com/kennymark/british-petitions-dashboard/master/screenshots/table-view.png',
+    link: 'https://petitions.now.sh/',
+    source: 'https://github.com/kennymark/british-petitions-dashboard',
+    stack: ["React.js", "ChakraUI", "Material Datatable Component", "Parliaments API"],
+    color: '#C6F6D5'
   },
   {
     name: 'stripe payment and subscriptions',
@@ -78,14 +68,25 @@ const topProjects = [
     color: '#faeee7'
   },
   {
-    name: 'petitions dashboard',
+    name: 'clever advisor',
+    status: 'in-progress',
+    description: 'An application I built for an interview process. A tool for investors to view their finance',
+    image: 'https://gitlab.com/kennymark/clever-advisor/-/raw/master/screenshots/home.png',
+    link: 'https://clever-advisor.netlify.com/',
+    source: 'https://gitlab.com/kennymark/clever-advisor',
+    stack: ["Angular", "Bootstrap", "Ng2 Charts", "Ngx Datatable"],
+    color: '#c9e8ff'
+  },
+
+  {
+    name: 'Fullstack JavaScript Boilerplate',
     status: 'live',
-    description: 'An SPA that extracts valuable insight into UK parliamentary petition data with just a simple url.',
-    image: 'https://raw.githubusercontent.com/kennymark/british-petitions-dashboard/master/screenshots/table-view.png',
-    link: 'https://petitions.now.sh/',
-    source: 'https://github.com/kennymark/british-petitions-dashboard',
-    stack: ["React.js", "ChakraUI", "Material Datatable Component", "Parliaments API"],
-    color: '#C6F6D5'
+    description: 'Express based app with email + social auth, password recovery, email etc.',
+    image: 'https://raw.githubusercontent.com/kennymark/express-starter/master/screenshots/account.png',
+    link: 'https://express-kenny.herokuapp.com/',
+    source: 'https://github.com/kennymark/express-starter',
+    stack: ["Node.js", "Express", "Passport.js for social/local login", "Handlebars", "Mongo"],
+    color: '#f7e7df'
   },
   {
     name: 'flux weather',
@@ -97,6 +98,20 @@ const topProjects = [
     stack: ["React native", "Darksky API", "Expo", "React Native Elements"],
     color: '#dafdff'
   },
+
+  {
+    name: 'good notes',
+    status: 'live',
+    description: 'A simple note taking application built with React and Firebase Auth and Firestore.',
+    image: 'https://raw.githubusercontent.com/kennymark/Good-Notes/master/screenshots/main-page.png',
+    link: 'https://goodnotes.netlify.com/',
+    source: 'https://github.com/kennymark/Good-Notes',
+    stack: ["React", "Firebase Auth", "Firebase firestore"],
+    color: '#cfceff'
+  },
+
+
+
   {
     name: 'angular hub',
     status: 'in-progress',
@@ -109,16 +124,7 @@ const topProjects = [
     color: '#bae8e8'
   },
 
-  {
-    name: 'clever advisor',
-    status: 'in-progress',
-    description: 'An application I built for an interview process. A tool for investors to view their finance',
-    image: 'https://gitlab.com/kennymark/clever-advisor/-/raw/master/screenshots/home.png',
-    link: 'https://clever-advisor.netlify.com/',
-    source: 'https://gitlab.com/kennymark/clever-advisor',
-    stack: ["Angular", "Bootstrap", "Ng2 Charts", "Ngx Datatable"],
-    color: '#c9e8ff'
-  },
+
 ]
 
 const extraProjects = [

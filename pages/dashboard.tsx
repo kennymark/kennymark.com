@@ -2,21 +2,27 @@ import { chakra, Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import MetricCard from '@components/metric-card'
 import PageHeader from '@components/page-header'
 import Track from '@components/track'
-import React from 'react'
+import React, { useEffect } from 'react'
 import useSWR from 'swr'
 import axios from 'axios'
-import { Tidal } from 'lib/tidal'
+import Tidal from 'lib/tidal'
 import { cacheTracks } from 'lib/cachedTracks'
 import SEO from '@components/seo'
+import { TrackResult } from 'interfaces/Tidal'
 
 
-function Dashboard({ tracks }) {
+interface DashboardProps {
+  tracks: TrackResult
+}
+
+
+function Dashboard({ tracks }: DashboardProps) {
   const { data: devto } = useSWR('api/dashboard/dev', (url) => axios.get(url))
   const { data: git } = useSWR('api/dashboard/github', (url) => axios.get(url), {
     initialData: { data: { stars: 0 } }
   })
-  console.log(cacheTracks)
 
+  useEffect(() => null, [tracks])
 
   return (
     <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={10}>
@@ -30,7 +36,7 @@ function Dashboard({ tracks }) {
           <MetricCard title='Articles View Count' number={devto?.data.total} />
           <MetricCard title='Articles Likes' number={devto?.data.likes} />
           <MetricCard title='Github Stars' number={git?.data?.stars} />
-          <MetricCard title='Github Stars' number={git?.data?.stars} />
+          <MetricCard title='NewsLetter Subscribers' number={0} />
 
         </SimpleGrid>
 
@@ -41,7 +47,7 @@ function Dashboard({ tracks }) {
 
         <Text my={8}>Here are some of the songs I listen to the most from Tidal. Tracks are being pulled by reverse engineering the Tidal API which isn't public yet.</Text>
 
-        {cacheTracks.map(track => (
+        {tracks.items.map(track => (
           <Track title={track.item.title}
             artist={track.item.artist.name}
             album={track.item.album.cover}
@@ -60,20 +66,16 @@ function Dashboard({ tracks }) {
 export default Dashboard
 
 
-export const getStaticProps = () => {
-  const { TIDAL_EMAIL: username, TIDAL_PASS: password } = process.env
+export const getStaticProps = async () => {
 
-  // const api = new Tidal({ username, password, });
-  // async function main() {
-  //   // const info = await api.getUser("174928383");
-  //   const res = await api.getMyFavTracks()
-  //   console.log(res)
-  // };
+  const { TIDAL_PASS: password, TIDAL_EMAIL: username } = process.env
 
-  const tracks = cacheTracks
-  // main()
+  const tidal = new Tidal({ username, password })
 
   return {
-    props: { tracks }
+    props: {
+      revalidate: 60 * 60,
+      tracks: await tidal.getMyFavTracks()
+    }
   }
 }
