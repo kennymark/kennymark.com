@@ -20,7 +20,7 @@ const config = {
 
 
 interface SEO {
-  description: string;
+  description?: string;
   title: string;
   image?: string;
   slug?: string;
