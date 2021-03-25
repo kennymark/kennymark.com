@@ -61,6 +61,7 @@ const customeTheme = extendTheme({
       ul: {
         listStyleType: "none",
       },
+      borderColor: props.colorMode === 'light' ? 'gray.100' : 'gray.600',
       a: {
         textDecoration: 'none'
       },

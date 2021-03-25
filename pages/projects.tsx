@@ -1,20 +1,18 @@
-//@ts-nocheck
 import { Box, Button, Flex, Heading, Link as NLink, Stack, Text, useColorModeValue, Container } from '@chakra-ui/react';
 import Link from "next/link";
 import React, { Fragment } from 'react';
 import Img from "react-cool-img";
 import Masonry from 'react-masonry-css';
-import slug from 'slug';
 import PageHeader from '@components/page-header';
 import SEO from "@components/seo";
-import { extraProjects, topProjects } from '../src/data/projects';
 import { motion } from 'framer-motion'
+import slug from 'lib/slug';
 
 
 const MBox = motion(Box)
 
 
-export default function Projects() {
+export default function Projects({ topProjects, extraProjects }) {
   const extraBg = useColorModeValue('gray.200', 'gray.700')
   const extraHeader = useColorModeValue('black', 'gray.400')
 
@@ -31,7 +29,7 @@ export default function Projects() {
           className="my-masonry-grid "
           columnClassName="my-masonry-grid_column">
 
-          {topProjects.reverse().map((project, idx) => (
+          {topProjects.map((project, idx) => (
             <Link href={`/project/${slug(project.name)}`} key={idx}>
               <MBox
                 bg={project.color} p={5}
@@ -111,4 +109,15 @@ export default function Projects() {
 
     </Fragment>
   );
+}
+
+export function getStaticProps() {
+  const { extraProjects, topProjects } = require('../src/data/projects');
+
+  return {
+    props: {
+      extraProjects,
+      topProjects: topProjects.reverse()
+    }
+  }
 }

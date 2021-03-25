@@ -1,16 +1,18 @@
-//@ts-nocheck
+
 import { Box, Flex, Link, Text, Container } from '@chakra-ui/react';
 import SEO from '@components/seo';
 import PageHeader from '@components/page-header';
 import { startCase, upperFirst } from 'lodash';
 import React from 'react';
 import Img from "react-cool-img";
-import slugify from 'slug';
+import slugify from 'lib/slug'
 import { topProjects } from 'src/data/projects';
 import { motion } from 'framer-motion'
 
 const MFlex = motion(Flex)
 const MText = motion(Text)
+const MPageHeader = motion(PageHeader)
+
 
 
 export default function Project(project) {
@@ -35,7 +37,7 @@ export default function Project(project) {
     <Container maxW="5xl">
       <SEO title={startCase(project.name)} />
 
-      <PageHeader variants={variants} initial="initial" animate="animate" title={startCase(project.name)} hasB />
+      <MPageHeader variants={variants} initial="initial" animate="animate" title={startCase(project.name)} hasB />
 
       <MText variants={variants} initial="initial" animate="animate"
         textAlign='center' color='gray.500' my={5} fontSize={20}>
