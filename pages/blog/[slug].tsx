@@ -1,7 +1,6 @@
 
 import { Box, Container, Flex, Heading, Text } from '@chakra-ui/react'
 import AuthorCard from '@components/blog/author-card'
-import Date from '@components/blog/date'
 import { components } from '@components/mdx/provider'
 import SEO from '@components/seo'
 import matter from 'gray-matter'
@@ -10,7 +9,7 @@ import hydrate from 'next-mdx-remote/hydrate'
 import renderToString from 'next-mdx-remote/render-to-string'
 import React from 'react'
 import Img from "react-cool-img"
-
+import Date from '@components/blog/date-time'
 
 function Post({ post }) {
   const { image, title, description } = post.frontmatter
