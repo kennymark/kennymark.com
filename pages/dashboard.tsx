@@ -1,4 +1,4 @@
-import { chakra, Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { chakra, Container, Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import MetricCard from '@components/metric-card'
 import PageHeader from '@components/page-header'
 import SEO from '@components/seo'
@@ -24,41 +24,44 @@ function Dashboard({ tracks }: DashboardProps) {
   useEffect(() => null, [tracks])
 
   return (
-    <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={10}>
 
+    <Container maxW="8xl" >
       <SEO title='Dashboard' description='Keep in touch with my personal stats' />
 
-      <chakra.div p={{ base: 4, lg: 8 }}>
-        <PageHeader title='Dashboard' />
-        <Text mb={8}>Keeping track of some of the most important metrics in my dev life.</Text>
-        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={10}>
-          <MetricCard title='Articles View Count' number={devto?.data.total} />
-          <MetricCard title='Articles Likes' number={devto?.data.likes} />
-          <MetricCard title='Github Stars' number={git?.data?.stars} />
-          <MetricCard title='NewsLetter Subscribers' number={0} />
-
-        </SimpleGrid>
-
-      </chakra.div>
-
-      <chakra.div p={{ base: 4, lg: 8 }} rounded='lg'>
-        <Heading >Top Tracks</Heading>
-
-        <Text my={8}>Here are some of the songs I listen to the most from Tidal. Tracks are being pulled by reverse engineering the Tidal API which isn't public yet.</Text>
-
-        {tracks.items.map(track => (
-          <Track title={track.item.title}
-            artist={track.item.artist.name}
-            album={track.item.album.cover}
-            url={track.item.url}
-            key={track.created} />
-        ))}
-      </chakra.div>
+      <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={10}>
 
 
+        <chakra.div p={{ base: 4, lg: 8 }}>
+          <PageHeader title='Dashboard' />
+          <Text mb={8}>Keeping track of some of the most important metrics in my dev life.</Text>
+          <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={10}>
+            <MetricCard title='Articles View Count' number={devto?.data.total} />
+            <MetricCard title='Articles Likes' number={devto?.data.likes} />
+            <MetricCard title='Github Stars' number={git?.data?.stars} />
+            <MetricCard title='NewsLetter Subscribers' number={0} />
+
+          </SimpleGrid>
+
+        </chakra.div>
+
+        <chakra.div p={{ base: 4, lg: 8 }} rounded='lg'>
+          <Heading >Top Tracks</Heading>
+
+          <Text my={8}>Here are some of the songs I listen to the most from Tidal. Tracks are being pulled by reverse engineering the Tidal API which isn't public yet.</Text>
+
+          {tracks.items.map(track => (
+            <Track title={track.item.title}
+              artist={track.item.artist.name}
+              album={track.item.album.cover}
+              url={track.item.url}
+              key={track.created} />
+          ))}
+        </chakra.div>
 
 
-    </ SimpleGrid>
+      </ SimpleGrid>
+
+    </Container>
   )
 }
 
