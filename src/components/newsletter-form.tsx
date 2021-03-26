@@ -26,12 +26,15 @@ export default function NewsLetterForm() {
   } as any
 
   const subscribe = async ({ email }) => {
+
     try {
+
       const { data } = await axios.post('/api/dashboard/subscribe-newsletter', { email })
       toast({ title: `You're subscribed`, description: data.message, status: 'success', ...def })
       setTimeout(() => reset(), 2000)
+
     } catch (error) {
-      console.log({ error })
+
       setError(true)
       toast({ title: 'Darn it', description: error.response.data.error, status: 'error', ...def })
 
