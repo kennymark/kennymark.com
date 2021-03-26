@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+
+
 interface LoginInfo {
   username: string;
   password: string;
@@ -13,7 +15,7 @@ interface SearchParams {
   limit?: number | string;
   order?: string | 'DATE',
   orderDirection?: 'DESC' | 'ASC',
-  countryCode: string
+  countryCode?: string
 
 }
 
@@ -30,6 +32,9 @@ export default class Tidal {
       'Content-Type': 'application/x-www-form-urlencoded'
     },
   })
+
+
+  private isLoggedIn = false
 
   private searchParams: SearchParams = {
     offset: 0,
@@ -60,6 +65,7 @@ export default class Tidal {
     this._sessionId = res.data.sessionId;
     this.headers = { "X-Tidal-SessionId": this._sessionId }
 
+    this.isLoggedIn = true
     return res.data
 
   }
@@ -69,6 +75,20 @@ export default class Tidal {
 
     const tracks = await this.api.get(`/users/${this._userId}/favorites/tracks`, { params, headers: this.headers })
 
+    // const tracks = await this.request(`/users/${this._userId}/favorites/tracks`)
     return tracks.data
+  }
+
+  // base re that checks login first and if not do it
+  private async request(url, method: any = 'get') {
+
+    if (!this.isLoggedIn) {
+      await this.login()
+      return await this.api(url, { method, params: this.searchParams, headers: this.headers })
+    } else {
+      await this.api(url, { method, params: this.searchParams, headers: this.headers })
+
+    }
+
   }
 }
