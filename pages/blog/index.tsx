@@ -9,7 +9,7 @@ import { getAllArticles } from 'lib/devblog';
 import Link from "next/link";
 import { Fragment } from "react";
 import timeRead from 'read-time';
-
+import NewsLetterForm from '@components/newsletter'
 
 
 function Blog({ posts }) {
@@ -51,7 +51,7 @@ function Blog({ posts }) {
           )
         })}
       </Container>
-
+      <NewsLetterForm />
     </Fragment >
   )
 }

@@ -1,14 +1,13 @@
 import { chakra, Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import MetricCard from '@components/metric-card'
 import PageHeader from '@components/page-header'
+import SEO from '@components/seo'
 import Track from '@components/track'
+import axios from 'axios'
+import { TrackResult } from 'interfaces/Tidal'
+import Tidal from 'lib/tidal'
 import React, { useEffect } from 'react'
 import useSWR from 'swr'
-import axios from 'axios'
-import Tidal from 'lib/tidal'
-import { cacheTracks } from 'lib/cachedTracks'
-import SEO from '@components/seo'
-import { TrackResult } from 'interfaces/Tidal'
 
 
 interface DashboardProps {
