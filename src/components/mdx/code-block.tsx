@@ -10,17 +10,12 @@ export const CodeBlock = ({ children, className }) => {
   const [value, setValue] = useState("Hello world")
   const { hasCopied, onCopy } = useClipboard(value)
 
+
   return (
     <Highlight {...defaultProps} code={children} language={language} theme={theme}>
-
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <Box as='pre' borderRadius='lg' mb={5} p={25} overflowX='auto' rounded='lg' fontSize="md" pb={1} className={className}
           style={{ ...style, }}>
-
-          <Button onClick={onCopy} ml={2} colorScheme='cyan' size='xs' float='right' pos='relative' top={-5}>
-            {hasCopied ? "Copied" : "Copy"}
-          </Button>
-
           {tokens.map((line, i) => (
             <div key={i} {...getLineProps({ line, key: i })}>
               {line?.map((token, key) => (

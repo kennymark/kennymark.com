@@ -12,6 +12,7 @@ import timeRead from 'read-time';
 import NewsLetterForm from '@components/newsletter-form'
 
 
+
 function Blog({ posts }) {
   const tone = useColorModeValue('gray.900', 'gray.600')
   const titleC = useColorModeValue('black', 'gray.300')
