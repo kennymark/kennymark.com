@@ -15,13 +15,11 @@ export default function NewsLetterForm() {
 
   const { handleSubmit, register, formState, getValues } = useForm({ mode: 'onChange' })
   const email = getValues('email')
-  const req = useSwr(email ? '/api/newsletter' : null, (url) => axios.post(url, { email }))
+  const req = useSwr(email ? '/api/subscribe' : null, (url) => axios.post(url, { email }))
 
 
   const subscribe = (e) => {
-
     // req.mutate()
-
     console.log(e)
     // remove this code and implement your submit logic right here
 
@@ -53,6 +51,7 @@ export default function NewsLetterForm() {
           <FormControl>
             <Input
               borderWidth={1}
+              focusBorderColor='gray.900'
               color={'gray.800'}
               _placeholder={{
                 color: 'gray.400',
@@ -69,6 +68,7 @@ export default function NewsLetterForm() {
           <FormControl w={{ base: '100%', md: '40%' }}>
             <Button
               bg='gray.900'
+              color='gray.100'
               isLoading={formState.isSubmitting}
               type='submit'>
               {formState.isSubmitting ? <CheckIcon /> : 'Submit'}

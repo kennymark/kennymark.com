@@ -9,7 +9,7 @@ import { getAllArticles } from 'lib/devblog';
 import Link from "next/link";
 import { Fragment } from "react";
 import timeRead from 'read-time';
-import NewsLetterForm from '@components/newsletter'
+import NewsLetterForm from '@components/newsletter-form'
 
 
 function Blog({ posts }) {
