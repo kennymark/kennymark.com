@@ -4,24 +4,38 @@ import {
   Container,
   Flex, FormControl,
   Heading, Input, Stack,
-  Text, useColorModeValue
+  Text, useColorModeValue, useToast
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import useSwr from 'swr';
 
 
 export default function NewsLetterForm() {
 
-  const { handleSubmit, register, formState, getValues } = useForm({ mode: 'onChange' })
-  const email = getValues('email')
-  const req = useSwr(email ? '/api/subscribe' : null, (url) => axios.post(url, { email }))
+  const { handleSubmit, register, formState, reset } = useForm({ mode: 'onChange' })
+  const toast = useToast()
+  const border = useColorModeValue('gray.300', 'gray.700')
+  const [error, setError] = useState(false)
 
+  const def = {
+    position: 'top-right',
+    variant: 'subtle',
+    duration: 5000,
+    isClosable: true
+  } as any
 
-  const subscribe = (e) => {
-    // req.mutate()
-    console.log(e)
-    // remove this code and implement your submit logic right here
+  const subscribe = async ({ email }) => {
+    try {
+      const { data } = await axios.post('/api/dashboard/subscribe-newsletter', { email })
+      toast({ title: `You're subscribed`, description: data.message, status: 'success', ...def })
+      setTimeout(() => reset(), 2000)
+    } catch (error) {
+      console.log({ error })
+      setError(true)
+      toast({ title: 'Darn it', description: error.response.data.error, status: 'error', ...def })
+
+    }
 
   }
 
@@ -43,22 +57,20 @@ export default function NewsLetterForm() {
         </Heading>
 
         <Stack
-          direction={{ base: 'column', md: 'row' }}
           as={'form'}
+          direction={{ base: 'column', md: 'row' }}
           spacing={'12px'}
           onSubmit={handleSubmit(subscribe)}>
 
           <FormControl>
             <Input
               borderWidth={1}
+              borderColor={border}
               focusBorderColor='gray.900'
               color={'gray.800'}
-              _placeholder={{
-                color: 'gray.400',
-              }}
-              ref={register}
+              _placeholder={{ color: 'gray.400' }}
+              ref={register({ required: 'Email is required', maxLength: 60, minLength: 5 })}
               name='email'
-              borderColor={useColorModeValue('gray.300', 'gray.700')}
               id={'email'}
               type={'email'}
               placeholder={'Your Email'}
@@ -70,6 +82,7 @@ export default function NewsLetterForm() {
               bg='gray.900'
               color='gray.100'
               isLoading={formState.isSubmitting}
+              disabled={eorr}
               type='submit'>
               {formState.isSubmitting ? <CheckIcon /> : 'Submit'}
 
@@ -77,13 +90,8 @@ export default function NewsLetterForm() {
           </FormControl>
         </Stack>
 
-        <Text
-          mt={2}
-          textAlign={'center'}
-          color={formState.errors ? 'red.500' : 'gray.500'}>
-          {formState.errors
-            ? 'Oh no an error occured! 😢 Please try again later.'
-            : "You won't receive any spam! ✌️"}
+        <Text mt={2} textAlign={'center'} color={error ? 'red.500' : 'gray.500'}>
+          {error ? 'Oh no an error occured! 😢 Please try again later.' : "You won't receive any spam! ✌️"}
         </Text>
       </Container>
     </Flex>

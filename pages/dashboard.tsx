@@ -17,9 +17,11 @@ interface DashboardProps {
 
 function Dashboard({ tracks }: DashboardProps) {
   const { data: devto } = useSWR('api/dashboard/dev', (url) => axios.get(url))
+  const { data: subscribers } = useSWR('api/dashboard/subscribers', (url) => axios.get(url))
   const { data: git } = useSWR('api/dashboard/github', (url) => axios.get(url), {
     initialData: { data: { stars: 0 } }
   })
+
 
   useEffect(() => null, [tracks])
 
@@ -38,7 +40,7 @@ function Dashboard({ tracks }: DashboardProps) {
             <MetricCard title='Articles View Count' number={devto?.data.total} />
             <MetricCard title='Articles Likes' number={devto?.data.likes} />
             <MetricCard title='Github Stars' number={git?.data?.stars} />
-            <MetricCard title='NewsLetter Subscribers' number={0} />
+            <MetricCard title='NewsLetter Subscribers' number={subscribers?.data.count} />
 
           </SimpleGrid>
 

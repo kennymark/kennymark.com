@@ -10,6 +10,7 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import React from 'react'
 import Img from "react-cool-img"
 import Date from '@components/blog/date-time'
+import NewsLetterForm from '@components/newsletter-form'
 
 function Post({ post }) {
   const { image, title, description } = post.frontmatter
@@ -37,6 +38,7 @@ function Post({ post }) {
 
       <Box>{content}</Box>
 
+      <NewsLetterForm />
     </Container>
   )
 }

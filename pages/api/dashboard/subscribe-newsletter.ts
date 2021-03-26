@@ -3,7 +3,7 @@
 import axios from 'axios'
 
 const URL = 'https://api.buttondown.email/v1/subscribers'
-const API_KEY = process.env.BUTTONDOWN_API_KEY;
+const API_KEY = process.env.BUTTON_API;
 
 
 export default async (req, res) => {
@@ -29,6 +29,7 @@ export default async (req, res) => {
     return res.status(201).json({ message: 'Sucessfully subscribed to the newsletter' });
 
   } catch (error) {
-    return res.status(500).json({ error: error.message || error.toString() });
+    console.log(error)
+    return res.status(500).json({ error: `There was an error subscribing to the newsletter, you're either already subscribed or please try again` });
   }
 };

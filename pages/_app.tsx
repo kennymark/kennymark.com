@@ -4,6 +4,7 @@ import AppLayout from '@components/layout/app-layout'
 import { Router } from 'next/router'
 import { useEffect } from 'react'
 import * as gtag from '../lib/gtag'
+import NewsLetterForm from '@components/newsletter-form'
 
 
 
