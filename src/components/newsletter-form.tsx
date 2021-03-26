@@ -82,7 +82,7 @@ export default function NewsLetterForm() {
               bg='gray.900'
               color='gray.100'
               isLoading={formState.isSubmitting}
-              disabled={eorr}
+              disabled={error}
               type='submit'>
               {formState.isSubmitting ? <CheckIcon /> : 'Submit'}
 
