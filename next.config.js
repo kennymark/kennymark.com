@@ -52,6 +52,16 @@ module.exports = {
         source: '/_dev',
         destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
         permanent: true
+      },
+      {
+        source: '/test',
+        destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
+        permanent: true
+      },
+      {
+        source: '/v5',
+        destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
+        permanent: true
       }
     ]
   }
