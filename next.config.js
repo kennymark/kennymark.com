@@ -48,16 +48,16 @@ module.exports = {
         destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
         permanent: false
       },
-      // {
-      //   source: '/_dev',
-      //   destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
-      //   permanent: true
-      // },
-      // {
-      //   source: '/test',
-      //   destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
-      //   permanent: false
-      // },
+      {
+        source: '/deal-finder',
+        destination: 'https://deal-finder-knc7i20xg-kennymmark.vercel.app/',
+        permanent: false
+      },
+      {
+        source: '/sweetbnb',
+        destination: 'https://sweet-bnb.vercel.app/',
+        permanent: false
+      },
       // {
       //   source: '/v5',
       //   destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
