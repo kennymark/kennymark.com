@@ -6,7 +6,7 @@ const config = {
   description: ``,
 
   originalTitle: "Kenny Coffie",
-  currentURL: "https://namojejwyspie-new.vercel.app",
+  currentURL: "https://sweet-bnb.vercel.app/",
   originalImage: "https://images.unsplash.com/photo-1502945015378-0e284ca1a5be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80",
   author: {
     name: "Kenny Coffie",

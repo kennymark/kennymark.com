@@ -79,15 +79,16 @@ const topProjects = [
   },
 
   {
-    name: 'Fullstack JavaScript Boilerplate',
-    status: 'live',
-    description: 'Express based app with email + social auth, password recovery, email etc.',
-    image: 'https://raw.githubusercontent.com/kennymark/express-starter/master/screenshots/account.png',
-    link: 'https://express-kenny.herokuapp.com/',
-    source: 'https://github.com/kennymark/express-starter',
-    stack: ["Node.js", "Express", "Passport.js for social/local login", "Handlebars", "Mongo"],
-    color: '#f7e7df'
+    name: 'Sweet Bnb',
+    status: 'in-progress',
+    description: 'Another airbnb clone with a gorgeous ui inspired by my older clone',
+    image: 'https://github.com/kennymark/SweetBnb/blob/dev/screenshots/popover.png?raw=true',
+    link: 'https://kennymark.com/sweetbnb',
+    source: 'https://github.com/kennymark/SweetBnb',
+    stack: ["React", "Next.js", "Chakra UI", "Ngx Datatable"],
+    color: 'pink.50'
   },
+
   {
     name: 'flux weather',
     status: 'in-progress',
@@ -129,13 +130,14 @@ const topProjects = [
 
 const extraProjects = [
   {
-    name: 'react airbnb',
+    name: 'Fullstack JavaScript Boilerplate',
     status: 'live',
-    description: 'A simple airbnb clone without the backend logic.',
-    image: 'https://raw.githubusercontent.com/kennymark/airbnb-clone-v2/master/screenshot/screenshot.jpg',
-    link: 'https://react-airbnb.netlify.com/',
-    source: 'https://github.com/kennymark/airbnb-clone-v2',
-    color: '#faeee7'
+    description: 'Express based app with email + social auth, password recovery, email etc.',
+    image: 'https://raw.githubusercontent.com/kennymark/express-starter/master/screenshots/account.png',
+    link: 'https://express-kenny.herokuapp.com/',
+    source: 'https://github.com/kennymark/express-starter',
+    stack: ["Node.js", "Express", "Passport.js for social/local login", "Handlebars", "Mongo"],
+    color: '#f7e7df'
   },
   {
     name: 'car info extractor',

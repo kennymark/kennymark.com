@@ -55,16 +55,23 @@ const customeTheme = extendTheme({
     useSystemColorMode: false,
   },
   styles: {
-
     global: props => ({
+      "html, body": {
+        textDecoration: 'none',
+        "a:hover": {
+          textDecoration: 'none !important',
+        },
+        "*:focus": {
+          outline: '0 !important',
+          boxShadow: 'none !important',
+        },
+      },
       pre: { fontFamily: 'monospace' },
       ul: {
         listStyleType: "none",
       },
       borderColor: props.colorMode === 'light' ? 'gray.100' : 'gray.600',
-      a: {
-        textDecoration: 'none'
-      },
+
       body: {
         bg: props.colorMode === 'light' ? 'white' : 'darkMode'
       },
