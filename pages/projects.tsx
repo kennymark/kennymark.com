@@ -21,8 +21,8 @@ export default function Projects({ topProjects, extraProjects }) {
     <Fragment>
       <SEO title="Projects" />
 
-      <Container maxW="8xl" >
-        <PageHeader title='Portfolio Showcase' mr={8} />
+      <Container maxW="10xl" >
+        <PageHeader title='Portfolio Showcase' ml={4} />
 
         <Masonry
           breakpointCols={{ default: 3, 800: 2, 600: 1 }}
@@ -57,6 +57,7 @@ export default function Projects({ topProjects, extraProjects }) {
                   top={0}
                   bottom={0}
                   right={0}
+                  left={0}
                   borderRadius='inherit'
                   p={4}
                   justifyContent='center'

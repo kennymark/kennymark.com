@@ -1,4 +1,4 @@
-import { Stat, StatLabel, StatNumber, useColorModeValue } from '@chakra-ui/react'
+import { Spinner, Stat, StatLabel, StatNumber, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 
 function MetricCard({ title, number }) {
@@ -7,9 +7,12 @@ function MetricCard({ title, number }) {
   return (
     <Stat border='1px' borderColor={bColor} rounded='lg' h={110} p={3}>
       <StatLabel fontSize='lg'>{title}</StatLabel>
-      <StatNumber fontWeight={900} fontSize='4xl' fontFamily='heading'>{
-        new Intl.NumberFormat('en-gb').format(number)}
-      </StatNumber>
+      {!number ? <Spinner mt={5} /> :
+        <StatNumber fontWeight={900} fontSize='4xl' fontFamily='heading'>{
+          new Intl.NumberFormat('en-gb').format(number)}
+        </StatNumber>
+      }
+
     </Stat>
   )
 }

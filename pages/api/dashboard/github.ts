@@ -1,3 +1,5 @@
+
+
 export default async (_, res) => {
   const userResponse = await fetch('https://api.github.com/users/kennymark');
   const userReposResponse = await fetch(
@@ -7,15 +9,14 @@ export default async (_, res) => {
   const user = await userResponse.json();
   const repositories = await userReposResponse.json();
 
-  const mine = repositories.filter((repo) => !repo.fork);
-  const stars = mine.reduce((accumulator, repository) => {
+  const mine = repositories?.filter((repo) => !repo.fork);
+  const stars = mine?.reduce((accumulator, repository) => {
     return accumulator + repository['stargazers_count'];
   }, 0);
 
-  res.setHeader(
-    'Cache-Control',
-    'public, s-maxage=1200, stale-while-revalidate=600'
-  );
+
+  console.log()
+
 
   return res.status(200).json({
     followers: user.followers,
