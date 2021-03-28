@@ -45,7 +45,7 @@ module.exports = {
       },
       {
         source: '/next-lite',
-        destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
+        destination: 'next-starter-lite.vercel.app',
         permanent: false
       },
       {
@@ -58,11 +58,11 @@ module.exports = {
         destination: 'https://sweet-bnb.vercel.app/',
         permanent: false
       },
-      // {
-      //   source: '/v5',
-      //   destination: 'https://next-portfolio-git-dev-kennymmark.vercel.app/',
-      //   permanent: true
-      // }
+      {
+        source: '/easywire',
+        destination: 'https://easywire.vercel.app/',
+        permanent: false
+      }
     ]
   }
 }
