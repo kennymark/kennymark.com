@@ -21,7 +21,7 @@ export default function Projects({ topProjects, extraProjects }) {
     <Fragment>
       <SEO title="Projects" />
 
-      <Container maxW="10xl" >
+      <Container maxW={{ base: '10xl', xl: '8xl' }} >
         <PageHeader title='Portfolio Showcase' ml={4} />
 
         <Masonry
