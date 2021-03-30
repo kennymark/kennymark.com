@@ -58,6 +58,7 @@ const customeTheme = extendTheme({
     global: props => ({
       "html, body": {
         textDecoration: 'none',
+        scrollBehavior: 'smooth',
         "a:hover": {
           textDecoration: 'none !important',
         },

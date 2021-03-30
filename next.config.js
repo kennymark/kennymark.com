@@ -1,6 +1,8 @@
 
 module.exports = {
-
+  future: {
+    webpack5: true
+  },
   async redirects() {
     return [
       {
@@ -61,6 +63,11 @@ module.exports = {
       {
         source: '/easywire',
         destination: 'https://easywire.vercel.app/',
+        permanent: false
+      },
+      {
+        source: '/saleor-api',
+        destination: 'https://saleor-api-kenny.herokuapp.com/',
         permanent: false
       }
     ]
