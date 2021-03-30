@@ -69,7 +69,12 @@ module.exports = {
         source: '/saleor-api',
         destination: 'https://saleor-api-kenny.herokuapp.com/',
         permanent: false
-      }
+      },
+      {
+        source: '/saleor-dashboard',
+        destination: 'https://saleor-dashboard-gamma.vercel.app/',
+        permanent: false
+      },
     ]
   }
 }
