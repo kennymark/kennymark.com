@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         source: '/saleor-dashboard',
-        destination: 'https://saleor-dashboard-gamma.vercel.app/',
+        destination: 'https://saleor-dashboard-pi.vercel.app/',
         permanent: false
       },
     ]
