@@ -18,7 +18,7 @@ function Skills() {
     <Box px={5} w={{ lg: 700, xl: 1400 }} mx='auto' mt={20}>
       <Heading as='h1' mb={5} textAlign={['left', 'center']}>Skills</Heading>
 
-      <SimpleGrid columns={[1, 1, 2, 4]} spacing={5} >
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5} >
         {types.map((type, key) =>
           <MBox whileHover={{ scale: 1.04 }} transition={{ duration: 0.2 } as any}
             borderRadius='lg' pb={8} key={type} position='relative'
