@@ -16,15 +16,11 @@ interface DashboardProps {
 
 
 function Dashboard({ tracks }: DashboardProps) {
-  const { data: devto, } = useSWR('api/dashboard/dev', (url) => axios.get(url))
-  const { data: subscribers } = useSWR('api/dashboard/subscribers', (url) => axios.get(url))
-  const { data: git } = useSWR('api/dashboard/github', (url) => axios.get(url), {
+  const { data: devto, } = useSWR('api/dashboard/dev', axios.get)
+  const { data: subscribers } = useSWR('api/dashboard/subscribers', axios.get)
+  const { data: git } = useSWR('api/dashboard/github', axios.get, {
     errorRetryCount: 4,
-    initialData: { data: { stars: 0 } }
   })
-
-
-  useEffect(() => null, [tracks])
 
   return (
 
