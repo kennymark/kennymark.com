@@ -14,11 +14,12 @@ interface DashboardProps {
   tracks: TrackResult
 }
 
+const get = async (url) => await axios.get(url)
 
 function Dashboard({ tracks }: DashboardProps) {
-  const { data: devto, } = useSWR('api/dashboard/dev', axios.get)
-  const { data: subscribers } = useSWR('api/dashboard/subscribers', axios.get)
-  const { data: git } = useSWR('api/dashboard/github', axios.get, {
+  const { data: devto, } = useSWR('api/dashboard/dev', get)
+  const { data: subscribers } = useSWR('api/dashboard/subscribers', get)
+  const { data: git } = useSWR('api/dashboard/github', get, {
     errorRetryCount: 4,
   })
 
