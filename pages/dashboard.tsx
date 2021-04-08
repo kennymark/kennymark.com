@@ -6,7 +6,7 @@ import Track from '@components/track'
 import axios from 'axios'
 import { TrackResult } from 'interfaces/Tidal'
 import Tidal from 'lib/tidal'
-import React, { useEffect } from 'react'
+import React from 'react'
 import useSWR from 'swr'
 
 

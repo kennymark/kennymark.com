@@ -15,13 +15,13 @@ export const skillTypes = {
     color: 'red'
   },
 
-  devops: {
-    skills: ["AWS, Google Cloud & Firebase", "Microservices", "Continous Development", "Continuous Delivery",],
-    color: 'green'
-  },
+  // devops: {
+  //   skills: ["AWS, Google Cloud & Firebase", "Microservices", "Continous Development", "Continuous Delivery",],
+  //   color: 'green'
+  // },
 
   extras: {
-    skills: ["App dev with React Native", "Project mg.", "Agile (SCRUM)", "Testing (Unit, Integration)"
+    skills: ["App dev with React Native", "Project mg.", "Agile (SCRUM)", "Testing (Unit, Integration)", "Basic devops knowledge"
     ],
     color: 'gray'
   }
