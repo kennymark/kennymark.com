@@ -31,6 +31,21 @@ module.exports = {
         permanent: true,
       },
       {
+        source: '/github',
+        destination: 'https://github.com/kennymark',
+        permanent: false,
+      },
+      {
+        source: '/linkedin',
+        destination: "https://www.linkedin.com/in/kenneth-mark-coffie-831596103/",
+        permanent: false,
+      },
+      {
+        source: '/keycode',
+        destination: "https://keycodefinder.netlify.app/",
+        permanent: false,
+      },
+      {
         source: '/next-starter',
         destination: 'https://next-adonis.vercel.app/',
         permanent: true,
