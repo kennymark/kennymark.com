@@ -1,28 +1,12 @@
-import {
-  Container,
-  Heading,
-  Link,
-  List,
-  ListItem,
-  Text,
-} from "@chakra-ui/react";
-import SEO from "@components/seo";
-import React, { Fragment, useEffect, useState } from "react";
-import next from "../next.config";
+import { Container, Heading, Link, List, ListItem, Text } from '@chakra-ui/react'
+import SEO from '@components/seo'
+import React, { Fragment, useEffect, useState } from 'react'
 
-function Slashes() {
-  const [redirects, setRedirects] = useState([]);
-
-  useEffect(() => {
-    async function getRedirects() {
-      setRedirects(await next.redirects());
-    }
-    getRedirects();
-  }, []);
-
+function Slashes({ redirects }) {
+  console.log(redirects)
   return (
     <Fragment>
-      <SEO title="My slashes" />
+      <SEO title='My slashes' />
 
       <Container mt={10}>
         <Heading>My Slashes</Heading>
@@ -33,18 +17,26 @@ function Slashes() {
               <Link
                 href={item.destination}
                 isExternal
-                color="blue.300"
-                textTransform="capitalize"
-                _hover={{ color: "blue.600" }}
-              >
-                {item.source.replace(/\//, "")}
+                color='blue.600'
+                textTransform='capitalize'
+                _hover={{ color: 'blue.300' }}>
+                {item.source.replace(/\//, '')}
               </Link>
             </ListItem>
           ))}
         </List>
       </Container>
     </Fragment>
-  );
+  )
 }
 
-export default Slashes;
+export default Slashes
+
+export async function getServerSideProps() {
+  const next = require('../next.config')
+  const redirects = await next.redirects()
+
+  return {
+    props: { redirects },
+  }
+}

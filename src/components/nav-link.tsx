@@ -16,7 +16,6 @@ function NavLink({ to, activeProps, children, _hover, ...props }: NavLinkProps) 
   const color = useColorModeValue('black', 'selected')
 
   if (isActive) {
-    console.log('pathname is', isActive, router.pathname, to)
     return (
       <Link href={to}>
         <ChakraLink
