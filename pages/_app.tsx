@@ -1,12 +1,8 @@
-
-import '../styles/main.css'
 import AppLayout from '@components/layout/app-layout'
 import { Router } from 'next/router'
 import { useEffect } from 'react'
 import * as gtag from '../lib/gtag'
-import NewsLetterForm from '@components/newsletter-form'
-
-
+import '../styles/main.css'
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
@@ -20,12 +16,10 @@ function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <AppLayout >
+    <AppLayout>
       <Component {...pageProps} />
     </AppLayout>
   )
-
 }
-
 
 export default MyApp

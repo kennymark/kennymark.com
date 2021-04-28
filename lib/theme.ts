@@ -1,91 +1,115 @@
-import { extendTheme } from "@chakra-ui/react";
+import { extendTheme } from '@chakra-ui/react'
 
 const customeTheme = extendTheme({
   colors: {
-    accent: "#ffedc5",
-    selected: "#38a169",
-    darkMode: "#111216",
+    accent: '#ffedc5',
+    selected: '#38a169',
+    darkMode: '#111216',
   },
   fonts: {
-    body: "Inter, sans-serif",
-    heading: "IBM Plex Sans, sans-serif",
-    monospace: "Source Code Pro, monospace",
+    body: 'Inter, sans-serif',
+    heading: 'Neue',
+    monospace: 'Source Code Pro, monospace',
   },
   fontSizes: {},
 
   textStyles: {
-    p: {
-      fontSize: 17,
+    p: (props) => ({
+      fontSize: 18,
       pb: 4,
-      // color: (props) => (props.colorMode === "dark" ? "gray.200" : "gray.700"),
-    },
+      color: props.colorMode === 'dark' ? 'gray.100' : 'gray.700',
+    }),
   },
 
   components: {
     Link: {
       baseStyle: {
-        textDecoration: "none",
+        textDecoration: 'none',
       },
     },
     Button: {
       baseStyle: {
-        borderRadius: "md",
+        borderRadius: 'md',
+        fontWeight: '400',
         _active: { border: 0, outline: 0 },
-        _focus: { outline: 0, border: "1px" },
-        _hover: { color: "gray.900", bg: "gray.500" },
+        _focus: { outline: 0, border: '1px' },
+        _hover: { color: 'gray.900', bg: 'gray.500' },
       },
       defaultProps: {
-        variant: "solid",
-        size: "lg",
+        variant: 'solid',
+        size: 'lg',
+      },
+      variants: {
+        plain: {
+          bg: 'white',
+          border: '1px',
+          borderColor: 'gray.200',
+          fontWeight: 'normal',
+          _focus: { boxShadow: 'none' },
+          _active: { boxShadow: 'none' },
+          _hover: { bg: 'gray.50', shadow: 'sm' },
+        },
+        main: {
+          color: 'white',
+          _hover: { bg: 'gray.800', color: 'gray.400', borderColor: 0 },
+          _active: { bg: 'gray.700', shadow: 'md', outline: 0 },
+          _focus: { boxShadow: 'none' },
+          _disabled: { _hover: { color: 'black', bg: 'black' } },
+          bg: 'gray.900',
+          width: '100%',
+          height: 50,
+          mt: 4,
+        },
       },
     },
     FormLabel: {
       baseStyle: {
-        color: "gray.600",
+        color: 'gray.600',
       },
     },
     Input: {
       baseStyle: {
-        borderRadius: "md",
-        border: "1px",
+        borderRadius: 'md',
+        border: '1px',
       },
       defaultProps: {
-        size: "lg",
-        variant: "outline",
+        size: 'lg',
+        variant: 'outline',
       },
     },
   },
   config: {
-    initialColorMode: "light",
+    initialColorMode: 'light',
     useSystemColorMode: false,
   },
   styles: {
     global: (props) => ({
-      "html, body": {
-        textDecoration: "none",
-        scrollBehavior: "smooth",
-        "a:hover": {
-          textDecoration: "none !important",
+      'html, body': {
+        textDecoration: 'none',
+        scrollBehavior: 'smooth',
+        'a:hover': {
+          textDecoration: 'none !important',
         },
-        "*:focus": {
-          outline: "0 !important",
-          boxShadow: "none !important",
+
+        '*:focus': {
+          outline: '0 !important',
+          boxShadow: 'none !important',
         },
       },
-      pre: { fontFamily: "monospace" },
+      pre: { fontFamily: 'monospace' },
       p: {
-        color: props.colorMode === "light" ? "gray.700" : "gray.200",
+        color: props.colorMode === 'light' ? 'gray.700' : 'gray.200',
       },
       ul: {
-        listStyleType: "none",
+        listStyleType: 'none',
       },
-      borderColor: props.colorMode === "light" ? "gray.100" : "gray.600",
+      borderColor: props.colorMode === 'light' ? 'gray.100' : 'gray.600',
 
       body: {
-        bg: props.colorMode === "light" ? "white" : "darkMode",
+        bg: props.colorMode === 'light' ? 'white' : 'darkMode',
       },
     }),
   },
-});
+})
 
-export default customeTheme;
+export default customeTheme
