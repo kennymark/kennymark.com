@@ -8,13 +8,11 @@ import {
   Textarea,
   useColorMode,
   useToast,
-  Text,
 } from '@chakra-ui/react'
+import { FormError, inputProps, setValidation } from 'lib/form-utils'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import PageHeader from '../page-header'
-import { ErrorMessage } from '@hookform/error-message'
-import { setValidation } from 'lib/form-utils'
 
 function Contact() {
   const { register, handleSubmit, errors, reset } = useForm({ mode: 'onChange' })
@@ -27,16 +25,6 @@ function Contact() {
     variant: 'subtle',
     isClosable: true,
   } as any
-
-  const inputProps = {
-    color: colorMode == 'light' ? 'black' : 'gray.300',
-    borderColor: colorMode == 'light' ? 'gray.200' : 'gray.900',
-    focusBorderColor: colorMode == 'light' ? 'gray.900' : 'green.900',
-    _hover: {
-      border: '1px',
-      borderColor: colorMode === 'light' ? 'gray.400' : 'green.900',
-    },
-  }
 
   const sendMail = async (data) => {
     try {
@@ -65,6 +53,7 @@ function Contact() {
   return (
     <Box pb={40} w={{ lg: 700 }} mx='auto' mt={20} p={4}>
       <PageHeader simple title='Contact me' hasB />
+
       <form onSubmit={handleSubmit(sendMail)}>
         <Stack>
           <FormControl>
@@ -73,10 +62,10 @@ function Contact() {
               id='subject'
               type='text'
               name='subject'
-              {...inputProps}
+              {...inputProps(colorMode)}
               ref={register(setValidation('Subject', false, 2))}
             />
-            <ErrorMessage errors={errors} name='subject' as={<Text color='red.600' />} />
+            <FormError errors={errors} name='subject' />
           </FormControl>
 
           <FormControl>
@@ -86,9 +75,9 @@ function Contact() {
               type='name'
               name='name'
               ref={register(setValidation('Name'))}
-              {...inputProps}
+              {...inputProps(colorMode)}
             />
-            <ErrorMessage errors={errors} name='name' as={<Text color='red.600' />} />
+            <FormError errors={errors} name='name' />
           </FormControl>
 
           <FormControl>
@@ -100,7 +89,7 @@ function Contact() {
               ref={register({ ...setValidation('Email') })}
               {...inputProps}
             />
-            <ErrorMessage errors={errors} name='email' as={<Text color='red.600' />} />
+            <FormError errors={errors} name='email' />
           </FormControl>
 
           <FormControl>
@@ -114,7 +103,7 @@ function Contact() {
               h={300}
               resize='none'
             />
-            <ErrorMessage errors={errors} name='message' as={<Text color='red.600' />} />
+            <FormError errors={errors} name='message' />
           </FormControl>
 
           <FormControl>
