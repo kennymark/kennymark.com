@@ -20,6 +20,12 @@
     "paths": {
       "@components/*": [
         "src/components/*"
+      ],
+      "@lib/*": [
+        "/lib/*"
+      ],
+      "@interfaces/*": [
+        "/interfaces/*"
       ]
     },
     "isolatedModules": true,
