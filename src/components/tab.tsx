@@ -1,15 +1,8 @@
-import {
-  Tab,
-  TabList,
-  TabPanel,
-  TabPanels,
-  Tabs,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import React from "react";
+import { Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from '@chakra-ui/react'
+import React from 'react'
 
 function DataTabs({ data, onSelect }) {
-  const color = useColorModeValue("black", "gray.200");
+  const color = useColorModeValue('black', 'gray.200')
   return (
     <Tabs>
       <TabList>
@@ -18,8 +11,7 @@ function DataTabs({ data, onSelect }) {
             key={index}
             color={color}
             onClick={() => onSelect(tab)}
-            _selected={{ color, borderColor: color }}
-          >
+            _selected={{ color, borderColor: color }}>
             {tab.label}
           </Tab>
         ))}
@@ -32,7 +24,7 @@ function DataTabs({ data, onSelect }) {
         ))}
       </TabPanels>
     </Tabs>
-  );
+  )
 }
 
-export default DataTabs;
+export default DataTabs
