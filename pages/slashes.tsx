@@ -1,6 +1,6 @@
 import { Container, Heading, Link, List, ListItem, Text } from '@chakra-ui/react'
 import SEO from '@components/seo'
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment } from 'react'
 
 function Slashes({ redirects }) {
   console.log(redirects)
