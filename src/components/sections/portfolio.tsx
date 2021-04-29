@@ -1,7 +1,6 @@
-import { Box, Flex, Link as NLink, Text } from '@chakra-ui/react'
+import { Box, Flex, Link as NLink, Text, Img } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
-import Img from 'react-cool-img'
 import { mainProjects } from '../../data/projects'
 import PageHeader from '../page-header'
 import { ChevronRightIcon } from '@chakra-ui/icons'
