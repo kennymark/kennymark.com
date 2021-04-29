@@ -8,7 +8,7 @@ const customeTheme = extendTheme({
   },
   fonts: {
     body: 'Inter, sans-serif',
-    heading: 'Neue',
+    heading: `'Neue Haas Grotesk Display Pro 75 Bold' !important`,
     monospace: 'Source Code Pro, monospace',
   },
   fontSizes: {},
@@ -90,7 +90,9 @@ const customeTheme = extendTheme({
         'a:hover': {
           textDecoration: 'none !important',
         },
-
+        'h1,h2,h3': {
+          // fontFamily: `'Neue Haas Grotesk Display Pro 75 Bold' !important`,
+        },
         '*:focus': {
           outline: '0 !important',
           boxShadow: 'none !important',

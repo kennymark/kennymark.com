@@ -3,6 +3,7 @@ import { Router } from 'next/router'
 import { useEffect } from 'react'
 import * as gtag from '../lib/gtag'
 import '../styles/main.css'
+import '../public/neue-haas-grotesk-display/fonts.css'
 
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
