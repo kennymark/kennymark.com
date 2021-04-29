@@ -14,7 +14,6 @@ function Post({ post }) {
   const { image, title, description } = post.frontmatter
   const content = hydrate(post.body, { components })
 
-  console.log(post)
   return (
     <Container mb={20} my={10} maxW='3xl'>
       <SEO title={title} description={description} slug={post.slug} />

@@ -1,57 +1,47 @@
-import { Box, Flex, Link as NLink, Text, Img } from '@chakra-ui/react'
+import { ChevronRightIcon } from '@chakra-ui/icons'
+import { Box, Center, Container, Flex, Heading, Img, Link as CLink, Stack } from '@chakra-ui/react'
 import Link from 'next/link'
 import React from 'react'
-import { mainProjects } from '../../data/projects'
 import PageHeader from '../page-header'
-import { ChevronRightIcon } from '@chakra-ui/icons'
 
-function Portfolio() {
+function Portfolio({ projects }) {
   return (
-    <Box w={{ lg: 700 }} mx='auto' mt={20}>
+    <Container minW={{ lg: 700 }} mt={20}>
       <Flex alignItems='center' mb={5} justify={['space-around', null, 'space-between']}>
         <PageHeader simple title='Projects' />
 
         <Link href='/projects'>
-          <NLink
-            as='a'
-            fontSize={20}
-            color='gray.500'
-            fontWeight='bold'
-            _hover={{ color: 'green.500' }}
-            _focus={{ outline: 0 }}>
+          <CLink fontSize='lg' _hover={{ color: 'selected' }} _focus={{}}>
             View More projects <ChevronRightIcon />
-          </NLink>
+          </CLink>
         </Link>
       </Flex>
 
-      {mainProjects.map((project) => (
-        <Flex
+      {projects.map((proj) => (
+        <Stack
           p={10}
-          key={project.name}
-          mb={{ lg: 10, xl: 20 }}
-          bg={project.color + '.100'}
+          key={proj.name}
+          mb={{ lg: 10 }}
+          bg={proj.color + '.100'}
           borderRadius={{ md: 'lg' }}
-          h={[500, 600, 700]}
-          position='relative'
-          direction='column'
-          alignItems='center'
-          justifyContent='space-around'>
-          <Text
-            textAlign='center'
-            fontWeight='bold'
-            position='relative'
-            fontSize={20}
+          h={[500, 600, 700]}>
+          <Heading
+            as='h3'
+            fontSize='xl'
             mt={-4}
             pb={2}
+            textAlign='center'
             textTransform='capitalize'
-            color={project.color + '.800'}>
-            {project.name}
-          </Text>
+            color={proj.color + '.800'}>
+            {proj.name}
+          </Heading>
 
-          <Box as={Img} src={project.image} alt={project.name} width='95%' shadow='lg' />
-        </Flex>
+          <Center>
+            <Box as={Img} src={proj.image} alt={proj.name} width='95%' shadow='lg' />
+          </Center>
+        </Stack>
       ))}
-    </Box>
+    </Container>
   )
 }
 

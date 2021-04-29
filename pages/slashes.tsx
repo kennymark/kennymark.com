@@ -3,7 +3,6 @@ import SEO from '@components/seo'
 import React, { Fragment } from 'react'
 
 function Slashes({ redirects }) {
-  console.log(redirects)
   return (
     <Fragment>
       <SEO title='My slashes' />
@@ -32,7 +31,7 @@ function Slashes({ redirects }) {
 
 export default Slashes
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const next = require('../next.config')
   const redirects = await next.redirects()
 

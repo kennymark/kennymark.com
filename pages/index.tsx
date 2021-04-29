@@ -1,26 +1,33 @@
-import Contact from '@components/sections/contact'
-import Portfolio from '@components/sections/portfolio'
-import Skills from '@components/sections/skills'
-import SEO from '@components/seo'
-import Main from '@components/sections/hero'
+import ContactSection from '@components/sections/contact'
+import PortfolioSection from '@components/sections/portfolio'
+import SkillsSection from '@components/sections/skills'
+import Seo from '@components/seo'
+import HeroSection from '@components/sections/hero'
 import React, { Fragment, useEffect } from 'react'
 import router from 'next/router'
 
-const IndexPage = () => {
+const IndexPage = ({ mainProjects, skills }) => {
   useEffect(() => {
     router.prefetch('/projects')
   }, [])
 
   return (
     <Fragment>
-      <SEO title='Welcome to my portfolio' />
+      <Seo title='Welcome to my portfolio' />
 
-      <Main />
-      <Portfolio />
-      <Skills />
-      <Contact />
+      <HeroSection />
+      <PortfolioSection projects={mainProjects} />
+      <SkillsSection skills={skills} />
+      <ContactSection />
     </Fragment>
   )
+}
+
+export async function getStaticProps() {
+  const { mainProjects } = require('src/data/projects')
+  const { skillTypes } = require('src/data/data')
+
+  return { props: { mainProjects, skills: skillTypes } }
 }
 
 export default IndexPage

@@ -1,10 +1,10 @@
-import { Tab, TabList, TabPanel, TabPanels, Tabs, useColorModeValue } from '@chakra-ui/react'
+import { Tab, TabList, Tabs, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 
 function DataTabs({ data, onSelect }) {
   const color = useColorModeValue('black', 'gray.200')
   return (
-    <Tabs>
+    <Tabs overflowX={{ base: 'scroll', md: 'hidden' }}>
       <TabList>
         {data.map((tab, index) => (
           <Tab
@@ -16,13 +16,13 @@ function DataTabs({ data, onSelect }) {
           </Tab>
         ))}
       </TabList>
-      <TabPanels>
+      {/* <TabPanels>
         {data.map((tab, index) => (
           <TabPanel p={4} key={index}>
             {tab.content}
           </TabPanel>
         ))}
-      </TabPanels>
+      </TabPanels> */}
     </Tabs>
   )
 }

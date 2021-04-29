@@ -16,6 +16,7 @@ export function setValidation(name: string, isMessage = false, minLength = 4) {
 export const inputProps = (colorMode) => ({
   color: colorMode == 'light' ? 'black' : 'gray.300',
   borderColor: colorMode == 'light' ? 'gray.200' : 'gray.900',
+  bg: colorMode == 'light' ? 'white' : 'gray.900',
   focusBorderColor: colorMode == 'light' ? 'gray.900' : 'green.900',
   _hover: {
     border: '1px',

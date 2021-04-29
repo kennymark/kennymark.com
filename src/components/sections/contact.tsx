@@ -87,7 +87,7 @@ function Contact() {
               type='email'
               name='email'
               ref={register({ ...setValidation('Email') })}
-              {...inputProps}
+              {...inputProps(colorMode)}
             />
             <FormError errors={errors} name='email' />
           </FormControl>
@@ -99,7 +99,7 @@ function Contact() {
               type='textarea'
               name='message'
               ref={register(setValidation('Message', true))}
-              {...inputProps}
+              {...inputProps(colorMode)}
               h={300}
               resize='none'
             />

@@ -2,7 +2,7 @@ import { extendTheme } from '@chakra-ui/react'
 
 const customeTheme = extendTheme({
   colors: {
-    accent: '#ffedc5',
+    selection: '#ffedc5',
     selected: '#38a169',
     darkMode: '#111216',
   },
@@ -94,6 +94,10 @@ const customeTheme = extendTheme({
           outline: '0 !important',
           boxShadow: 'none !important',
         },
+      },
+      '::selection': {
+        backgroundColor: 'selection',
+        color: 'black',
       },
       pre: { fontFamily: 'monospace' },
       p: {

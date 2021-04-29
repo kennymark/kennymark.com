@@ -39,8 +39,6 @@ export default function Projects({ topProjects, extraProjects }) {
     })
 
     setFilterData(lowerCase(selected.label).includes('show') ? topProjects : rec)
-
-    console.log(rec)
   }
 
   return (
@@ -178,7 +176,7 @@ export default function Projects({ topProjects, extraProjects }) {
 }
 
 export function getStaticProps() {
-  const { extraProjects, topProjects } = require('../src/data/projects')
+  const { extraProjects, topProjects } = require('src/data/projects')
 
   return {
     props: {

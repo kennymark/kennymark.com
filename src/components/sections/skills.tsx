@@ -1,13 +1,13 @@
-import { Box, Heading, SimpleGrid, Text, useColorMode } from '@chakra-ui/react'
+import { Box, Container, Heading, SimpleGrid, Text, useColorMode, Image } from '@chakra-ui/react'
 import { motion } from 'framer-motion'
 import React from 'react'
 import { skillTypes } from '../../data/data'
 
 const MBox = motion(Box)
 
-function Skills() {
+function Skills({ skills }) {
   const { colorMode } = useColorMode()
-  const types = Object.keys(skillTypes)
+  const types = Object.keys(skills)
   const images = [
     '/images/front-end.svg',
     '/images/backend.svg',
@@ -16,7 +16,7 @@ function Skills() {
   ]
 
   return (
-    <Box px={5} w={{ lg: 700, xl: 1400 }} mx='auto' mt={20}>
+    <Container px={5} minW={{ lg: '6xl' }} mt={20}>
       <Heading as='h1' mb={5} textAlign={['left', 'center']}>
         Skills
       </Heading>
@@ -32,8 +32,7 @@ function Skills() {
             position='relative'
             bg={skillTypes[type].color + '.100'}
             zIndex={206}>
-            <Box
-              as='img'
+            <Image
               src={images[key]}
               alt={type}
               pos='absolute'
@@ -53,7 +52,7 @@ function Skills() {
               {type}
             </Heading>
 
-            {skillTypes[type].skills.map((item) => (
+            {skills[type].skills.map((item) => (
               <Text
                 py={2}
                 textAlign='center'
@@ -70,7 +69,7 @@ function Skills() {
           </MBox>
         ))}
       </SimpleGrid>
-    </Box>
+    </Container>
   )
 }
 
