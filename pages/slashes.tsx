@@ -32,8 +32,7 @@ function Slashes({ redirects }) {
 export default Slashes
 
 export async function getStaticProps() {
-  const next = require('../next.config')
-  const redirects = await next.redirects()
+  const redirects = require('lib/redirects')
 
   return {
     props: { redirects },
