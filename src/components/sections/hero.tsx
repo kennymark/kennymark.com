@@ -2,8 +2,8 @@ import { chakra, Container, Heading, Link, Text, useColorModeValue } from '@chak
 import React from 'react'
 
 function Home() {
-  const bgColor = useColorModeValue('green.50', null)
-  const color = useColorModeValue('black', 'white')
+  const bgColor = useColorModeValue('green.100', 'green.100')
+  const color = useColorModeValue('black', 'black')
 
   return (
     <Container h={{ sm: '70vh', md: '70vh', lg: '50vh' }} maxW='6xl'>
@@ -17,11 +17,19 @@ function Home() {
       </chakra.div>
 
       <chakra.div>
+        {/* <img src='/images/name.svg' /> */}
         <Text fontSize='lg'>Fullstack JavaScript Developer</Text>
         <Link href='https://twitter.com/mrkennymark' isExternal fontWeight={500} color='selected'>
           @mrkennymark
         </Link>
       </chakra.div>
+      <style jsx>
+        {`
+          #namesvg: {
+            stroke-dasharray: 1;
+          }
+        `}
+      </style>
     </Container>
   )
 }
