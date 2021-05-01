@@ -26,7 +26,14 @@ const Header = () => {
       justifyContent='center'
       px={10}
       py={6}
+      pos='sticky'
+      top={0}
+      bg={useColorModeValue('whiteAlpha.900', 'darkMode')}
       borderBottom={['1px', 0]}
+      sx={{ backdropFilter: 'blur(8px)' }}
+      zIndex='sticky'
+      maxW={'8xl'}
+      mx='auto'
       borderBottomColor={bottomColor}
       direction={['column', 'row']}
       color={fontColor}>
@@ -43,16 +50,16 @@ const Header = () => {
       {/* <Collapse in={show}> */}
 
       <Flex flexGrow={1} direction={['column', 'row']} display={[show ? 'flex' : 'none', 'flex']}>
-        <NavLink to='/' mr={2}>
+        <NavLink to='/' mr={4}>
           Home
         </NavLink>
-        <NavLink mr={2} to='/blog'>
+        <NavLink mr={4} to='/blog'>
           Blog
         </NavLink>
-        <NavLink mr={2} to='/projects'>
+        <NavLink mr={4} to='/projects'>
           Projects
         </NavLink>
-        <NavLink mr={2} to='/dashboard'>
+        <NavLink mr={4} to='/dashboard'>
           Dashboard
         </NavLink>
       </Flex>

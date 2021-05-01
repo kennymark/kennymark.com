@@ -30,7 +30,6 @@ export const CodeBlock = ({ children, className }) => {
             my={5}
             p={25}
             pb={1}
-            pos='relative'
             className={className}
             style={{ ...style }}
             fontSize={15}
@@ -41,7 +40,9 @@ export const CodeBlock = ({ children, className }) => {
                 ml={2}
                 size='xs'
                 bg={copyThing}
-                pos='sticky'
+                pos='relative'
+                top={-5}
+                right={-5}
                 float='right'
                 _focus={{ outline: 0 }}>
                 {hasCopied ? 'Copied' : 'Copy'}
