@@ -9,7 +9,7 @@ const customeTheme = extendTheme({
   fonts: {
     body: 'Inter, sans-serif',
     heading: `'Neue Haas Grotesk Display Pro 75 Bold'`,
-    monospace: 'Source Code Pro, monospace',
+    monospace: 'IBM Plex Mono, monospace',
   },
   fontSizes: {},
 
