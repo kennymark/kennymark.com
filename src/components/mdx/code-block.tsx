@@ -11,6 +11,7 @@ export const CodeBlock = ({ children, className }) => {
   const { hasCopied, onCopy } = useClipboard(value)
   const border = useColorModeValue('gray.100', 'gray.800')
   const copyThing = useColorModeValue('gray.200', 'gray.600')
+
   useEffect(() => {
     setValue(children)
   }, [])
@@ -18,40 +19,44 @@ export const CodeBlock = ({ children, className }) => {
   return (
     <Highlight {...defaultProps} code={children} language={language} theme={theme}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <chakra.pre
-          borderRadius='lg'
-          mb={5}
-          p={25}
-          overflowX='auto'
-          rounded='lg'
-          pb={1}
-          className={className}
-          style={{ ...style }}
-          border='1px'
-          borderColor={border}>
-          <chakra.div pos='relative'>
-            <Button
-              onClick={onCopy}
-              ml={2}
-              size='xs'
-              bg={copyThing}
-              pos='relative'
-              float='right'
-              top={-5}
-              left={5}
-              _focus={{ outline: 0 }}>
-              {hasCopied ? 'Copied' : 'Copy'}
-            </Button>
-          </chakra.div>
+        <>
+          <chakra.a pos='relative' top={4} fontSize='sm' color='selected'>
+            {language}
+          </chakra.a>
+          <chakra.pre
+            rounded='lg'
+            border='1px'
+            overflowX='auto'
+            my={5}
+            p={25}
+            pb={1}
+            pos='relative'
+            className={className}
+            style={{ ...style }}
+            fontSize={15}
+            borderColor={border}>
+            <chakra.div pos='relative'>
+              <Button
+                onClick={onCopy}
+                ml={2}
+                size='xs'
+                bg={copyThing}
+                pos='sticky'
+                float='right'
+                _focus={{ outline: 0 }}>
+                {hasCopied ? 'Copied' : 'Copy'}
+              </Button>
+            </chakra.div>
 
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line?.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
-              ))}
-            </div>
-          ))}
-        </chakra.pre>
+            {tokens.map((line, i) => (
+              <div key={i} {...getLineProps({ line, key: i })}>
+                {line?.map((token, key) => (
+                  <span key={key} {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </chakra.pre>
+        </>
       )}
     </Highlight>
   )
