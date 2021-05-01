@@ -16,7 +16,7 @@ function Post({ post }) {
 
   return (
     <Container mb={20} my={10} maxW='3xl'>
-      <SEO title={title} description={description} slug={post.slug} />
+      <SEO title={title} description={description} slug={post.slug} image={post?.cover_image} />
 
       <Heading mb={10} fontSize='5xl'>
         {title}
@@ -56,7 +56,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const source = await renderToString(content, { components, scope: data })
 
   return {
-    revalidate: 1,
+    revalidate: 60,
     props: {
       post: {
         slug,
