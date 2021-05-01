@@ -1,4 +1,4 @@
-import { chakra, Container, Heading, Link, Text, useColorModeValue } from '@chakra-ui/react'
+import { Center, chakra, Container, Heading, Link, Text, useColorModeValue } from '@chakra-ui/react'
 import React from 'react'
 
 function Home() {
@@ -7,19 +7,18 @@ function Home() {
 
   return (
     <Container h={{ sm: '70vh', md: '70vh', lg: '50vh' }} maxW='6xl'>
-      <chakra.div my={20}>
+      <Center my={20} w='auto'>
         <Heading as='h1' fontSize={['4xl', '5xl', '6xl', '8xl']} letterSpacing={2} lineHeight={1.2}>
           I design & build beautiful web{' '}
-          <chakra.span bg={bgColor} color={color}>
+          <Text bg={bgColor} color={color} w='auto' display='inline'>
             experiences
-          </chakra.span>
+          </Text>
         </Heading>
-      </chakra.div>
+      </Center>
 
       <chakra.div>
-        {/* <img src='/images/name.svg' /> */}
         <Text fontSize='lg'>Fullstack JavaScript Developer</Text>
-        <Link href='https://twitter.com/mrkennymark' isExternal fontWeight={500} color='selected'>
+        <Link href='https://twitter.com/mrkennymark' isExternal color='selected'>
           @mrkennymark
         </Link>
       </chakra.div>
