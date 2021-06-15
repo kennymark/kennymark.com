@@ -25,7 +25,7 @@ function Home() {
       <style jsx>
         {`
           #namesvg: {
-            stroke-dasharray: 1;
+            stroke-dasharray: 0.5;
           }
         `}
       </style>
