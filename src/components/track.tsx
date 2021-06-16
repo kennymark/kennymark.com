@@ -16,13 +16,14 @@ function Track({ title, artist, album, url }) {
       display='flex'
       maxW={600}>
       <Center>
-        <Avatar mr={10} src={imageUrl} size='lg' />
+        <Avatar mr={10} src={imageUrl} size='lg' alt={artist} />
 
         <chakra.a
           display='flex'
           flexDir='column'
           justifyContent='space-around'
           h={10}
+          rel='noreferrer'
           href={url}
           _focus={{ outline: 0 }}
           target='_blank'>
