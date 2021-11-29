@@ -24,7 +24,7 @@ function Home() {
       </chakra.div>
       <style jsx>
         {`
-          #namesvg: {
+          #namesvg {
             stroke-dasharray: 0.5;
           }
         `}

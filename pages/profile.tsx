@@ -16,11 +16,11 @@ export default function Profiles() {
         <chakra.div fontSize='lg' lineHeight='tall' color='gray.600'>
           <chakra.p pb={4}>
             I’m Kenny Coffie, currently a Software Engineer for Evergreen Health. I am primarily a
-            front-end focused developer who can do full stack when needed. With a total of 5 years
-            of experience, 3 years freelancing, studying and building hobby projects and {exp} years
-            commercial I have worked on every kind of application be it small, medium or very large
-            enterprise application. I love everything UI and UX on the web but I have also worked on
-            developed mobile applications, web apps and some backend applications.
+            front-end focused developer with fullstack skills. With a total of 5 years of
+            experience, 3 years freelancing, studying and building hobby projects and {exp} years
+            commercial I have worked on every kind of application from small, medium to very
+            large/bloated enterprise applications. I love everything UI and UX on the web but I have
+            also worked and developed mobile applications and desktop applications.
           </chakra.p>
 
           <chakra.p fontSize='lg' pb={4}>
@@ -30,10 +30,8 @@ export default function Profiles() {
                 github
               </Link>
             </span>
-            . Software development aside, I am also heavily invested in the creation and nurturing
-            of ideas that are used by the masses. I incline to be entrepreneurial at times and
-            product design would be an area I would love to explore and competent at. I see beyond
-            code and design.
+            . Software development aside, I love photography. I take lots of photos and I edit them
+            on my favourite photos. I also love some music production on Logic Pro X.
           </chakra.p>
         </chakra.div>
       </Container>
