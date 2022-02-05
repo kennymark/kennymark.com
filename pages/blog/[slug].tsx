@@ -56,7 +56,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   const source = await renderToString(content, { components, scope: data })
 
   return {
-    revalidate: 60,
+    revalidate: 5,
     props: {
       post: {
         slug,
