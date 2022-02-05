@@ -60,7 +60,7 @@ function Photography({ photos }: Props) {
 
       {isOpen && (
         <Lightbox
-          imageCaption='Hello'
+          clickOutsideToClose
           mainSrc={images[photoIndex]}
           nextSrc={images[(photoIndex + 1) % images.length]}
           prevSrc={images[(photoIndex + images.length - 1) % images.length]}
@@ -75,7 +75,9 @@ function Photography({ photos }: Props) {
 
 export async function getServerSideProps() {
   const clientID = process.env.UNSPLASH_ID
-  const req = await fetch(`https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}`)
+  const req = await fetch(
+    `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=100`
+  )
   const photos = await req.json()
 
   return {
