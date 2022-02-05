@@ -73,7 +73,7 @@ function Photography({ photos }: Props) {
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const clientID = process.env.UNSPLASH_ID
   const req = await fetch(
     `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=100`
