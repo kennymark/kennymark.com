@@ -10,14 +10,12 @@ import 'react-image-lightbox/style.css'
 
 interface Props {
   photos: Photos[]
+  images: string[]
 }
 
-const isBrowser = () => typeof window !== 'undefined'
-
-function Photography({ photos }: Props) {
+function Photography({ photos, images }: Props) {
   const [photoIndex, setPhotoIndex] = useState(0)
   const [isOpen, setIsOpen] = useState(false)
-  const [images, setImages] = useState([])
 
   const zoomIn = (index) => {
     setIsOpen(true)
@@ -26,7 +24,7 @@ function Photography({ photos }: Props) {
 
   useEffect(() => {
     console.log({ images })
-    photos.forEach((phone) => setImages((prev) => [...prev, phone.urls.full]))
+
     return () => {}
   }, [])
 
@@ -46,10 +44,9 @@ function Photography({ photos }: Props) {
         cellPadding={4}
         columnClassName='my-masonry-grid_column'>
         {photos.map((phone, i) => (
-          <Box mr={{ sm: 0, md: 4 }} mb={4}>
+          <Box mr={{ sm: 0, md: 4 }} mb={4} key={phone.id}>
             <Img
               src={phone.urls.regular}
-              key={phone.id}
               objectFit={'cover'}
               cursor={'zoom-in'}
               onClick={() => zoomIn(i)}
@@ -79,9 +76,11 @@ export async function getStaticProps() {
     `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=100`
   )
   const photos = await req.json()
+  const images = []
+  photos.forEach((phone) => images.push(phone.urls.full))
 
   return {
-    props: { photos },
+    props: { photos, images },
   }
 }
 export default Photography
