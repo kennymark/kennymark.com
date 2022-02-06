@@ -73,19 +73,13 @@ export default class Tidal {
 
   // base re that checks login first and if not do it
   private async request(url, method: any = 'get') {
+    const { searchParams, headers } = this
+
     if (!this.isLoggedIn) {
       await this.login()
-      return await this.api(url, {
-        method,
-        params: this.searchParams,
-        headers: this.headers,
-      })
+      return await this.api(url, { method, headers, params: searchParams })
     } else {
-      await this.api(url, {
-        method,
-        params: this.searchParams,
-        headers: this.headers,
-      })
+      await this.api(url, { method, params: searchParams, headers })
     }
   }
 }
