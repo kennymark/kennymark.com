@@ -60,6 +60,7 @@ function Photography({ photos, images }: Props) {
         onClose={() => setIsOpen(false)}
         activePhotoIndex={photoIndex}
         backgroundColor='black'
+        opacity={0.94}
       />
     </Container>
   )
