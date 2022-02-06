@@ -46,7 +46,7 @@ export default function Projects({ topProjects, extraProjects }) {
       <SEO title='Projects' />
 
       <Container maxW={{ base: '10xl', xl: '8xl' }}>
-        <PageHeader title='Portfolio Showcase' ml={4} />
+        <PageHeader title='Portfolio Showcase' />
 
         <DataTabs data={tabData} onSelect={onTabSelected} />
         <Masonry
@@ -59,9 +59,8 @@ export default function Projects({ topProjects, extraProjects }) {
               <Link href={`/project/${slug(project.name)}`} key={idx}>
                 <MBox
                   bg={project.color}
-                  rounded='lg'
                   p={5}
-                  m={4}
+                  m={2}
                   cursor='pointer'
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.95 }}
