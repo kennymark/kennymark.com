@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { Box, Container, Heading, Img, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Container, Img, Text } from '@chakra-ui/react'
 import PageHeader from '@components/page-header'
-import { Photos } from 'models/photos'
-import { Plock } from 'react-plock'
 import SEO from '@components/seo'
+import { Photos } from 'models/photos'
+import React, { useEffect, useState } from 'react'
+import ReactBnbGallery from 'react-bnb-gallery'
+import 'react-bnb-gallery/dist/style.css'
 import Masonry from 'react-masonry-css'
-import Lightbox from 'react-image-lightbox'
-import 'react-image-lightbox/style.css'
 
 interface Props {
   photos: Photos[]
-  images: string[]
+  images: SingleImage[]
 }
 
 function Photography({ photos, images }: Props) {
@@ -55,30 +54,40 @@ function Photography({ photos, images }: Props) {
         ))}
       </Masonry>
 
-      {isOpen && (
-        <Lightbox
-          animationDuration={400}
-          clickOutsideToClose
-          mainSrc={images[photoIndex]}
-          nextSrc={images[(photoIndex + 1) % images.length]}
-          prevSrc={images[(photoIndex + images.length - 1) % images.length]}
-          onCloseRequest={() => setIsOpen(false)}
-          onMovePrevRequest={() => setPhotoIndex((photoIndex + images.length - 1) % images.length)}
-          onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
-        />
-      )}
+      <ReactBnbGallery
+        show={isOpen}
+        photos={images}
+        onClose={() => setIsOpen(false)}
+        activePhotoIndex={photoIndex}
+        backgroundColor='black'
+      />
     </Container>
   )
 }
 
+interface SingleImage {
+  photo: string
+  number: number
+  caption: string
+  thumbnail: string
+}
 export async function getStaticProps() {
   const clientID = process.env.UNSPLASH_ID
+
   const req = await fetch(
     `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=100`
   )
-  const photos = await req.json()
+  const photos: Photos[] = await req.json()
   const images = []
-  photos.forEach((phone) => images.push(phone.urls.regular))
+
+  photos.forEach((phone, i) =>
+    images.push({
+      photo: phone.urls.regular,
+      number: i,
+      caption: phone.description,
+      thumbnail: phone.urls.small,
+    })
+  )
 
   return {
     props: { photos, images },
