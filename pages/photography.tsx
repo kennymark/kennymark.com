@@ -6,6 +6,7 @@ import React, { useEffect, useState } from 'react'
 import ReactBnbGallery from 'react-bnb-gallery'
 import 'react-bnb-gallery/dist/style.css'
 import Masonry from 'react-masonry-css'
+import axios from 'axios'
 
 interface Props {
   photos: Photos[]
@@ -75,10 +76,10 @@ interface SingleImage {
 export async function getStaticProps() {
   const clientID = process.env.UNSPLASH_ID
 
-  const req = await fetch(
+  const req = await axios.get(
     `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=100`
   )
-  const photos: Photos[] = await req.json()
+  const photos: Photos[] = await req.data
   const images = []
 
   photos.forEach((phone, i) =>

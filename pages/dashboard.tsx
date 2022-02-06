@@ -1,4 +1,4 @@
-import { Box, chakra, Container, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react'
+import { Box, Container, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react'
 import MetricCard from '@components/metric-card'
 import PageHeader from '@components/page-header'
 import SEO from '@components/seo'
@@ -70,10 +70,10 @@ function Dashboard({ tracks, unsplashProfile }: DashboardProps) {
   )
 }
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const id = process.env.UNSPLASH_ID
-  const req = await fetch(`https://api.unsplash.com/users/kennymark/statistics?client_id=${id}`)
-  const unsplashProfile = await req.json()
+  const req = await axios.get(`https://api.unsplash.com/users/kennymark/statistics?client_id=${id}`)
+  const unsplashProfile = await req.data
 
   const { TIDAL_PASS: password, TIDAL_EMAIL: username } = process.env
 
@@ -86,7 +86,10 @@ export const getServerSideProps = async () => {
     tracks = cachedTracks
   }
 
-  return { props: { unsplashProfile, tracks } }
+  return {
+    revalidate: 5,
+    props: { unsplashProfile, tracks },
+  }
 }
 
 export default Dashboard
