@@ -24,7 +24,7 @@ const Header = () => {
       as='nav'
       alignItems={['start', 'center']}
       justifyContent='center'
-      px={8}
+      px={4}
       py={6}
       pos='sticky'
       top={0}
