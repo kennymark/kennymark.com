@@ -57,6 +57,7 @@ function Photography({ photos, images }: Props) {
 
       {isOpen && (
         <Lightbox
+          animationDuration={400}
           clickOutsideToClose
           mainSrc={images[photoIndex]}
           nextSrc={images[(photoIndex + 1) % images.length]}
@@ -77,7 +78,7 @@ export async function getStaticProps() {
   )
   const photos = await req.json()
   const images = []
-  photos.forEach((phone) => images.push(phone.urls.full))
+  photos.forEach((phone) => images.push(phone.urls.regular))
 
   return {
     props: { photos, images },
