@@ -11,7 +11,7 @@ const config = {
     name: 'Kenny Coffie',
   },
   originalDescription:
-    "Kenny Mark's Personal Website. I am software engineer based in the Northwest. I am a front-end dev with fullstack experience who loves to code and build cool stuff. Currently employed at Sabs Travel Technologies ",
+    "Kenny Mark's Personal Website. I am software engineer based in the Northwest. I am a front-end dev with fullstack experience who loves to code and build cool stuff. Currently employed at Evergreen Life ",
   social: {
     twitter: 'mrkennymark',
   },
