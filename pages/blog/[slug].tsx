@@ -2,17 +2,15 @@ import { Box, Container, Flex, Heading, Text, Img } from '@chakra-ui/react'
 import AuthorCard from '@components/blog/author-card'
 import { components } from '@components/mdx/provider'
 import SEO from '@components/seo'
-import matter from 'gray-matter'
 import { getAllArticles, getArticleByPath } from 'lib/devblog'
-import hydrate from 'next-mdx-remote/hydrate'
-import renderToString from 'next-mdx-remote/render-to-string'
+import { serialize } from 'next-mdx-remote/serialize'
+import { MDXRemote } from 'next-mdx-remote'
 import React from 'react'
 import Date from '@components/blog/date-time'
 import NewsLetterForm from '@components/newsletter-form'
 
 function Post({ post }) {
-  const { image, title, description } = post.frontmatter
-  const content = hydrate(post.body, { components })
+  const { title, cover_image, description } = post.source.frontmatter
 
   return (
     <Container mb={20} my={10} maxW='3xl'>
@@ -30,9 +28,20 @@ function Post({ post }) {
         <Text>{post.timeToRead.m + 1} min read</Text>
       </Flex>
 
-      {image && <Box as={Img} src={image} height={[400, '', 620]} borderRadius='lg' mb={10} />}
+      {cover_image && (
+        <Box
+          as={Img}
+          src={cover_image}
+          height={[400, '', 620]}
+          borderRadius='lg'
+          mb={10}
+          objectFit='fill'
+        />
+      )}
 
-      <Box>{content}</Box>
+      <Box>
+        <MDXRemote {...post.source} components={components} />
+      </Box>
 
       <NewsLetterForm />
     </Container>
@@ -52,17 +61,15 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params: { slug } }) => {
   const time = require('read-time')
   const mdx = await getArticleByPath(slug)
-  const { content, data } = matter(mdx.body_markdown)
-  const source = await renderToString(content, { components, scope: data })
+  const source = await serialize(mdx.body_markdown, { parseFrontmatter: true })
 
   return {
     revalidate: 5,
     props: {
       post: {
         slug,
-        body: source,
-        frontmatter: data,
-        timeToRead: time(content),
+        source,
+        timeToRead: time(source.compiledSource),
       },
     },
   }
