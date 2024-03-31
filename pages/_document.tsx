@@ -14,6 +14,7 @@ class MyDocument extends Document {
       <Html>
         <Head />
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+        <script async src="https://analytics.togetha.co.uk/script.js" data-website-id="01fe604d-5649-4207-98c1-15dcf94267d7"/>
         <script
           dangerouslySetInnerHTML={{
             __html: `
