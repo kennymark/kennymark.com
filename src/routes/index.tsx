@@ -160,10 +160,11 @@ function FeaturedWork() {
 
               <div className='col-span-12 md:col-span-3'>
                 <div
-                  className={`relative overflow-hidden border border-[color:var(--line)] ${project.tag === 'mobile'
+                  className={`relative overflow-hidden border border-[color:var(--line)] ${
+                    project.tag === 'mobile'
                       ? 'flex aspect-[4/3] items-center justify-center bg-[color:var(--accent-soft)] p-4'
                       : 'aspect-[4/3] bg-[color:var(--surface-2)]'
-                    }`}
+                  }`}
                 >
                   <img
                     src={project.image}
