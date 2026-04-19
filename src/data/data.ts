@@ -1,31 +1,36 @@
 export const skillTypes = {
-  frontend: {
+  engineering: {
+    title: "Engineering",
     skills: [
-      "HTML, CSS/SASS, JS",
-      "React, Angular, Vue",
-      "Typescript",
-      "Design with XD/Sketch",
+      "TypeScript, React, Next.js",
+      "Node.js, tRPC, REST/GraphQL APIs",
+      "PostgreSQL, Prisma, Redis",
+      "React Native, Expo",
+      "Tailwind, Figma",
     ],
     color: "blue",
   },
 
-  backend: {
+  leadership: {
+    title: "Product & Leadership",
     skills: [
-      "MVC Restful/ Graphql API's",
-      "Authentication & Authorization",
-      "Express, Adonis, Koa frameworks",
-      "MySQL/MongoDB",
+      "Project management (Agile / Scrum)",
+      "Startup advisory & founder support",
+      "Team leadership & mentoring",
+      "Product strategy & roadmapping",
+      "0→1 engineering & hiring",
     ],
     color: "red",
   },
 
-  extras: {
+  modern: {
+    title: "AI & Modern Stack",
     skills: [
-      "App dev with React Native",
-      "Project mg.",
-      "Agile (SCRUM)",
-      "Testing (Unit, Integration)",
-      "Basic devops knowledge",
+      "Implementing AI (LLMs, agents, tool use)",
+      "RAG pipelines & vector search",
+      "Edge compute & serverless (Cloudflare, Vercel)",
+      "Payments (Stripe, Paystack)",
+      "Observability (Sentry, PostHog, OTel)",
     ],
     color: "gray",
   },

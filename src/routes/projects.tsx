@@ -74,7 +74,7 @@ function ProjectsRoute() {
             <li key={project.name}>
               <Link
                 to='/project/$slug'
-                params={{ slug: slugify(project.name) }}
+                params={{ slug: slugify(project.name) } as never}
                 className='group grid grid-cols-12 items-start gap-4 py-8 sm:py-10 md:gap-6'
               >
                 <div className='col-span-12 md:col-span-1'>

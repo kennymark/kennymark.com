@@ -216,7 +216,7 @@ function SkillsSection({ skillGroups }: { skillGroups: [string, any][] }) {
       <div className='grid divide-y divide-[color:var(--line)] md:grid-cols-3 md:divide-x md:divide-y-0'>
         {skillGroups.map(([group, data]) => (
           <article key={group} className='py-8 md:px-8 md:py-10 first:md:pl-0 last:md:pr-0'>
-            <h3 className='font-display text-2xl capitalize tracking-tight'>{group}</h3>
+            <h3 className='font-display text-2xl tracking-tight'>{data.title ?? group}</h3>
             <ul className='mt-5 space-y-2 text-sm text-[color:var(--muted)]'>
               {data.skills.map((item: string) => (
                 <li key={item} className='flex gap-3'>
