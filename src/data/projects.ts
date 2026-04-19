@@ -82,22 +82,7 @@ const featuredProjects = [
 	},
 ];
 
-const mainProjects = [
-	...featuredProjects,
-	{
-		name: "E-Commerce Store",
-		status: "live",
-		description:
-			"A full stack E-commerce application with built-in support for payments, auth and a dashboard.",
-		image:
-			"https://gitlab.com/kennymark/nuxt-mercado/-/raw/master/screenshots/products.png",
-		gif: "../images/gif/mercado.gif",
-		link: "https://nuxt-mercado.netlify.app/",
-		source: "https://gitlab.com/kennymark/nuxt-mercado",
-		stack: ["Vue.js", "Stripe for payments", "Firebase", "Vue data-grid"],
-		color: "#fed7aa",
-	},
-];
+const mainProjects = [...featuredProjects];
 
 const topProjects = [
 	...featuredProjects,
@@ -120,27 +105,7 @@ const topProjects = [
 		color: "#C6F6D5",
 		tag: "frontend",
 	},
-	{
-		name: "E-Commerce Store",
-		status: "live",
-		description:
-			"A full stack E-commerce application with built-in support for payments, auth and a dashboard.",
-		image:
-			"https://gitlab.com/kennymark/nuxt-mercado/-/raw/master/screenshots/products.png",
-		link: "https://nuxt-mercado.netlify.app/",
-		source: "https://gitlab.com/kennymark/nuxt-mercado",
-		showCase: true,
-		stack: [
-			"Vue.js",
-			"Stripe for payments",
-			"Firebase Auth",
-			"Firebase Store",
-			"Vue data-grid",
-			"Firebase serverless functions",
-		],
-		color: "#FED7D7",
-		tag: "fullstack",
-	},
+
 	{
 		name: "Easywire",
 		status: "in-progress",
