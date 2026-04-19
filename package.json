@@ -1,8 +1,11 @@
 {
-  "name": "next-portfolio",
-  "version": "0.1.0",
+  "name": "kennymark.com",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "24.x"
+  },
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
