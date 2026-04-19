@@ -12,6 +12,10 @@
 # next.js
 /.next/
 /out/
+.output
+.tanstack
+
+
 
 # production
 /build

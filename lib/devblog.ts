@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { IArticle } from 'interfaces/IArticle';
+import { IArticle } from 'models/IArticle';
 
 import { sanitizeDevToMarkdown } from './markdown';
 
