@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from '@tanstack/react-router'
+import { titleCase } from '../../../lib/title-case'
 import { getProjectBySlug } from '../../lib/site-content'
 
 export const Route = createFileRoute('/project/$slug')({
@@ -8,7 +9,7 @@ export const Route = createFileRoute('/project/$slug')({
     return project as any
   },
   head: ({ loaderData }) => ({
-    meta: [{ title: `${loaderData.name} — Project` }],
+    meta: [{ title: `${titleCase(loaderData.name)} — Project` }],
   }),
   component: ProjectDetailRoute,
 })
@@ -49,7 +50,7 @@ function ProjectDetailRoute() {
             {project.company ? <span className='label'>{project.company}</span> : null}
             {project.showCase ? <span className='label'>Showcase</span> : null}
           </div>
-          <h1 className='display text-6xl capitalize sm:text-8xl'>{project.name}</h1>
+          <h1 className='display text-6xl sm:text-8xl'>{titleCase(project.name)}</h1>
           <p className='max-w-2xl text-lg text-[color:var(--muted)] sm:text-xl'>
             {project.description}
           </p>

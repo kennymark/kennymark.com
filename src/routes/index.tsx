@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import { homepageProjects, skills } from '../lib/site-content'
 import { ContactForm } from '../components/site/contact-form'
 import slugify from '../../lib/slug'
+import { titleCase } from '../../lib/title-case'
 
 export const Route = createFileRoute('/')({
   component: HomeRoute,
@@ -144,7 +145,7 @@ function FeaturedWork() {
 
               <div className='col-span-12 md:col-span-4'>
                 <h3 className='font-display text-3xl tracking-tight transition-colors group-hover:text-[color:var(--accent)] sm:text-4xl'>
-                  {project.name}
+                  {titleCase(project.name)}
                 </h3>
                 {project.company ? (
                   <p className='mt-2 label'>{project.company}</p>

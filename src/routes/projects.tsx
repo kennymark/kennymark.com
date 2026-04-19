@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useMemo, useState } from 'react'
 import slugify from '../../lib/slug'
+import { titleCase } from '../../lib/title-case'
 import { moreProjects, portfolioProjects } from '../lib/site-content'
 
 const tabs = ['showcase', 'fullstack', 'frontend', 'mobile'] as const
@@ -85,7 +86,7 @@ function ProjectsRoute() {
                 <div className='col-span-12 md:col-span-4'>
                   <div className='flex items-baseline gap-3'>
                     <h2 className='font-display text-3xl tracking-tight transition-colors group-hover:text-[color:var(--accent)] sm:text-4xl'>
-                      {project.name}
+                      {titleCase(project.name)}
                     </h2>
                   </div>
                   <div className='mt-3 flex flex-wrap items-center gap-3'>
@@ -159,7 +160,7 @@ function ProjectsRoute() {
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <h3 className='col-span-10 font-display text-xl tracking-tight md:col-span-3'>
-                  {project.name}
+                  {titleCase(project.name)}
                 </h3>
                 <p className='col-span-12 text-sm text-[color:var(--muted)] md:col-span-6'>
                   {project.description}
