@@ -20,14 +20,14 @@ const SMALL_WORDS = new Set([
   'vs',
   'via',
   'yet',
-])
+]);
 
 function capitalizeToken(token: string) {
-  if (token.length === 0) return token
+  if (token.length === 0) return token;
   // Preserve tokens that already contain an uppercase letter beyond the first
   // character (acronyms/brand casing like "JS", "tRPC", "iOS").
-  if (/[A-Z]/.test(token.slice(1))) return token
-  return token.charAt(0).toUpperCase() + token.slice(1).toLowerCase()
+  if (/[A-Z]/.test(token.slice(1))) return token;
+  return token.charAt(0).toUpperCase() + token.slice(1).toLowerCase();
 }
 
 function titleCaseWord(word: string, isEdge: boolean) {
@@ -35,21 +35,19 @@ function titleCaseWord(word: string, isEdge: boolean) {
   return word
     .split('-')
     .map((segment, i, arr) => {
-      const segmentIsEdge = isEdge && (i === 0 || i === arr.length - 1)
+      const segmentIsEdge = isEdge && (i === 0 || i === arr.length - 1);
       if (!segmentIsEdge && SMALL_WORDS.has(segment.toLowerCase())) {
-        return segment.toLowerCase()
+        return segment.toLowerCase();
       }
-      return capitalizeToken(segment)
+      return capitalizeToken(segment);
     })
-    .join('-')
+    .join('-');
 }
 
 export function titleCase(input: string): string {
-  if (!input) return ''
-  const words = input.trim().split(/\s+/)
-  return words
-    .map((word, i) => titleCaseWord(word, i === 0 || i === words.length - 1))
-    .join(' ')
+  if (!input) return '';
+  const words = input.trim().split(/\s+/);
+  return words.map((word, i) => titleCaseWord(word, i === 0 || i === words.length - 1)).join(' ');
 }
 
-export default titleCase
+export default titleCase;

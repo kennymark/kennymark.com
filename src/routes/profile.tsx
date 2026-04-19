@@ -1,11 +1,11 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/profile')({
   component: ProfileRoute,
   head: () => ({
     meta: [{ title: 'About — Kenny Coffie' }],
   }),
-})
+});
 
 const meta = [
   { label: 'Role', value: 'CTO, Moradia' },
@@ -14,10 +14,10 @@ const meta = [
   { label: 'Timezone', value: 'GMT · UTC+0' },
   { label: 'Tooling', value: 'React · TypeScript · Node · Tailwind' },
   { label: 'Cameras', value: 'Fuji X-30 · Panasonic S5II' },
-]
+];
 
 function ProfileRoute() {
-  const exp = new Date().getFullYear() - 2018
+  const exp = new Date().getFullYear() - 2018;
 
   return (
     <main className='space-y-24'>
@@ -75,13 +75,13 @@ function ProfileRoute() {
 
         <section className='md:col-span-8 prose max-w-none'>
           <p>
-            I'm an engineer and founder with {exp}+ years of experience building for the web. My main
-            work is leading engineering as CTO of{' '}
+            I'm an engineer and founder with {exp}+ years of experience building for the web. My
+            main work is leading engineering as CTO of{' '}
             <a href='https://moradia.app' target='_blank' rel='noreferrer'>
               Moradia
-            </a>
-            {' '}— owning architecture, design systems, hiring, and shipping the things that move
-            the needle. Our flagship product is{' '}
+            </a>{' '}
+            — owning architecture, design systems, hiring, and shipping the things that move the
+            needle. Our flagship product is{' '}
             <a href='https://togetha.co.uk' target='_blank' rel='noreferrer'>
               Togetha
             </a>
@@ -89,9 +89,9 @@ function ProfileRoute() {
           </p>
           <p>
             I specialise in the front-end but work across the stack, and I especially like the fuzzy
-            space between design and engineering: interactions, typography, and the details that make
-            products feel considered. Outside of work I ship side projects, write the occasional
-            article, and take photos for fun.
+            space between design and engineering: interactions, typography, and the details that
+            make products feel considered. Outside of work I ship side projects, write the
+            occasional article, and take photos for fun.
           </p>
           <h2>Currently</h2>
           <ul>
@@ -123,5 +123,5 @@ function ProfileRoute() {
         </section>
       </section>
     </main>
-  )
+  );
 }

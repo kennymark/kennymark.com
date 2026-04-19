@@ -1,25 +1,25 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { homepageProjects, skills } from '../lib/site-content'
-import { ContactForm } from '../components/site/contact-form'
-import slugify from '../../lib/slug'
-import { titleCase } from '../../lib/title-case'
+import { createFileRoute, Link } from '@tanstack/react-router';
+import slugify from '../../lib/slug';
+import { titleCase } from '../../lib/title-case';
+import { ContactForm } from '../components/site/contact-form';
+import { homepageProjects, skills } from '../lib/site-content';
 
 export const Route = createFileRoute('/')({
   component: HomeRoute,
   head: () => ({
     meta: [{ title: 'Kenny Coffie — Software engineer & designer' }],
   }),
-})
+});
 
 const meta = [
   { label: 'Role', value: 'CTO, Moradia' },
   { label: 'Building', value: 'Togetha' },
   { label: 'Since', value: '2018' },
   { label: 'Location', value: 'Manchester · UK' },
-]
+];
 
 function HomeRoute() {
-  const skillGroups = Object.entries(skills)
+  const skillGroups = Object.entries(skills);
 
   return (
     <main className='space-y-32 sm:space-y-40'>
@@ -45,7 +45,7 @@ function HomeRoute() {
 
       <ContactSection />
     </main>
-  )
+  );
 }
 
 function HeroSection() {
@@ -78,12 +78,7 @@ function HeroSection() {
         <div className='md:col-span-6'>
           <p className='text-xl sm:text-2xl leading-snug text-[color:var(--ink)]'>
             CTO at{' '}
-            <a
-              href='https://moradia.app'
-              target='_blank'
-              rel='noreferrer'
-              className='link-accent'
-            >
+            <a href='https://moradia.app' target='_blank' rel='noreferrer' className='link-accent'>
               Moradia
             </a>
             , shipping{' '}
@@ -109,7 +104,7 @@ function HeroSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function FeaturedWork() {
@@ -130,11 +125,11 @@ function FeaturedWork() {
       </div>
 
       <ul className='divide-y divide-[color:var(--line)]'>
-        {homepageProjects.map((project: any, i: number) => (
+        {homepageProjects.map((project, i) => (
           <li key={project.name}>
             <Link
               to='/project/$slug'
-              params={{ slug: slugify(project.name) }}
+              params={{ slug: slugify(project.name) } as never}
               className='group grid grid-cols-12 items-start gap-4 py-8 transition-colors sm:py-10 md:gap-6'
             >
               <div className='col-span-12 flex items-baseline gap-3 md:col-span-1'>
@@ -147,9 +142,7 @@ function FeaturedWork() {
                 <h3 className='font-display text-3xl tracking-tight transition-colors group-hover:text-[color:var(--accent)] sm:text-4xl'>
                   {titleCase(project.name)}
                 </h3>
-                {project.company ? (
-                  <p className='mt-2 label'>{project.company}</p>
-                ) : null}
+                {project.company ? <p className='mt-2 label'>{project.company}</p> : null}
               </div>
 
               <div className='col-span-12 md:col-span-4'>
@@ -167,11 +160,10 @@ function FeaturedWork() {
 
               <div className='col-span-12 md:col-span-3'>
                 <div
-                  className={`relative overflow-hidden border border-[color:var(--line)] ${
-                    project.tag === 'mobile'
+                  className={`relative overflow-hidden border border-[color:var(--line)] ${project.tag === 'mobile'
                       ? 'flex aspect-[4/3] items-center justify-center bg-[color:var(--accent-soft)] p-4'
                       : 'aspect-[4/3] bg-[color:var(--surface-2)]'
-                  }`}
+                    }`}
                 >
                   <img
                     src={project.image}
@@ -196,7 +188,7 @@ function FeaturedWork() {
         ))}
       </ul>
     </section>
-  )
+  );
 }
 
 function SkillsSection({ skillGroups }: { skillGroups: [string, any][] }) {
@@ -229,7 +221,7 @@ function SkillsSection({ skillGroups }: { skillGroups: [string, any][] }) {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function ContactSection() {
@@ -258,5 +250,5 @@ function ContactSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

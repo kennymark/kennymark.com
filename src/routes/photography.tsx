@@ -1,31 +1,31 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/react-start'
-import axios from 'axios'
-import { useCallback, useEffect, useState } from 'react'
-import { createPortal } from 'react-dom'
+import { createFileRoute } from '@tanstack/react-router';
+import { createServerFn } from '@tanstack/react-start';
+import axios from 'axios';
+import { useCallback, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 type Photo = {
-  id: string
-  urls: { regular: string; small: string; full?: string }
-  description?: string | null
-  alt_description?: string | null
-  width?: number
-  height?: number
-}
+  id: string;
+  urls: { regular: string; small: string; full?: string };
+  description?: string | null;
+  alt_description?: string | null;
+  width?: number;
+  height?: number;
+};
 
 const getPhotos = createServerFn({ method: 'GET' }).handler(async () => {
-  const clientID = process.env.UNSPLASH_ID
-  if (!clientID) return [] as Photo[]
+  const clientID = process.env.UNSPLASH_ID;
+  if (!clientID) return [] as Photo[];
 
   try {
     const req = await axios.get(
       `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=36`,
-    )
-    return req.data as Photo[]
+    );
+    return req.data as Photo[];
   } catch {
-    return [] as Photo[]
+    return [] as Photo[];
   }
-})
+});
 
 export const Route = createFileRoute('/photography')({
   loader: async () => await getPhotos(),
@@ -33,22 +33,21 @@ export const Route = createFileRoute('/photography')({
   head: () => ({
     meta: [{ title: 'Photography — Kenny Coffie' }],
   }),
-})
+});
 
 function PhotographyRoute() {
-  const photos = Route.useLoaderData()
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const photos = Route.useLoaderData();
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-  const close = useCallback(() => setActiveIndex(null), [])
+  const close = useCallback(() => setActiveIndex(null), []);
   const next = useCallback(
     () => setActiveIndex((i) => (i === null ? null : (i + 1) % photos.length)),
     [photos.length],
-  )
+  );
   const prev = useCallback(
-    () =>
-      setActiveIndex((i) => (i === null ? null : (i - 1 + photos.length) % photos.length)),
+    () => setActiveIndex((i) => (i === null ? null : (i - 1 + photos.length) % photos.length)),
     [photos.length],
-  )
+  );
 
   return (
     <main className='space-y-16'>
@@ -103,7 +102,7 @@ function PhotographyRoute() {
         />
       ) : null}
     </main>
-  )
+  );
 }
 
 function Lightbox({
@@ -114,29 +113,29 @@ function Lightbox({
   onNext,
   onPrev,
 }: {
-  photo: Photo
-  index: number
-  total: number
-  onClose: () => void
-  onNext: () => void
-  onPrev: () => void
+  photo: Photo;
+  index: number;
+  total: number;
+  onClose: () => void;
+  onNext: () => void;
+  onPrev: () => void;
 }) {
   useEffect(() => {
-    const originalOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose()
-      if (e.key === 'ArrowRight') onNext()
-      if (e.key === 'ArrowLeft') onPrev()
-    }
-    window.addEventListener('keydown', onKey)
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') onNext();
+      if (e.key === 'ArrowLeft') onPrev();
+    };
+    window.addEventListener('keydown', onKey);
     return () => {
-      document.body.style.overflow = originalOverflow
-      window.removeEventListener('keydown', onKey)
-    }
-  }, [onClose, onNext, onPrev])
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [onClose, onNext, onPrev]);
 
-  if (typeof document === 'undefined') return null
+  if (typeof document === 'undefined') return null;
 
   return createPortal(
     <div
@@ -146,7 +145,7 @@ function Lightbox({
       tabIndex={-1}
       onClick={onClose}
       onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') onClose()
+        if (e.key === 'Enter' || e.key === ' ') onClose();
       }}
       className='fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm'
     >
@@ -160,8 +159,8 @@ function Lightbox({
       <button
         type='button'
         onClick={(e) => {
-          e.stopPropagation()
-          onClose()
+          e.stopPropagation();
+          onClose();
         }}
         aria-label='Close'
         className='absolute right-4 top-4 z-10 flex h-10 w-10 items-center justify-center border border-white/40 text-white transition-colors hover:border-white hover:bg-white/10'
@@ -172,8 +171,8 @@ function Lightbox({
       <button
         type='button'
         onClick={(e) => {
-          e.stopPropagation()
-          onPrev()
+          e.stopPropagation();
+          onPrev();
         }}
         aria-label='Previous'
         className='absolute left-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/40 text-white transition-colors hover:border-white hover:bg-white/10'
@@ -184,8 +183,8 @@ function Lightbox({
       <button
         type='button'
         onClick={(e) => {
-          e.stopPropagation()
-          onNext()
+          e.stopPropagation();
+          onNext();
         }}
         aria-label='Next'
         className='absolute right-4 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center border border-white/40 text-white transition-colors hover:border-white hover:bg-white/10'
@@ -202,5 +201,5 @@ function Lightbox({
       />
     </div>,
     document.body,
-  )
+  );
 }

@@ -1,25 +1,25 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import { useMemo, useState } from 'react'
-import slugify from '../../lib/slug'
-import { titleCase } from '../../lib/title-case'
-import { moreProjects, portfolioProjects } from '../lib/site-content'
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { useMemo, useState } from 'react';
+import slugify from '../../lib/slug';
+import { titleCase } from '../../lib/title-case';
+import { moreProjects, portfolioProjects } from '../lib/site-content';
 
-const tabs = ['showcase', 'fullstack', 'frontend', 'mobile'] as const
+const tabs = ['showcase', 'fullstack', 'frontend', 'mobile'] as const;
 
 export const Route = createFileRoute('/projects')({
   component: ProjectsRoute,
   head: () => ({
     meta: [{ title: 'Work — Kenny Coffie' }],
   }),
-})
+});
 
 function ProjectsRoute() {
-  const [active, setActive] = useState<(typeof tabs)[number]>('showcase')
+  const [active, setActive] = useState<(typeof tabs)[number]>('showcase');
 
   const projects = useMemo(() => {
-    if (active === 'showcase') return portfolioProjects.filter((p) => p.showCase)
-    return portfolioProjects.filter((p) => p.tag === active)
-  }, [active])
+    if (active === 'showcase') return portfolioProjects.filter((p) => p.showCase);
+    return portfolioProjects.filter((p) => p.tag === active);
+  }, [active]);
 
   return (
     <main className='space-y-24'>
@@ -51,16 +51,18 @@ function ProjectsRoute() {
                 className='group flex items-baseline gap-2 text-sm transition-colors'
               >
                 <span
-                  className={`num text-xs ${active === tab ? 'text-[color:var(--accent)]' : 'text-[color:var(--faint)]'
-                    }`}
+                  className={`num text-xs ${
+                    active === tab ? 'text-[color:var(--accent)]' : 'text-[color:var(--faint)]'
+                  }`}
                 >
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span
-                  className={`capitalize ${active === tab
-                    ? 'text-[color:var(--ink)]'
-                    : 'text-[color:var(--muted)] hover:text-[color:var(--ink)]'
-                    }`}
+                  className={`capitalize ${
+                    active === tab
+                      ? 'text-[color:var(--ink)]'
+                      : 'text-[color:var(--muted)] hover:text-[color:var(--ink)]'
+                  }`}
                 >
                   {tab}
                 </span>
@@ -93,10 +95,11 @@ function ProjectsRoute() {
                     {project.status ? (
                       <span className='inline-flex items-center gap-1.5 label'>
                         <span
-                          className={`h-1.5 w-1.5 rounded-full ${project.status === 'live'
-                            ? 'bg-[color:var(--accent)]'
-                            : 'bg-[color:var(--faint)]'
-                            }`}
+                          className={`h-1.5 w-1.5 rounded-full ${
+                            project.status === 'live'
+                              ? 'bg-[color:var(--accent)]'
+                              : 'bg-[color:var(--faint)]'
+                          }`}
                         />
                         {project.status}
                       </span>
@@ -121,10 +124,11 @@ function ProjectsRoute() {
 
                 <div className='col-span-12 md:col-span-3'>
                   <div
-                    className={`relative overflow-hidden border border-[color:var(--line)] ${project.tag === 'mobile'
-                      ? 'flex aspect-[4/3] items-center justify-center bg-[color:var(--accent-soft)] p-4'
-                      : 'aspect-[4/3] bg-[color:var(--surface-2)]'
-                      }`}
+                    className={`relative overflow-hidden border border-[color:var(--line)] ${
+                      project.tag === 'mobile'
+                        ? 'flex aspect-[4/3] items-center justify-center bg-[color:var(--accent-soft)] p-4'
+                        : 'aspect-[4/3] bg-[color:var(--surface-2)]'
+                    }`}
                   >
                     <img
                       src={project.image}
@@ -186,5 +190,5 @@ function ProjectsRoute() {
         </ul>
       </section> */}
     </main>
-  )
+  );
 }

@@ -1,31 +1,31 @@
-import { FormEvent, useState } from 'react'
+import { FormEvent, useState } from 'react';
 
 export function NewsletterForm() {
-  const [email, setEmail] = useState('')
-  const [status, setStatus] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null)
-  const [submitting, setSubmitting] = useState(false)
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const submit = async (event: FormEvent) => {
-    event.preventDefault()
-    setSubmitting(true)
-    setStatus(null)
+    event.preventDefault();
+    setSubmitting(true);
+    setStatus(null);
 
     try {
       const response = await fetch('/api/dashboard/subscribe-newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
-      })
-      const data = await response.json()
-      if (!response.ok) throw new Error(data.error || 'Could not subscribe')
-      setStatus({ kind: 'ok', text: data.message || 'Subscribed — check your inbox.' })
-      setEmail('')
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Could not subscribe');
+      setStatus({ kind: 'ok', text: data.message || 'Subscribed — check your inbox.' });
+      setEmail('');
     } catch (error: any) {
-      setStatus({ kind: 'err', text: error.message })
+      setStatus({ kind: 'err', text: error.message });
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   return (
     <aside className='overflow-hidden rounded-3xl border border-[color:var(--line)] bg-[color:var(--surface)]'>
@@ -70,5 +70,5 @@ export function NewsletterForm() {
         </form>
       </div>
     </aside>
-  )
+  );
 }

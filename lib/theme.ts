@@ -1,4 +1,4 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react';
 
 const customeTheme = extendTheme({
   colors: {
@@ -113,6 +113,6 @@ const customeTheme = extendTheme({
       },
     }),
   },
-})
+});
 
-export default customeTheme
+export default customeTheme;

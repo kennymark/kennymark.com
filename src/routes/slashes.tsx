@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { shortlinks } from '../lib/site-content'
+import { createFileRoute } from '@tanstack/react-router';
+import { shortlinks } from '../lib/site-content';
 
 export const Route = createFileRoute('/slashes')({
   loader: () => shortlinks,
@@ -7,10 +7,10 @@ export const Route = createFileRoute('/slashes')({
   head: () => ({
     meta: [{ title: 'Slashes — Kenny Coffie' }],
   }),
-})
+});
 
 function SlashesRoute() {
-  const redirects = Route.useLoaderData() as Array<{ source: string; destination: string }>
+  const redirects = Route.useLoaderData() as Array<{ source: string; destination: string }>;
 
   return (
     <main className='mx-auto max-w-3xl space-y-10'>
@@ -47,5 +47,5 @@ function SlashesRoute() {
         ))}
       </ul>
     </main>
-  )
+  );
 }

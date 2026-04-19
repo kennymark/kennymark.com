@@ -1,31 +1,42 @@
-import { FormEvent, useState } from 'react'
+import { type FormEvent, useState } from 'react';
 
 export function ContactForm() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null)
-  const [submitting, setSubmitting] = useState(false)
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: '',
+  });
+  const [status, setStatus] = useState<{
+    kind: 'ok' | 'err';
+    text: string;
+  } | null>(null);
+  const [submitting, setSubmitting] = useState(false);
 
   const submit = async (event: FormEvent) => {
-    event.preventDefault()
-    setSubmitting(true)
-    setStatus(null)
+    event.preventDefault();
+    setSubmitting(true);
+    setStatus(null);
 
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
-      })
-      const data = await response.json()
-      if (!response.ok) throw new Error(data.error || 'Could not send')
-      setStatus({ kind: 'ok', text: data.message || 'Thanks — I\'ll be in touch shortly.' })
-      setForm({ name: '', email: '', subject: '', message: '' })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Could not send');
+      setStatus({
+        kind: 'ok',
+        text: data.message || "Thanks — I'll be in touch shortly.",
+      });
+      setForm({ name: '', email: '', subject: '', message: '' });
     } catch (error: any) {
-      setStatus({ kind: 'err', text: error.message })
+      setStatus({ kind: 'err', text: error.message });
     } finally {
-      setSubmitting(false)
+      setSubmitting(false);
     }
-  }
+  };
 
   return (
     <form onSubmit={submit} className='space-y-6'>
@@ -95,5 +106,5 @@ export function ContactForm() {
         ) : null}
       </div>
     </form>
-  )
+  );
 }

@@ -1,6 +1,6 @@
-import { ErrorMessage } from '@hookform/error-message'
-import React from 'react'
-import { Text } from '@chakra-ui/react'
+import { ErrorMessage } from '@hookform/error-message';
+import React from 'react';
+import { Text } from '@chakra-ui/react';
 
 export function setValidation(name: string, isMessage = false, minLength = 4) {
   return {
@@ -10,7 +10,7 @@ export function setValidation(name: string, isMessage = false, minLength = 4) {
     },
     maxLength: isMessage ? 2000 : 40,
     required: `${name} is required`,
-  }
+  };
 }
 
 export const inputProps = (colorMode) => ({
@@ -22,8 +22,8 @@ export const inputProps = (colorMode) => ({
     border: '1px',
     borderColor: colorMode === 'light' ? 'gray.400' : 'green.900',
   },
-})
+});
 
 export function FormError({ name, errors }) {
-  return <ErrorMessage errors={errors} name={name} as={<Text color='red.600' fontSize='sm' />} />
+  return <ErrorMessage errors={errors} name={name} as={<Text color='red.600' fontSize='sm' />} />;
 }

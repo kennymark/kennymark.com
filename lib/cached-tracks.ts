@@ -639,6 +639,6 @@ const cachedTracks = {
       },
     },
   ],
-}
+};
 
-export default cachedTracks
+export default cachedTracks;

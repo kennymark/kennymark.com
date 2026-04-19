@@ -1,11 +1,11 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router';
 
 export const Route = createFileRoute('/404')({
   component: Error404Route,
   head: () => ({
     meta: [{ title: 'Not found — Kenny Coffie' }],
   }),
-})
+});
 
 function Error404Route() {
   return (
@@ -26,5 +26,5 @@ function Error404Route() {
         </Link>
       </div>
     </main>
-  )
+  );
 }

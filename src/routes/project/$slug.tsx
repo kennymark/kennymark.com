@@ -1,24 +1,24 @@
-import { createFileRoute, Link, notFound } from '@tanstack/react-router'
-import { titleCase } from '../../../lib/title-case'
-import { getProjectBySlug } from '../../lib/site-content'
+import { createFileRoute, Link, notFound } from '@tanstack/react-router';
+import { titleCase } from '../../../lib/title-case';
+import { getProjectBySlug } from '../../lib/site-content';
 
 export const Route = createFileRoute('/project/$slug')({
   loader: ({ params }) => {
-    const project = getProjectBySlug(params.slug)
-    if (!project) throw notFound()
-    return project as any
+    const project = getProjectBySlug(params.slug);
+    if (!project) throw notFound();
+    return project as any;
   },
   head: ({ loaderData }) => ({
     meta: [{ title: `${titleCase(loaderData.name)} — Project` }],
   }),
   component: ProjectDetailRoute,
-})
+});
 
 function ProjectDetailRoute() {
-  const project = Route.useLoaderData()
-  const isMobile = project.tag === 'mobile'
-  const gallery = (project as any).gallery ?? []
-  const extraShots = gallery.filter((src: string) => src !== project.image)
+  const project = Route.useLoaderData();
+  const isMobile = project.tag === 'mobile';
+  const gallery = (project as any).gallery ?? [];
+  const extraShots = gallery.filter((src: string) => src !== project.image);
 
   return (
     <main className='space-y-20'>
@@ -114,15 +114,9 @@ function ProjectDetailRoute() {
         <section className='space-y-3'>
           <div className='flex items-center justify-between border-t border-[color:var(--line-strong)] pt-4'>
             <p className='label'>Gallery</p>
-            <p className='label num'>
-              {String(extraShots.length).padStart(3, '0')}
-            </p>
+            <p className='label num'>{String(extraShots.length).padStart(3, '0')}</p>
           </div>
-          <div
-            className={`grid gap-3 ${
-              isMobile ? 'md:grid-cols-3' : 'md:grid-cols-2'
-            }`}
-          >
+          <div className={`grid gap-3 ${isMobile ? 'md:grid-cols-3' : 'md:grid-cols-2'}`}>
             {extraShots.map((src: string, i: number) => (
               <figure
                 key={src}
@@ -162,5 +156,5 @@ function ProjectDetailRoute() {
         ) : null}
       </section>
     </main>
-  )
+  );
 }

@@ -1,30 +1,30 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=Inter&display=swap");
 
 .proj {
-	position: relative;
+  position: relative;
 }
 
 .proj .desc {
-	display: none;
+  display: none;
 }
 
 .proj:hover .desc {
-	display: flex;
+  display: flex;
 }
 
 .my-masonry-grid {
-	display: flex;
-	width: auto;
+  display: flex;
+  width: auto;
 }
 
 .my-masonry-grid_column {
-	background-clip: padding-box;
+  background-clip: padding-box;
 }
 
 .my-masonry-grid_column > div {
-	margin-bottom: 25px;
+  margin-bottom: 25px;
 }
 
 .gallery .gallery-photos {
-	max-width: 125vh !important;
+  max-width: 125vh !important;
 }

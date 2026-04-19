@@ -1,36 +1,36 @@
-import { createFileRoute } from '@tanstack/react-router'
-import { createServerFn } from '@tanstack/react-start'
-import axios from 'axios'
-import Tidal from '../../lib/tidal'
-import cachedTracks from '../../lib/cached-tracks'
-import { useEffect, useState } from 'react'
+import { createFileRoute } from '@tanstack/react-router';
+import { createServerFn } from '@tanstack/react-start';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import cachedTracks from '../../lib/cached-tracks';
+import Tidal from '../../lib/tidal';
 
 const getDashboardBase = createServerFn({ method: 'GET' }).handler(async () => {
-  const id = process.env.UNSPLASH_ID
-  let unsplashViews = 0
-  let unsplashDownloads = 0
+  const id = process.env.UNSPLASH_ID;
+  let unsplashViews = 0;
+  let unsplashDownloads = 0;
 
   if (id) {
     try {
       const req = await axios.get(
         `https://api.unsplash.com/users/kennymark/statistics?client_id=${id}`,
-      )
-      unsplashViews = req.data?.views?.total ?? 0
-      unsplashDownloads = req.data?.downloads?.total ?? 0
+      );
+      unsplashViews = req.data?.views?.total ?? 0;
+      unsplashDownloads = req.data?.downloads?.total ?? 0;
     } catch {
-      unsplashViews = 0
-      unsplashDownloads = 0
+      unsplashViews = 0;
+      unsplashDownloads = 0;
     }
   }
 
-  const { TIDAL_PASS: password, TIDAL_EMAIL: username } = process.env
-  let tracks: any = cachedTracks
+  const { TIDAL_PASS: password, TIDAL_EMAIL: username } = process.env;
+  let tracks: any = cachedTracks;
   if (password && username) {
     try {
-      const tidal = new Tidal({ username, password })
-      tracks = await tidal.getMyFavTracks()
+      const tidal = new Tidal({ username, password });
+      tracks = await tidal.getMyFavTracks();
     } catch {
-      tracks = cachedTracks
+      tracks = cachedTracks;
     }
   }
 
@@ -38,8 +38,8 @@ const getDashboardBase = createServerFn({ method: 'GET' }).handler(async () => {
     unsplashViews,
     unsplashDownloads,
     tracks: tracks?.items?.slice(0, 8) ?? [],
-  }
-})
+  };
+});
 
 export const Route = createFileRoute('/dashboard')({
   loader: async () => await getDashboardBase(),
@@ -47,27 +47,33 @@ export const Route = createFileRoute('/dashboard')({
   head: () => ({
     meta: [{ title: 'Stats — Kenny Coffie' }],
   }),
-})
+});
 
-const format = (n?: number) => (typeof n === 'number' ? Intl.NumberFormat().format(n) : '—')
+const format = (n?: number) => (typeof n === 'number' ? Intl.NumberFormat().format(n) : '—');
 
 function DashboardRoute() {
-  const data = Route.useLoaderData()
+  const data = Route.useLoaderData();
   const [metrics, setMetrics] = useState<{
-    views?: number
-    likes?: number
-    stars?: number
-    followers?: number
-    subscribers?: number
-  }>({})
+    views?: number;
+    likes?: number;
+    stars?: number;
+    followers?: number;
+    subscribers?: number;
+  }>({});
 
   useEffect(() => {
     const load = async () => {
       const [dev, github, subs] = await Promise.all([
-        fetch('/api/dashboard/dev').then((r) => r.json()).catch(() => ({})),
-        fetch('/api/dashboard/github').then((r) => r.json()).catch(() => ({})),
-        fetch('/api/dashboard/subscribers').then((r) => r.json()).catch(() => ({})),
-      ])
+        fetch('/api/dashboard/dev')
+          .then((r) => r.json())
+          .catch(() => ({})),
+        fetch('/api/dashboard/github')
+          .then((r) => r.json())
+          .catch(() => ({})),
+        fetch('/api/dashboard/subscribers')
+          .then((r) => r.json())
+          .catch(() => ({})),
+      ]);
 
       setMetrics({
         views: dev.total,
@@ -75,21 +81,47 @@ function DashboardRoute() {
         stars: github.stars,
         followers: github.followers,
         subscribers: subs.count,
-      })
-    }
+      });
+    };
 
-    load()
-  }, [])
+    load();
+  }, []);
 
-  const tiles: Array<{ label: string; value: string; source: string; accent?: boolean }> = [
-    { label: 'Unsplash views', value: format(data.unsplashViews), source: 'unsplash.com', accent: true },
-    { label: 'Unsplash downloads', value: format(data.unsplashDownloads), source: 'unsplash.com' },
+  const tiles: Array<{
+    label: string;
+    value: string;
+    source: string;
+    accent?: boolean;
+  }> = [
+    {
+      label: 'Unsplash views',
+      value: format(data.unsplashViews),
+      source: 'unsplash.com',
+      accent: true,
+    },
+    {
+      label: 'Unsplash downloads',
+      value: format(data.unsplashDownloads),
+      source: 'unsplash.com',
+    },
     { label: 'Article views', value: format(metrics.views), source: 'dev.to' },
     { label: 'Article likes', value: format(metrics.likes), source: 'dev.to' },
-    { label: 'GitHub stars', value: format(metrics.stars), source: 'github.com' },
-    { label: 'GitHub followers', value: format(metrics.followers), source: 'github.com' },
-    { label: 'Newsletter subscribers', value: format(metrics.subscribers), source: 'buttondown' },
-  ]
+    {
+      label: 'GitHub stars',
+      value: format(metrics.stars),
+      source: 'github.com',
+    },
+    {
+      label: 'GitHub followers',
+      value: format(metrics.followers),
+      source: 'github.com',
+    },
+    {
+      label: 'Newsletter subscribers',
+      value: format(metrics.subscribers),
+      source: 'buttondown',
+    },
+  ];
 
   return (
     <main className='space-y-16'>
@@ -161,5 +193,5 @@ function DashboardRoute() {
         </ul>
       </section>
     </main>
-  )
+  );
 }
