@@ -13,22 +13,41 @@ type Photo = {
   height?: number;
 };
 
+const CACHE_TTL_MS = 15 * 60 * 1000;
+let photoCache: { at: number; data: Photo[] } | null = null;
+let inflight: Promise<Photo[]> | null = null;
+
 const getPhotos = createServerFn({ method: 'GET' }).handler(async () => {
+  const now = Date.now();
+  if (photoCache && now - photoCache.at < CACHE_TTL_MS) return photoCache.data;
+  if (inflight) return inflight;
+
   const clientID = process.env.UNSPLASH_ID;
   if (!clientID) return [] as Photo[];
 
-  try {
-    const req = await axios.get(
-      `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=36`,
-    );
-    return req.data as Photo[];
-  } catch {
-    return [] as Photo[];
-  }
+  inflight = (async () => {
+    try {
+      const req = await axios.get(
+        `https://api.unsplash.com/users/kennymark/photos?client_id=${clientID}&per_page=36`,
+        { timeout: 8000 },
+      );
+      const data = req.data as Photo[];
+      photoCache = { at: Date.now(), data };
+      return data;
+    } catch {
+      return photoCache?.data ?? ([] as Photo[]);
+    } finally {
+      inflight = null;
+    }
+  })();
+
+  return inflight;
 });
 
 export const Route = createFileRoute('/photography')({
   loader: async () => await getPhotos(),
+  staleTime: CACHE_TTL_MS,
+  gcTime: CACHE_TTL_MS,
   component: PhotographyRoute,
   head: () => ({
     meta: [{ title: 'Photography — Kenny Coffie' }],
@@ -77,10 +96,16 @@ function PhotographyRoute() {
               className='group mb-4 block w-full cursor-zoom-in overflow-hidden border border-[color:var(--line)] bg-[color:var(--surface)] break-inside-avoid transition-colors hover:border-[color:var(--ink)]/40'
             >
               <img
-                src={photo.urls.regular}
+                src={photo.urls.small}
+                srcSet={`${photo.urls.small} 400w, ${photo.urls.regular} 1080w`}
+                sizes='(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
                 alt={photo.alt_description ?? photo.description ?? 'Photo by Kenny Coffie'}
+                width={photo.width}
+                height={photo.height}
                 className='h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]'
-                loading='lazy'
+                loading={i < 6 ? 'eager' : 'lazy'}
+                decoding='async'
+                fetchPriority={i < 3 ? 'high' : 'auto'}
               />
             </button>
           ))}

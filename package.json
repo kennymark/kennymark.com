@@ -15,20 +15,15 @@
     "check": "biome check --write ."
   },
   "dependencies": {
-    "@babel/core": "^7.13.10",
     "@sendgrid/mail": "^7.6.0",
-    "@tanstack/react-query": "^4.44.0",
     "@tanstack/react-router": "^1.0.0",
     "@tanstack/react-start": "^1.0.0",
     "dayjs": "^1.10.7",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^10.1.1",
-    "prism-react-renderer": "^1.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-masonry-css": "^1.0.16",
-    "read-time": "^1.0.0",
-    "swr": "1.1.0-beta.12"
+    "read-time": "^1.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.12",
@@ -36,7 +31,6 @@
     "@types/node": "^22.0.0",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "@types/slug": "^0.9.1",
     "@vitejs/plugin-react": "^5.2.0",
     "nitro": "npm:nitro-nightly@latest",
     "tailwindcss": "^4.0.0",

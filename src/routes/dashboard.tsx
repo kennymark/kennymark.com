@@ -5,44 +5,84 @@ import { useEffect, useState } from 'react';
 import cachedTracks from '../../lib/cached-tracks';
 import Tidal from '../../lib/tidal';
 
-const getDashboardBase = createServerFn({ method: 'GET' }).handler(async () => {
+type DashboardBase = {
+  unsplashViews: number;
+  unsplashDownloads: number;
+  tracks: any[];
+};
+
+const CACHE_TTL_MS = 15 * 60 * 1000;
+let baseCache: { at: number; data: DashboardBase } | null = null;
+let inflight: Promise<DashboardBase> | null = null;
+
+async function fetchUnsplashStats() {
   const id = process.env.UNSPLASH_ID;
-  let unsplashViews = 0;
-  let unsplashDownloads = 0;
-
-  if (id) {
-    try {
-      const req = await axios.get(
-        `https://api.unsplash.com/users/kennymark/statistics?client_id=${id}`,
-      );
-      unsplashViews = req.data?.views?.total ?? 0;
-      unsplashDownloads = req.data?.downloads?.total ?? 0;
-    } catch {
-      unsplashViews = 0;
-      unsplashDownloads = 0;
-    }
+  if (!id) return { unsplashViews: 0, unsplashDownloads: 0 };
+  try {
+    const req = await axios.get(
+      `https://api.unsplash.com/users/kennymark/statistics?client_id=${id}`,
+      { timeout: 5000 },
+    );
+    return {
+      unsplashViews: req.data?.views?.total ?? 0,
+      unsplashDownloads: req.data?.downloads?.total ?? 0,
+    };
+  } catch {
+    return { unsplashViews: 0, unsplashDownloads: 0 };
   }
+}
 
+async function fetchTidalTracks() {
   const { TIDAL_PASS: password, TIDAL_EMAIL: username } = process.env;
-  let tracks: any = cachedTracks;
-  if (password && username) {
-    try {
-      const tidal = new Tidal({ username, password });
-      tracks = await tidal.getMyFavTracks();
-    } catch {
-      tracks = cachedTracks;
-    }
+  if (!password || !username) return cachedTracks;
+  try {
+    const tidal = new Tidal({ username, password });
+    return await tidal.getMyFavTracks();
+  } catch {
+    return cachedTracks;
   }
+}
 
-  return {
-    unsplashViews,
-    unsplashDownloads,
-    tracks: tracks?.items?.slice(0, 8) ?? [],
-  };
-});
+const getDashboardBase = createServerFn({ method: 'GET' }).handler(
+  async (): Promise<DashboardBase> => {
+    const now = Date.now();
+    if (baseCache && now - baseCache.at < CACHE_TTL_MS) return baseCache.data;
+    if (inflight) return inflight;
+
+    inflight = (async () => {
+      try {
+        const [{ unsplashViews, unsplashDownloads }, tracks] = await Promise.all([
+          fetchUnsplashStats(),
+          fetchTidalTracks(),
+        ]);
+        const data: DashboardBase = {
+          unsplashViews,
+          unsplashDownloads,
+          tracks: (tracks as any)?.items?.slice(0, 8) ?? [],
+        };
+        baseCache = { at: Date.now(), data };
+        return data;
+      } catch {
+        return (
+          baseCache?.data ?? {
+            unsplashViews: 0,
+            unsplashDownloads: 0,
+            tracks: (cachedTracks as any)?.items?.slice(0, 8) ?? [],
+          }
+        );
+      } finally {
+        inflight = null;
+      }
+    })();
+
+    return inflight;
+  },
+);
 
 export const Route = createFileRoute('/dashboard')({
   loader: async () => await getDashboardBase(),
+  staleTime: CACHE_TTL_MS,
+  gcTime: CACHE_TTL_MS,
   component: DashboardRoute,
   head: () => ({
     meta: [{ title: 'Stats — Kenny Coffie' }],
@@ -62,19 +102,20 @@ function DashboardRoute() {
   }>({});
 
   useEffect(() => {
-    const load = async () => {
-      const [dev, github, subs] = await Promise.all([
-        fetch('/api/dashboard/dev')
-          .then((r) => r.json())
-          .catch(() => ({})),
-        fetch('/api/dashboard/github')
-          .then((r) => r.json())
-          .catch(() => ({})),
-        fetch('/api/dashboard/subscribers')
-          .then((r) => r.json())
-          .catch(() => ({})),
-      ]);
+    const controller = new AbortController();
+    const signal = controller.signal;
 
+    const fetchJson = (url: string) =>
+      fetch(url, { signal })
+        .then((r) => r.json())
+        .catch(() => ({}));
+
+    Promise.all([
+      fetchJson('/api/dashboard/dev'),
+      fetchJson('/api/dashboard/github'),
+      fetchJson('/api/dashboard/subscribers'),
+    ]).then(([dev, github, subs]) => {
+      if (signal.aborted) return;
       setMetrics({
         views: dev.total,
         likes: dev.likes,
@@ -82,9 +123,9 @@ function DashboardRoute() {
         followers: github.followers,
         subscribers: subs.count,
       });
-    };
+    });
 
-    load();
+    return () => controller.abort();
   }, []);
 
   const tiles: Array<{
@@ -173,10 +214,13 @@ function DashboardRoute() {
                   {String(idx + 1).padStart(2, '0')}
                 </span>
                 <img
-                  src={`https://resources.tidal.com/images/${track.item.album.cover.replace(/-/g, '/')}/320x320.jpg`}
+                  src={`https://resources.tidal.com/images/${track.item.album.cover.replace(/-/g, '/')}/160x160.jpg`}
                   alt={track.item.title}
+                  width={48}
+                  height={48}
                   className='h-12 w-12 rounded-lg object-cover'
-                  loading='lazy'
+                  loading={idx < 4 ? 'eager' : 'lazy'}
+                  decoding='async'
                 />
                 <div className='min-w-0 flex-1'>
                   <p className='truncate font-medium'>{track.item.title}</p>

@@ -42,6 +42,8 @@ export const Route = createRootRoute({
     links: [
       { rel: 'stylesheet', href: appCss },
       { rel: 'icon', href: '/images/favicon.png' },
+      { rel: 'preconnect', href: 'https://images.unsplash.com', crossOrigin: '' },
+      { rel: 'dns-prefetch', href: 'https://images.unsplash.com' },
     ],
     scripts: [
       {
