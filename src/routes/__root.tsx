@@ -330,7 +330,6 @@ function SiteFooter() {
       <div className='border-t border-[color:var(--line)]'>
         <div className='container-page flex flex-wrap items-center justify-between gap-3 py-6'>
           <p className='label'>© {year} Kenny Coffie · Manchester · UK</p>
-          <p className='label'>Built with TanStack Start · Tailwind</p>
         </div>
       </div>
     </footer>
