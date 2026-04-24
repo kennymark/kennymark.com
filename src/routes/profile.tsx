@@ -111,7 +111,7 @@ function ProfileRoute() {
               GitHub
             </a>
             , shouts and rants on{' '}
-            <a href='https://twitter.com/kennymark_' target='_blank' rel='noreferrer'>
+            <a href='https://twitter.com/mrkennymark' target='_blank' rel='noreferrer'>
               Twitter
             </a>
             , photos on{' '}

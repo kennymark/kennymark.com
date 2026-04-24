@@ -36,7 +36,7 @@ export const Route = createRootRoute({
       },
       { property: 'og:image', content: '/images/me2.jpg' },
       { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:creator', content: '@kennymark_' },
+      { name: 'twitter:creator', content: '@mrkennymark' },
       { name: 'theme-color', content: '#fbfbf9' },
     ],
     links: [
@@ -284,7 +284,7 @@ function SiteFooter() {
                 <li>
                   <a
                     className='hover:text-[color:var(--accent)]'
-                    href='https://twitter.com/kennymark_'
+                    href='https://twitter.com/mrkennymark'
                     target='_blank'
                     rel='noreferrer'
                   >
