@@ -72,7 +72,7 @@ export default class Tidal {
   }
 
   // base re that checks login first and if not do it
-  private async request(url, method: any = 'get') {
+  private async request(url: string, method: 'get' | 'post' | 'put' | 'delete' = 'get') {
     const { searchParams, headers } = this;
 
     if (!this.isLoggedIn) {

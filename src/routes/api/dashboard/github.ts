@@ -4,16 +4,25 @@ const TTL_MS = 15 * 60 * 1000;
 let cache: { at: number; body: string } | null = null;
 let inflight: Promise<string> | null = null;
 
+type GithubUser = {
+  followers?: number;
+};
+
+type GithubRepo = {
+  fork?: boolean;
+  stargazers_count?: number;
+};
+
 async function compute() {
   const [userResponse, reposResponse] = await Promise.all([
     fetch('https://api.github.com/users/kennymark'),
     fetch('https://api.github.com/users/kennymark/repos?per_page=100'),
   ]);
-  const user = await userResponse.json();
-  const repositories = await reposResponse.json();
-  const mine = Array.isArray(repositories) ? repositories.filter((r: any) => !r.fork) : [];
+  const user = (await userResponse.json()) as GithubUser;
+  const repositories = (await reposResponse.json()) as GithubRepo[] | unknown;
+  const mine = Array.isArray(repositories) ? repositories.filter((r) => !r.fork) : [];
   const stars = mine.reduce(
-    (acc: number, repository: any) => acc + (repository.stargazers_count ?? 0),
+    (acc: number, repository) => acc + (repository.stargazers_count ?? 0),
     0,
   );
   return JSON.stringify({ followers: user?.followers ?? 0, stars });

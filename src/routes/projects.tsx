@@ -157,7 +157,7 @@ function ProjectsRoute() {
           <p className='label'>{String(moreProjects.length).padStart(2, '0')} items</p>
         </div>
         <ul className='divide-y divide-[color:var(--line)]'>
-          {moreProjects.map((project: any, i: number) => (
+          {moreProjects.map((project, i: number) => (
             <li key={project.name}>
               <div className='grid grid-cols-12 items-baseline gap-4 py-6'>
                 <span className='num col-span-2 text-xs text-[color:var(--faint)] md:col-span-1'>

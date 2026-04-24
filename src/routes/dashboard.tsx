@@ -1,5 +1,6 @@
 import cachedTracks from '@lib/cached-tracks';
 import Tidal from '@lib/tidal';
+import type { ItemElement, TrackResult } from 'models/Tidal';
 import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import axios from 'axios';
@@ -8,7 +9,7 @@ import { useEffect, useState } from 'react';
 type DashboardBase = {
   unsplashViews: number;
   unsplashDownloads: number;
-  tracks: any[];
+  tracks: ItemElement[];
 };
 
 const CACHE_TTL_MS = 15 * 60 * 1000;
@@ -43,6 +44,12 @@ async function fetchTidalTracks() {
   }
 }
 
+function extractTracks(payload: unknown): ItemElement[] {
+  if (!payload || typeof payload !== 'object' || !('items' in payload)) return [];
+  const { items } = payload as Partial<TrackResult>;
+  return Array.isArray(items) ? (items.slice(0, 8) as ItemElement[]) : [];
+}
+
 const getDashboardBase = createServerFn({ method: 'GET' }).handler(
   async (): Promise<DashboardBase> => {
     const now = Date.now();
@@ -58,7 +65,7 @@ const getDashboardBase = createServerFn({ method: 'GET' }).handler(
         const data: DashboardBase = {
           unsplashViews,
           unsplashDownloads,
-          tracks: (tracks as any)?.items?.slice(0, 8) ?? [],
+          tracks: extractTracks(tracks),
         };
         baseCache = { at: Date.now(), data };
         return data;
@@ -67,7 +74,7 @@ const getDashboardBase = createServerFn({ method: 'GET' }).handler(
           baseCache?.data ?? {
             unsplashViews: 0,
             unsplashDownloads: 0,
-            tracks: (cachedTracks as any)?.items?.slice(0, 8) ?? [],
+            tracks: extractTracks(cachedTracks),
           }
         );
       } finally {
@@ -202,7 +209,7 @@ function DashboardRoute() {
           <p className='text-xs text-[color:var(--muted)]'>from Tidal</p>
         </div>
         <ul className='grid gap-2 sm:grid-cols-2'>
-          {data.tracks.map((track: any, idx: number) => (
+          {data.tracks.map((track, idx: number) => (
             <li key={track.created ?? idx}>
               <a
                 href={track.item.url}

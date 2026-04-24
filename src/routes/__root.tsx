@@ -88,13 +88,14 @@ const navLinks = [
   { to: '/dashboard', label: 'Stats' },
   { to: '/profile', label: 'About' },
 ] as const;
+const navActiveProps = { 'data-active': 'true' } as const;
 
 function RootComponent() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const gtag = (window as any).gtag;
+    const gtag = window.gtag;
     if (typeof gtag === 'function') {
       gtag('config', 'G-8LTL2CML5L', { page_path: pathname });
     }
@@ -131,7 +132,7 @@ function SiteHeader() {
               <li key={link.to} className='flex items-center gap-8'>
                 <Link
                   to={link.to}
-                  activeProps={{ 'data-active': 'true' } as any}
+                  activeProps={navActiveProps}
                   className='group relative inline-flex items-baseline gap-1.5 text-sm text-[color:var(--muted)] transition-colors hover:text-[color:var(--ink)] data-[active=true]:text-[color:var(--ink)]'
                 >
                   <span className='label text-[color:var(--faint)] group-hover:text-[color:var(--muted)] group-data-[active=true]:text-[color:var(--accent)]'>
@@ -153,7 +154,7 @@ function SiteHeader() {
             <Link
               key={link.to}
               to={link.to}
-              activeProps={{ 'data-active': 'true' } as any}
+              activeProps={navActiveProps}
               className='whitespace-nowrap text-xs text-[color:var(--muted)] data-[active=true]:text-[color:var(--ink)]'
             >
               {link.label}

@@ -2,11 +2,14 @@ import { titleCase } from '@lib/title-case';
 import { createFileRoute, Link, notFound } from '@tanstack/react-router';
 import { getProjectBySlug } from '@/lib/site-content';
 
+type Project = NonNullable<ReturnType<typeof getProjectBySlug>>;
+type ProjectWithGallery = Project & { gallery?: string[] };
+
 export const Route = createFileRoute('/project/$slug')({
   loader: ({ params }) => {
     const project = getProjectBySlug(params.slug);
     if (!project) throw notFound();
-    return project as any;
+    return project;
   },
   head: ({ loaderData }) => ({
     meta: [{ title: `${titleCase(loaderData.name)} — Project` }],
@@ -15,9 +18,9 @@ export const Route = createFileRoute('/project/$slug')({
 });
 
 function ProjectDetailRoute() {
-  const project = Route.useLoaderData();
+  const project = Route.useLoaderData() as ProjectWithGallery;
   const isMobile = project.tag === 'mobile';
-  const gallery = (project as any).gallery ?? [];
+  const gallery = project.gallery ?? [];
   const extraShots = gallery.filter((src: string) => src !== project.image);
 
   return (

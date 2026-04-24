@@ -13,10 +13,10 @@ export interface Photos {
   alt_description: null;
   urls: Urls;
   links: PhotoLinks;
-  categories: any[];
+  categories: unknown[];
   likes: number;
   liked_by_user: boolean;
-  current_user_collections: any[];
+  current_user_collections: unknown[];
   sponsorship: Sponsorship | null;
   topic_submissions: TopicSubmissions;
   user: User;
@@ -82,7 +82,7 @@ export interface Social {
 }
 
 export interface TopicSubmissions {
-  [x: string]: any;
+  [x: string]: unknown;
 }
 
 export interface Urls {

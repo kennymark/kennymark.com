@@ -6,6 +6,7 @@ import { createServerFn } from '@tanstack/react-start';
 import matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
 import { getMDXComponent } from 'mdx-bundler/client';
+import type { ComponentPropsWithoutRef } from 'react';
 import { useMemo } from 'react';
 import { NewsletterForm } from '@/components/site/newsletter-form';
 
@@ -13,8 +14,8 @@ const getPost = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
   .handler(async ({ data: slug }) => {
     const post = await getArticleByPath(slug);
-    if (!post?.body_markdown) return null;
-    const parsed = matter(post.body_markdown);
+    if (!post?.markdown) return null;
+    const parsed = matter(post.markdown);
 
     const mdx = await bundleMDX({
       source: parsed.content,
@@ -24,10 +25,10 @@ const getPost = createServerFn({ method: 'GET' })
       slug,
       title: parsed.data?.title ?? post.title,
       description: parsed.data?.description ?? post.description,
-      coverImage: parsed.data?.cover_image ?? post.cover_image,
+      coverImage: parsed.data?.cover_image ?? post.coverImage,
       code: mdx.code,
-      timeToRead: calculateReadingTime(post.body_markdown),
-      date: post.published_at,
+      timeToRead: calculateReadingTime(post.markdown),
+      date: post.publishedAt,
     };
   });
 
@@ -91,7 +92,7 @@ function BlogPostRoute() {
 }
 
 const mdxComponents = {
-  a: (props: any) => <a target='_blank' rel='noreferrer' {...props} />,
-  // biome-ignore lint/a11y/useAltText: <explanation>
-  img: (props: any) => <img loading='lazy' {...props} />,
+  a: (props: ComponentPropsWithoutRef<'a'>) => <a target='_blank' rel='noreferrer' {...props} />,
+  // biome-ignore lint/a11y/useAltText: MDX content controls alt text at usage sites
+  img: (props: ComponentPropsWithoutRef<'img'>) => <img loading='lazy' {...props} />,
 };

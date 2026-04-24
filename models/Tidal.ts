@@ -1,5 +1,3 @@
-import type { Headers } from 'node-fetch';
-
 export interface LoginInfo {
   username: string;
   password: string;
@@ -7,7 +5,7 @@ export interface LoginInfo {
 }
 
 export interface RawResult {
-  data: any | any[];
+  data: unknown | unknown[];
   responseHeaders: Headers;
 }
 
@@ -130,17 +128,17 @@ export interface TidalArrayResult<T> {
 }
 
 export interface TidalSearchResult {
-  artists?: TidalArrayResult<any>;
-  albums?: TidalArrayResult<any>;
-  playlists?: TidalArrayResult<any>;
+  artists?: TidalArrayResult<unknown>;
+  albums?: TidalArrayResult<unknown>;
+  playlists?: TidalArrayResult<unknown>;
   tracks?: TidalArrayResult<TidalTrack>;
-  videos?: TidalArrayResult<any>;
-  topHit: any;
+  videos?: TidalArrayResult<unknown>;
+  topHit: unknown;
 }
 
 export class TidalError extends Error implements ITidalError {
   constructor(err: ITidalError) {
-    super("TIDAL's API threw an error: " + err.userMessage + ' | Details: ' + JSON.stringify(err));
+    super(`TIDAL's API threw an error: ${err.userMessage} | Details: ${JSON.stringify(err)}`);
     this.userMessage = err.userMessage;
     this.subStatus = err.subStatus;
     this.status = err.status;

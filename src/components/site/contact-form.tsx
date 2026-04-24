@@ -1,6 +1,7 @@
 import { type FormEvent, useState } from 'react';
 
 export function ContactForm() {
+  type ApiResponse = { message?: string; error?: string };
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -24,15 +25,15 @@ export function ContactForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
       });
-      const data = await response.json();
+      const data = (await response.json()) as ApiResponse;
       if (!response.ok) throw new Error(data.error || 'Could not send');
       setStatus({
         kind: 'ok',
         text: data.message || "Thanks — I'll be in touch shortly.",
       });
       setForm({ name: '', email: '', subject: '', message: '' });
-    } catch (error: any) {
-      setStatus({ kind: 'err', text: error.message });
+    } catch (error: unknown) {
+      setStatus({ kind: 'err', text: error instanceof Error ? error.message : 'Could not send' });
     } finally {
       setSubmitting(false);
     }

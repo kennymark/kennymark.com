@@ -17,7 +17,7 @@ export const Route = createFileRoute('/sitemap.xml')({
           '/slashes',
         ];
         const articles = await getAllArticles().catch(() => []);
-        const blogPaths = articles.map((post: any) => `/blog/${post.devToSlug}`);
+        const blogPaths = articles.map((post) => `/blog/${post.devToSlug}`);
         const urls = [...staticPaths, ...blogPaths];
 
         const body = `<?xml version="1.0" encoding="UTF-8"?>

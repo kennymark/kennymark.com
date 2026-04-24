@@ -192,7 +192,12 @@ function FeaturedWork() {
   );
 }
 
-function SkillsSection({ skillGroups }: { skillGroups: [string, any][] }) {
+type SkillGroupData = {
+  title?: string;
+  skills: string[];
+};
+
+function SkillsSection({ skillGroups }: { skillGroups: [string, SkillGroupData][] }) {
   return (
     <section>
       <div className='border-b border-[color:var(--line-strong)] pb-6'>

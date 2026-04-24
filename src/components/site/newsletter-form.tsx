@@ -1,6 +1,7 @@
 import { type FormEvent, useState } from 'react';
 
 export function NewsletterForm() {
+  type ApiResponse = { message?: string; error?: string };
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null);
   const [submitting, setSubmitting] = useState(false);
@@ -16,12 +17,15 @@ export function NewsletterForm() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
       });
-      const data = await response.json();
+      const data = (await response.json()) as ApiResponse;
       if (!response.ok) throw new Error(data.error || 'Could not subscribe');
       setStatus({ kind: 'ok', text: data.message || 'Subscribed — check your inbox.' });
       setEmail('');
-    } catch (error: any) {
-      setStatus({ kind: 'err', text: error.message });
+    } catch (error: unknown) {
+      setStatus({
+        kind: 'err',
+        text: error instanceof Error ? error.message : 'Could not subscribe',
+      });
     } finally {
       setSubmitting(false);
     }

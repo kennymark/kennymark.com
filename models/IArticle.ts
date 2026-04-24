@@ -1,5 +1,4 @@
 export interface IArticle {
-  [x: string]: any;
   id: number;
   title: string;
   description: string;
@@ -19,7 +18,7 @@ export interface IArticle {
   body_markdown?: string;
   viewCount?: number;
   html?: string;
-  user?: any;
+  user?: Record<string, unknown>;
 }
 
 export interface ICachedArticle {
