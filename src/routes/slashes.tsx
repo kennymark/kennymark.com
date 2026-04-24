@@ -1,5 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { shortlinks } from '../lib/site-content';
+import { shortlinks } from '@/lib/site-content';
 
 export const Route = createFileRoute('/slashes')({
   loader: () => shortlinks,

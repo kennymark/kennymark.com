@@ -1,5 +1,5 @@
+import { getAllArticles } from '@lib/devblog';
 import { createFileRoute } from '@tanstack/react-router';
-import { getAllArticles } from '../../lib/devblog';
 
 const BASE_URL = 'https://kennymark.com';
 

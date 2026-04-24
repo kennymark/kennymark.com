@@ -1,13 +1,13 @@
+import { ago } from '@lib/date-format';
+import { getArticleByPath } from '@lib/devblog';
+import { calculateReadingTime } from '@lib/reading-time';
 import { createFileRoute, Link, notFound } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import matter from 'gray-matter';
 import { bundleMDX } from 'mdx-bundler';
 import { getMDXComponent } from 'mdx-bundler/client';
 import { useMemo } from 'react';
-import timeRead from 'read-time';
-import { ago } from '../../../lib/date-format';
-import { getArticleByPath } from '../../../lib/devblog';
-import { NewsletterForm } from '../../components/site/newsletter-form';
+import { NewsletterForm } from '@/components/site/newsletter-form';
 
 const getPost = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
@@ -26,7 +26,7 @@ const getPost = createServerFn({ method: 'GET' })
       description: parsed.data?.description ?? post.description,
       coverImage: parsed.data?.cover_image ?? post.cover_image,
       code: mdx.code,
-      timeToRead: timeRead(post.body_markdown).m + 1,
+      timeToRead: calculateReadingTime(post.body_markdown),
       date: post.published_at,
     };
   });

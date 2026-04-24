@@ -1,9 +1,9 @@
+import cachedTracks from '@lib/cached-tracks';
+import Tidal from '@lib/tidal';
 import { createFileRoute } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import cachedTracks from '../../lib/cached-tracks';
-import Tidal from '../../lib/tidal';
 
 type DashboardBase = {
   unsplashViews: number;

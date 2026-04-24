@@ -10,7 +10,7 @@ import {
 } from '@tanstack/react-router';
 import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
-import appCss from '../globals.css?url';
+import appCss from '@/globals.css?url';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -145,14 +145,6 @@ function SiteHeader() {
 
           <div className='flex items-center gap-2'>
             <ThemeToggle />
-            <a
-              href='/KennyCV.pdf'
-              target='_blank'
-              rel='noreferrer'
-              className='hidden border border-[color:var(--line-strong)] px-3 py-1.5 text-xs font-medium tracking-wide text-[color:var(--ink)] transition-colors hover:border-[color:var(--ink)] hover:bg-[color:var(--surface-2)] sm:inline-flex'
-            >
-              CV ↗
-            </a>
           </div>
         </nav>
 

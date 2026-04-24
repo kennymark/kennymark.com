@@ -1,5 +1,5 @@
+import { getAllArticles } from '@lib/devblog';
 import { createFileRoute } from '@tanstack/react-router';
-import { getAllArticles } from '../../../../lib/devblog';
 
 const TTL_MS = 15 * 60 * 1000;
 let cache: { at: number; body: string } | null = null;

@@ -224,4 +224,4 @@ const extraProjects = [
   },
 ];
 
-export { mainProjects, extraProjects, topProjects };
+export { extraProjects, mainProjects, topProjects };

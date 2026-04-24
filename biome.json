@@ -1,14 +1,7 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.4.12/schema.json",
   "files": {
-    "includes": [
-      "**",
-      "!.output/**",
-      "!.nitro/**",
-      "!dist/**",
-      "!node_modules/**",
-      "!src/routeTree.gen.ts"
-    ]
+    "includes": ["**", "!.output", "!.nitro", "!dist", "!node_modules", "!src/routeTree.gen.ts"]
   },
   "formatter": {
     "enabled": true,

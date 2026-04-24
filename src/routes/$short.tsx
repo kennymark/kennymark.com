@@ -1,6 +1,6 @@
 import { createFileRoute, notFound } from '@tanstack/react-router';
 import { useEffect } from 'react';
-import { shortlinks } from '../lib/site-content';
+import { shortlinks } from '@/lib/site-content';
 
 export const Route = createFileRoute('/$short')({
   loader: ({ params }) => {

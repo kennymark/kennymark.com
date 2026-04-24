@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { type FormEvent, useState } from 'react';
 
 export function NewsletterForm() {
   const [email, setEmail] = useState('');

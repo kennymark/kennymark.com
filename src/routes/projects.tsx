@@ -1,8 +1,8 @@
+import slugify from '@lib/slug';
+import { titleCase } from '@lib/title-case';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useMemo, useState } from 'react';
-import slugify from '../../lib/slug';
-import { titleCase } from '../../lib/title-case';
-import { moreProjects, portfolioProjects } from '../lib/site-content';
+import { moreProjects, portfolioProjects } from '@/lib/site-content';
 
 const tabs = ['showcase', 'fullstack', 'frontend', 'mobile'] as const;
 

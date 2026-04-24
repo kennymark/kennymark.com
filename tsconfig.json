@@ -14,9 +14,8 @@
     "resolveJsonModule": true,
     "baseUrl": "./",
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@lib/*": ["/lib/*"],
-      "@models/*": ["/models/*"]
+      "@/*": ["src/*"],
+      "@lib/*": ["lib/*"]
     },
     "isolatedModules": true,
     "jsx": "react-jsx",

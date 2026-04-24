@@ -1,4 +1,4 @@
-import { Headers } from 'node-fetch';
+import type { Headers } from 'node-fetch';
 
 export interface LoginInfo {
   username: string;

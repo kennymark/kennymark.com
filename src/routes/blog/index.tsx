@@ -1,14 +1,14 @@
+import { ago } from '@lib/date-format';
+import { getAllArticles } from '@lib/devblog';
+import { calculateReadingTime } from '@lib/reading-time';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { createServerFn } from '@tanstack/react-start';
 import matter from 'gray-matter';
-import timeRead from 'read-time';
-import { ago } from '../../../lib/date-format';
-import { getAllArticles } from '../../../lib/devblog';
-import { NewsletterForm } from '../../components/site/newsletter-form';
+import { NewsletterForm } from '@/components/site/newsletter-form';
 
 const getPosts = createServerFn({ method: 'GET' }).handler(async () => {
   const articles = await getAllArticles();
-  return articles.map((post: any) => {
+  return articles.map((post) => {
     const meta = matter(post.markdown).data as {
       title?: string;
       description?: string;
@@ -18,7 +18,7 @@ const getPosts = createServerFn({ method: 'GET' }).handler(async () => {
       description: meta.description ?? post.description,
       slug: post.devToSlug,
       date: post.publishedAt,
-      timeToRead: timeRead(post.markdown).m + 1,
+      timeToRead: calculateReadingTime(post.markdown),
     };
   });
 });
@@ -50,8 +50,7 @@ function BlogIndexRoute() {
 
       {featured ? (
         <Link
-          to='/blog/$slug'
-          params={{ slug: featured.slug }}
+          to={`/blog/${featured.slug}`}
           className='group grid gap-6 rounded-3xl bg-[color:var(--surface)] p-6 ring-1 ring-[color:var(--line)] transition-all hover:ring-[color:var(--ink)]/30 sm:p-10 md:grid-cols-[2fr_3fr]'
         >
           <div className='flex flex-col justify-between gap-6'>
@@ -91,11 +90,10 @@ function BlogIndexRoute() {
           </p>
         </div>
         <ul className='divide-y divide-[color:var(--line)] overflow-hidden rounded-2xl bg-[color:var(--surface)] ring-1 ring-[color:var(--line)]'>
-          {rest.map((post: any) => (
+          {rest.map((post) => (
             <li key={post.slug}>
               <Link
-                to='/blog/$slug'
-                params={{ slug: post.slug }}
+                to={`/blog/${post.slug}`}
                 className='group grid grid-cols-12 items-baseline gap-4 px-5 py-5 transition-colors hover:bg-[color:var(--surface-2)]'
               >
                 <time

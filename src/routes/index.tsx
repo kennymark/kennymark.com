@@ -1,8 +1,8 @@
+import slugify from '@lib/slug';
+import { titleCase } from '@lib/title-case';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import slugify from '../../lib/slug';
-import { titleCase } from '../../lib/title-case';
-import { ContactForm } from '../components/site/contact-form';
-import { homepageProjects, skills } from '../lib/site-content';
+import { ContactForm } from '@/components/site/contact-form';
+import { homepageProjects, skills } from '@/lib/site-content';
 
 export const Route = createFileRoute('/')({
   component: HomeRoute,

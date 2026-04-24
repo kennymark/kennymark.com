@@ -1,6 +1,6 @@
+import { titleCase } from '@lib/title-case';
 import { createFileRoute, Link, notFound } from '@tanstack/react-router';
-import { titleCase } from '../../../lib/title-case';
-import { getProjectBySlug } from '../../lib/site-content';
+import { getProjectBySlug } from '@/lib/site-content';
 
 export const Route = createFileRoute('/project/$slug')({
   loader: ({ params }) => {
