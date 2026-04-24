@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SlashesRouteImport } from './routes/slashes'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PhotographyRouteImport } from './routes/photography'
@@ -35,6 +36,11 @@ const SlashesRoute = SlashesRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsRoute = ProjectsRouteImport.update({
@@ -122,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/photography': typeof PhotographyRoute
   '/profile': typeof ProfileRoute
   '/projects': typeof ProjectsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/slashes': typeof SlashesRoute
   '/api/contact': typeof ApiContactRoute
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/photography': typeof PhotographyRoute
   '/profile': typeof ProfileRoute
   '/projects': typeof ProjectsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/slashes': typeof SlashesRoute
   '/api/contact': typeof ApiContactRoute
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/photography': typeof PhotographyRoute
   '/profile': typeof ProfileRoute
   '/projects': typeof ProjectsRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/slashes': typeof SlashesRoute
   '/api/contact': typeof ApiContactRoute
@@ -182,6 +191,7 @@ export interface FileRouteTypes {
     | '/photography'
     | '/profile'
     | '/projects'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/slashes'
     | '/api/contact'
@@ -201,6 +211,7 @@ export interface FileRouteTypes {
     | '/photography'
     | '/profile'
     | '/projects'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/slashes'
     | '/api/contact'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/photography'
     | '/profile'
     | '/projects'
+    | '/robots.txt'
     | '/sitemap.xml'
     | '/slashes'
     | '/api/contact'
@@ -240,6 +252,7 @@ export interface RootRouteChildren {
   PhotographyRoute: typeof PhotographyRoute
   ProfileRoute: typeof ProfileRoute
   ProjectsRoute: typeof ProjectsRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SlashesRoute: typeof SlashesRoute
   ApiContactRoute: typeof ApiContactRoute
@@ -266,6 +279,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects': {
@@ -384,6 +404,7 @@ const rootRouteChildren: RootRouteChildren = {
   PhotographyRoute: PhotographyRoute,
   ProfileRoute: ProfileRoute,
   ProjectsRoute: ProjectsRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SlashesRoute: SlashesRoute,
   ApiContactRoute: ApiContactRoute,

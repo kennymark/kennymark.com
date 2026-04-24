@@ -8,6 +8,7 @@ export const Route = createFileRoute('/')({
   component: HomeRoute,
   head: () => ({
     meta: [{ title: 'Kenny Coffie — Software engineer & designer' }],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/' }],
   }),
 });
 

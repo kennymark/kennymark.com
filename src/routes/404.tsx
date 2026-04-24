@@ -3,7 +3,11 @@ import { createFileRoute, Link } from '@tanstack/react-router';
 export const Route = createFileRoute('/404')({
   component: Error404Route,
   head: () => ({
-    meta: [{ title: 'Not found — Kenny Coffie' }],
+    meta: [
+      { title: 'Not found — Kenny Coffie' },
+      { name: 'robots', content: 'noindex,follow' },
+    ],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/404' }],
   }),
 });
 

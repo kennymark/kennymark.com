@@ -9,8 +9,12 @@ export const Route = createFileRoute('/$short')({
     return lookup;
   },
   component: ShortRedirectRoute,
-  head: ({ loaderData }) => ({
-    meta: [{ title: `Redirecting to ${loaderData.destination}` }],
+  head: ({ loaderData, params }) => ({
+    meta: [
+      { title: `Redirecting to ${loaderData.destination}` },
+      { name: 'robots', content: 'noindex,follow' },
+    ],
+    links: [{ rel: 'canonical', href: `https://kennymark.com/${params.short}` }],
   }),
 });
 

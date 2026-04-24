@@ -5,7 +5,11 @@ export const Route = createFileRoute('/slashes')({
   loader: () => shortlinks,
   component: SlashesRoute,
   head: () => ({
-    meta: [{ title: 'Slashes — Kenny Coffie' }],
+    meta: [
+      { title: 'Slashes — Kenny Coffie' },
+      { name: 'robots', content: 'noindex,follow' },
+    ],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/slashes' }],
   }),
 });
 

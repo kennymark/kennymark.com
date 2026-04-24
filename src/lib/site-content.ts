@@ -21,10 +21,9 @@ export type SiteProject = {
 export const skills = skillTypes;
 export const homepageProjects = mainProjects;
 export const portfolioProjects = topProjects;
-export const moreProjects = extraProjects;
 export const shortlinks = redirects;
 
-export const allProjects = [...topProjects, ...extraProjects] as SiteProject[];
+const allProjects = [...topProjects, ...extraProjects] as SiteProject[];
 
 export function getProjectBySlug(slug: string): SiteProject | undefined {
   return allProjects.find((project) => slugify(project.name) === slug);

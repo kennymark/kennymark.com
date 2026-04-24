@@ -136,19 +136,6 @@ export interface TidalSearchResult {
   topHit: unknown;
 }
 
-export class TidalError extends Error implements ITidalError {
-  constructor(err: ITidalError) {
-    super(`TIDAL's API threw an error: ${err.userMessage} | Details: ${JSON.stringify(err)}`);
-    this.userMessage = err.userMessage;
-    this.subStatus = err.subStatus;
-    this.status = err.status;
-  }
-
-  status: number;
-  subStatus: number;
-  userMessage: string;
-}
-
 export interface ITidalError {
   status: number;
   subStatus: number;
@@ -167,7 +154,7 @@ export interface SearchParams {
   offset?: number;
 }
 
-export const DefaultSearchParam = {
+const DefaultSearchParam = {
   limit: 100,
   offset: 0,
   filter: 'ALL',
@@ -236,16 +223,16 @@ export interface Artist {
   picture: null | string;
 }
 
-export enum Type {
+enum Type {
   Featured = 'FEATURED',
   Main = 'MAIN',
 }
 
-export enum AudioMode {
+enum AudioMode {
   Stereo = 'STEREO',
 }
 
-export enum AudioQuality {
+enum AudioQuality {
   HiRes = 'HI_RES',
   Lossless = 'LOSSLESS',
 }

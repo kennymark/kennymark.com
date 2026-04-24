@@ -12,6 +12,8 @@ import type { ReactNode } from 'react';
 import { useEffect, useState } from 'react';
 import appCss from '@/globals.css?url';
 
+const SITE_URL = 'https://kennymark.com';
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -34,14 +36,24 @@ export const Route = createRootRoute({
         content:
           'Portfolio, writing, photography and live metrics from Kenny Coffie, a software engineer in the UK.',
       },
+      { property: 'og:url', content: SITE_URL },
+      { property: 'og:type', content: 'website' },
       { property: 'og:image', content: '/images/me2.jpg' },
       { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Kenny Coffie — Software engineer & designer' },
+      {
+        name: 'twitter:description',
+        content:
+          'Portfolio, writing, photography and live metrics from Kenny Coffie, a software engineer in the UK.',
+      },
+      { name: 'twitter:image', content: `${SITE_URL}/images/me2.jpg` },
       { name: 'twitter:creator', content: '@mrkennymark' },
       { name: 'theme-color', content: '#fbfbf9' },
     ],
     links: [
       { rel: 'stylesheet', href: appCss },
       { rel: 'icon', href: '/images/favicon.png' },
+      { rel: 'canonical', href: SITE_URL },
       { rel: 'preconnect', href: 'https://images.unsplash.com', crossOrigin: '' },
       { rel: 'dns-prefetch', href: 'https://images.unsplash.com' },
     ],
@@ -74,6 +86,31 @@ export const Route = createRootRoute({
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
           })(window, document, "clarity", "script", "5y153908ax");
         `,
+      },
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'Person',
+          name: 'Kenny Coffie',
+          url: SITE_URL,
+          jobTitle: 'Software Engineer',
+          sameAs: [
+            'https://github.com/kennymark',
+            'https://www.linkedin.com/in/kennycoffie/',
+            'https://twitter.com/mrkennymark',
+            'https://unsplash.com/@kennymark',
+          ],
+        }),
+      },
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'WebSite',
+          name: 'Kenny Coffie',
+          url: SITE_URL,
+        }),
       },
     ],
   }),

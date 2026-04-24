@@ -28,7 +28,7 @@ type DevToArticle = {
 };
 
 // Takes a URL and returns the relative slug to your website
-export const convertCanonicalURLToRelative = (canonical: string) => {
+const convertCanonicalURLToRelative = (canonical: string) => {
   if (canonical.startsWith(portfolioURL)) {
     return canonical.replace(portfolioURL, '');
   }

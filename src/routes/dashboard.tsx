@@ -92,7 +92,11 @@ export const Route = createFileRoute('/dashboard')({
   gcTime: CACHE_TTL_MS,
   component: DashboardRoute,
   head: () => ({
-    meta: [{ title: 'Stats — Kenny Coffie' }],
+    meta: [
+      { title: 'Stats — Kenny Coffie' },
+      { name: 'robots', content: 'noindex,follow' },
+    ],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/dashboard' }],
   }),
 });
 

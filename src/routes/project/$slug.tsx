@@ -11,8 +11,9 @@ export const Route = createFileRoute('/project/$slug')({
     if (!project) throw notFound();
     return project;
   },
-  head: ({ loaderData }) => ({
+  head: ({ loaderData, params }) => ({
     meta: [{ title: `${titleCase(loaderData.name)} — Project` }],
+    links: [{ rel: 'canonical', href: `https://kennymark.com/project/${params.slug}` }],
   }),
   component: ProjectDetailRoute,
 });

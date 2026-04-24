@@ -51,6 +51,7 @@ export const Route = createFileRoute('/photography')({
   component: PhotographyRoute,
   head: () => ({
     meta: [{ title: 'Photography — Kenny Coffie' }],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/photography' }],
   }),
 });
 

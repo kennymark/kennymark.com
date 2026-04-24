@@ -4,6 +4,7 @@ export const Route = createFileRoute('/profile')({
   component: ProfileRoute,
   head: () => ({
     meta: [{ title: 'About — Kenny Coffie' }],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/profile' }],
   }),
 });
 

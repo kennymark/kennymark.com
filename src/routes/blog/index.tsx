@@ -28,6 +28,7 @@ export const Route = createFileRoute('/blog/')({
   component: BlogIndexRoute,
   head: () => ({
     meta: [{ title: 'Writing — Kenny Coffie' }],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/blog' }],
   }),
 });
 

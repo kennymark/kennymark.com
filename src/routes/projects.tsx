@@ -10,6 +10,7 @@ export const Route = createFileRoute('/projects')({
   component: ProjectsRoute,
   head: () => ({
     meta: [{ title: 'Work — Kenny Coffie' }],
+    links: [{ rel: 'canonical', href: 'https://kennymark.com/projects' }],
   }),
 });
 

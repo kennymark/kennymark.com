@@ -8,4 +8,4 @@ dayjs.extend(yearAgo);
 const dateFormat = (date: string) => dayjs(date);
 const ago = (date: string) => dayjs().to(date);
 
-export { ago, dateFormat };
+export { ago };

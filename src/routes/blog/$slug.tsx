@@ -43,9 +43,34 @@ export const Route = createFileRoute('/blog/$slug')({
     meta: [
       { title: `${loaderData.title} — Kenny Coffie` },
       { name: 'description', content: loaderData.description ?? '' },
+      { property: 'og:type', content: 'article' },
       { property: 'og:title', content: loaderData.title },
       { property: 'og:description', content: loaderData.description ?? '' },
+      { property: 'og:url', content: `https://kennymark.com/blog/${loaderData.slug}` },
       ...(loaderData.coverImage ? [{ property: 'og:image', content: loaderData.coverImage }] : []),
+      { name: 'twitter:title', content: loaderData.title },
+      { name: 'twitter:description', content: loaderData.description ?? '' },
+      ...(loaderData.coverImage ? [{ name: 'twitter:image', content: loaderData.coverImage }] : []),
+    ],
+    links: [{ rel: 'canonical', href: `https://kennymark.com/blog/${loaderData.slug}` }],
+    scripts: [
+      {
+        type: 'application/ld+json',
+        children: JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          headline: loaderData.title,
+          description: loaderData.description,
+          datePublished: loaderData.date,
+          dateModified: loaderData.date,
+          url: `https://kennymark.com/blog/${loaderData.slug}`,
+          image: loaderData.coverImage ? [loaderData.coverImage] : undefined,
+          author: {
+            '@type': 'Person',
+            name: 'Kenny Coffie',
+          },
+        }),
+      },
     ],
   }),
 });
