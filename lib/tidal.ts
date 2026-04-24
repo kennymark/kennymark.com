@@ -70,16 +70,4 @@ export default class Tidal {
     });
     return tracks.data;
   }
-
-  // base re that checks login first and if not do it
-  private async request(url: string, method: 'get' | 'post' | 'put' | 'delete' = 'get') {
-    const { searchParams, headers } = this;
-
-    if (!this.isLoggedIn) {
-      await this.login();
-      return await this.api(url, { method, headers, params: searchParams });
-    } else {
-      await this.api(url, { method, params: searchParams, headers });
-    }
-  }
 }

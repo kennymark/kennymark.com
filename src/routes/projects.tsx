@@ -2,7 +2,7 @@ import slugify from '@lib/slug';
 import { titleCase } from '@lib/title-case';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { useMemo, useState } from 'react';
-import { moreProjects, portfolioProjects } from '@/lib/site-content';
+import { portfolioProjects } from '@/lib/site-content';
 
 const tabs = ['showcase', 'fullstack', 'frontend', 'mobile'] as const;
 
@@ -148,47 +148,6 @@ function ProjectsRoute() {
         </ul>
       </section>
 
-      {/* <section>
-        <div className='flex items-end justify-between border-b border-[color:var(--line-strong)] pb-6'>
-          <div>
-            <p className='label'>Archive</p>
-            <h2 className='display mt-5 text-4xl sm:text-5xl'>More things</h2>
-          </div>
-          <p className='label'>{String(moreProjects.length).padStart(2, '0')} items</p>
-        </div>
-        <ul className='divide-y divide-[color:var(--line)]'>
-          {moreProjects.map((project, i: number) => (
-            <li key={project.name}>
-              <div className='grid grid-cols-12 items-baseline gap-4 py-6'>
-                <span className='num col-span-2 text-xs text-[color:var(--faint)] md:col-span-1'>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className='col-span-10 font-display text-xl tracking-tight md:col-span-3'>
-                  {titleCase(project.name)}
-                </h3>
-                <p className='col-span-12 text-sm text-[color:var(--muted)] md:col-span-6'>
-                  {project.description}
-                </p>
-                <div className='col-span-12 flex justify-start md:col-span-2 md:justify-end'>
-                  {project.link ? (
-                    <a
-                      href={project.link}
-                      target='_blank'
-                      rel='noreferrer'
-                      className='group inline-flex items-baseline gap-1.5 label-ink hover:text-[color:var(--accent)]'
-                    >
-                      Visit
-                      <span className='transition-transform group-hover:translate-x-0.5'>↗</span>
-                    </a>
-                  ) : (
-                    <span className='label'>Retired</span>
-                  )}
-                </div>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </section> */}
     </main>
   );
 }
