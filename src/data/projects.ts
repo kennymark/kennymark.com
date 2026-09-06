@@ -66,6 +66,20 @@ const mainProjects = [...featuredProjects];
 const topProjects = [
   ...featuredProjects,
   {
+    name: 'Trader',
+    status: 'live',
+    description:
+      'A personal replacement for my broker\u2019s interface \u2014 a watchlist with live quotes and charts, my imported Freetrade history with realized and open P&L, price alerts that reach me by email or Telegram, and opportunity scoring that says buy, hold or sell and why, then keeps a track record of whether it was right.',
+    image: '/screenshots/trader.png',
+    gallery: ['/screenshots/trader.png', '/screenshots/trader-portfolio.png'],
+    link: 'https://kennymark.com/trader',
+    source: 'https://github.com/kennymark/trader',
+    showCase: true,
+    stack: ['TypeScript', 'React', 'TanStack Router', 'Convex', 'Yahoo Finance', 'DeepSeek'],
+    color: '#e0f2fe',
+    tag: 'fullstack',
+  },
+  {
     name: 'petitions dashboard',
     status: 'live',
     description:
