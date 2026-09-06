@@ -106,19 +106,6 @@ const topProjects = [
     color: '#ccfbf1',
     tag: 'frontend',
   },
-  {
-    name: 'stripe payment and subscriptions',
-    status: 'live',
-    description: `Charge or subscribe to a fictional product using Stripe's API.`,
-    image:
-      'https://raw.githubusercontent.com/kennymark/stripe-subscriptions/master/screenshots/plans.png',
-    link: 'https://stripe-subscriptions.vercel.app/',
-    source: 'https://github.com/kennymark/stripe-subscriptions',
-    showCase: true,
-    stack: ['React.js', 'ChakraUI', 'Stripe api'],
-    color: '#faeee7',
-    tag: 'fullstack',
-  },
   // {
   //   name: "clever advisor",
   //   status: "in-progress",
@@ -133,19 +120,6 @@ const topProjects = [
   //   color: "#c9e8ff",
   //   tag: "frontend",
   // },
-  {
-    name: 'flux weather',
-    status: 'in-progress',
-    description: 'A beautiful cross platform weather app built in React-Native expo.',
-    image:
-      'https://camo.githubusercontent.com/2545a369f71065156e739ffbdc3b7cf9238361d1/68747470733a2f2f7374617469632e6e6f74696f6e2d7374617469632e636f6d2f61643364303635642d373135392d346138302d386130362d6134353531666361663938642f53696d756c61746f725f53637265656e5f53686f745f2d5f6950686f6e655f585f2d5f323031382d30322d32375f61745f31352e32312e33352e706e67',
-    link: null,
-    source: 'https://github.com/kennymark/Flux-Weather',
-    showCase: true,
-    stack: ['React native', 'Darksky API', 'Expo', 'React Native Elements'],
-    color: '#dafdff',
-    tag: 'mobile',
-  },
   {
     name: 'Sweet Bnb',
     status: 'in-progress',
