@@ -20,7 +20,7 @@ const featuredProjects = [
     company: 'Moradia',
     description:
       'The Togetha companion app for tenants and landlords — rent, maintenance requests, documents and messages, all on the move.',
-    image: '/screenshots/togetha-mobile-1.png',
+    image: '/screenshots/togetha-mobile-2.png',
     gallery: [
       '/screenshots/togetha-mobile-3.png',
       '/screenshots/togetha-mobile-1.png',
