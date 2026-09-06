@@ -108,7 +108,7 @@ function ProjectDetailRoute() {
             className={
               isMobile
                 ? 'h-full w-auto max-w-[28%] object-contain shadow-2xl shadow-black/30 ring-1 ring-black/10'
-                : 'aspect-[16/9] w-full object-cover'
+                : 'h-auto w-full'
             }
           />
         </figure>
@@ -137,7 +137,7 @@ function ProjectDetailRoute() {
                   className={
                     isMobile
                       ? 'h-full w-auto max-w-[70%] object-contain shadow-xl shadow-black/20 ring-1 ring-black/10'
-                      : 'aspect-[16/10] w-full object-cover'
+                      : 'aspect-[16/10] w-full object-cover object-[left_top]'
                   }
                 />
                 <span className='absolute left-3 top-3 font-mono text-[10px] tracking-widest uppercase text-[color:var(--ink)]/70'>

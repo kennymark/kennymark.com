@@ -138,7 +138,7 @@ function ProjectsRoute() {
                       className={
                         project.tag === 'mobile'
                           ? 'h-full w-auto max-w-[55%] object-contain shadow-xl shadow-black/20 ring-1 ring-black/10 transition-transform duration-700 group-hover:scale-[1.04]'
-                          : 'h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]'
+                          : 'h-full w-full object-cover object-[left_top] transition-transform duration-700 group-hover:scale-[1.04]'
                       }
                     />
                   </div>
