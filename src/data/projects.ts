@@ -133,20 +133,6 @@ const topProjects = [
     tag: 'frontend',
   },
   {
-    name: 'good notes',
-    status: 'live',
-    description:
-      'A simple note taking application built with React and Firebase Auth and Firestore.',
-    image:
-      'https://raw.githubusercontent.com/kennymark/Good-Notes/master/screenshots/main-page.png',
-    link: 'https://goodnotes.netlify.com/',
-    source: 'https://github.com/kennymark/Good-Notes',
-    stack: ['React', 'Firebase Auth', 'Firebase firestore'],
-    color: '#cfceff',
-    tag: 'frontend',
-    showCase: true,
-  },
-  {
     name: 'Book search',
     status: 'live',
     description: 'A demo app to search for books in an elastic search db via appbase.io',
